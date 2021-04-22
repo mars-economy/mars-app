@@ -1,12 +1,12 @@
 import { createStore } from 'vuex'
+import wallet from '@/store/modules/wallet/wallet.module'
+
+export const MODULE_NAMES = {
+  WALLET: 'wallet'
+}
 
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    [MODULE_NAMES.WALLET]: wallet
   }
 })

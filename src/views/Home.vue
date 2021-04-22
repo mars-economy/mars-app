@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <button v-for="(connector, id, i) in connectors" :key="i" @click="walletLogin(connector.id)">
+      <img :alt="connector.name" :src="connector.icon" height="40">{{ connector.name }}
+    </button>
+    <br>
+    <button @click="walletLogout()">LOGOUT</button>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+<script>
+import connectors from '@/helpers/connectors.json'
+import { mapActions } from 'vuex'
+import { MODULE_NAMES } from '@/store'
+import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
 
-@Options({
-  components: {
-    HelloWorld
+export default {
+  data () {
+    return {
+      connectors: connectors
+    }
+  },
+  mounted () {
+    this.walletInit()
+  },
+  methods: {
+    ...mapActions(MODULE_NAMES.WALLET, {
+      walletLogin: WALLET_ACTION_TYPES.WALLET_LOGIN,
+      walletLogout: WALLET_ACTION_TYPES.WALLET_LOGOUT,
+      walletInit: WALLET_ACTION_TYPES.INIT_WALLET
+    })
   }
-})
-export default class Home extends Vue {}
+}
 </script>
