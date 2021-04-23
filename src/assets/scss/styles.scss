@@ -1,7 +1,26 @@
-@import 'node_modules/@primer/css/index.scss';
-@import "variables";
+@import 'variables';
+@import 'node_modules/primeflex/src/variables';
+@import 'node_modules/primeflex/src/grid';
+@import 'node_modules/primeflex/src/formlayout';
+@import 'node_modules/primeflex/src/display';
+@import 'node_modules/primeflex/src/text';
+@import 'node_modules/primeflex/src/flexbox/flexbox';
+@import 'node_modules/primeflex/src/spacing';
+@import 'node_modules/primeflex/src/elevation';
+@import 'primedefinition';
+
+html {
+  font-size: 16px;
+  line-height: 1.5em;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  background-color: $bgColor;
+}
 
 html, body {
+  font-family: $font-family-base;
+  color: $textColor;
   margin: 0;
   padding: 0;
 }

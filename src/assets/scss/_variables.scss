@@ -1,6 +1,29 @@
-[data-color-mode="dark"][data-dark-theme="dark"] {
-  --color-bg-canvas: #04001C;
-  --color-scale-white: #FFFFFF;
-}
+@import url('/fonts/fonts.css');
 
-$white: #ffffff;
+$white:         #ffffff;
+$black:         #04001C;
+$colorPrimary: #FFC22E;
+$bgColor: #212852;
+
+// Font
+
+$font-family-base: "Karla", "Helvetica Neue", sans-serif;
+$fontFamily: $font-family-base;
+$fontSize: 1rem;
+$textColor: $white;
+
+
+$radius-base: 0.5rem;
+
+%card {
+  background: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 20px;
+  border-radius: $radius-base;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.43em;
+  letter-spacing: -0.02em;
+  // font-weight: 300;
+}

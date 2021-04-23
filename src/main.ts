@@ -6,11 +6,13 @@ import options from '@/utils/auth'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import PrimeVue from 'primevue/config'
 
 const app = createApp(App)
   .use(store)
   .use(router)
   .use(LockPlugin, options)
+  .use(PrimeVue)
 
 const requireComponent = require.context('@/components', true, /[\w-]+\.vue$/)
 requireComponent.keys().forEach(fileName => {
