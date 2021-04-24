@@ -11,7 +11,8 @@ $font-family-base: "Karla", "Helvetica Neue", sans-serif;
 $fontFamily: $font-family-base;
 $fontSize: 1rem;
 $textColor: $white;
-
+$textShadowBase: 0px 4px 4px rgba(13, 20, 41, 0.2);
+$headingFontWeight: 600;
 
 $radius-base: 0.5rem;
 
@@ -27,3 +28,4 @@ $radius-base: 0.5rem;
   letter-spacing: -0.02em;
   // font-weight: 300;
 }
+$overlayContentBorder: 1px solid rgba($white, 0.05);

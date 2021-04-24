@@ -1,35 +1,45 @@
 <template>
   <div>
-    <template  v-if="!isWalletConnected">
-      <Button name="Connect wallet" color="primary" @click="toggleWalletPanel"></Button>
-    </template>
-    <template  v-else>
+    <template  v-if="!isWalletConnect">
+      <Button
+        label="Connect wallet"
+        iconPos="right"
+        class="btn-primary btn-small"
+        @click="toggleWalletPanel($event)">
+      </Button>
+
+      <OverlayPanel ref="walletConnectorList">
+        <WalletConnectorList :isWallet="isWalletConnect" />
+      </OverlayPanel>
     </template>
 
-    <OverlayPanel ref="walletPanel">
-      <WalletPanel :isWallet="isWalletConnected"></WalletPanel>
-    </OverlayPanel>
+    <template  v-else>
+      <WalletDataButton></WalletDataButton>
+    </template>
+
   </div>
 </template>
 
 <script>
 import OverlayPanel from 'primevue/overlaypanel'
-import WalletPanel from '@/views/layout/header/Wallet/walletPanel'
+import WalletDataButton from './WalletDataButton'
+import WalletConnectorList from './WalletConnectorList'
 
 export default {
   name: 'Wallet',
   components: {
-    WalletPanel,
+    WalletConnectorList,
+    WalletDataButton,
     OverlayPanel
   },
   data () {
     return {
-      isWalletConnected: false
+      isWalletConnect: true
     }
   },
   methods: {
     toggleWalletPanel (event) {
-      this.$refs.walletPanel.toggle(event)
+      this.$refs.walletConnectorList.toggle(event)
     }
   }
 }

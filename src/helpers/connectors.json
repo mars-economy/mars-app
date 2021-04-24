@@ -22,7 +22,7 @@
     "id": "walletconnect",
     "name": "WalletConnect",
     "network": "1",
-    "icon": "/images/connectors/walletconnect.png",
+    "icon": "/images/connectors/walletconnect.svg",
     "options": {
       "rpc": {
         "1": "https://cloudflare-eth.com",
