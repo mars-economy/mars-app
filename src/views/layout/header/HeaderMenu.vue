@@ -1,7 +1,7 @@
 <template>
   <div id="nav" class="p-menubar p-d-flex">
-    <router-link to="/home" class="p-menuitem p-d-inline-block" :class="{'active': $route.path.includes('/home')}">Prediction markets</router-link>
-    <router-link to="/about" class="p-menuitem p-d-inline-block" :class="{'active': $route.path.includes('/about')}">About Mars Economy</router-link>
+    <router-link to="/prediction-markets" class="p-menuitem p-d-inline-block" :class="{'active': $route.path.includes('/prediction-markets')}">Prediction markets</router-link>
+    <router-link to="/home" class="p-menuitem p-d-inline-block" :class="{'active': $route.path.includes('/about')}">About Mars Economy</router-link>
     <router-link to="/about" class="p-menuitem p-d-inline-block">Convert mars milestones</router-link>
   </div>
 </template>
