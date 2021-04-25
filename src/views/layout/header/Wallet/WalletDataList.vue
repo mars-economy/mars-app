@@ -1,5 +1,4 @@
 <template>
-  <div class="wallet-panel-container">
     <div class="wallet-panel-body">
 
       <div class="wallet-data-item p-mb-3">
@@ -21,12 +20,11 @@
       <Divider class="p-my-3" borderStyle="solid" />
 
       <div class="p-d-flex p-flex-column">
-        <ActionLink label="Change wallet" class="muted" />
-        <ActionLink label="Disconnect wallet" class="muted p-mt-3" @click="walletLogout()"/>
+        <ActionLink label="Change wallet" class="muted" @click="onChangeWallet()" />
+        <ActionLink label="Disconnect wallet" class="muted p-mt-3" @click="walletLogout()" />
       </div>
 
     </div>
-  </div>
 </template>
 
 <script>
@@ -34,6 +32,11 @@ export default {
   name: 'WalletDataList',
   props: {
     walletData: Object
+  },
+  methods: {
+    onChangeWallet () {
+      this.$emit('changeWallet')
+    }
   }
 }
 </script>

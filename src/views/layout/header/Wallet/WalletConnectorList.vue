@@ -1,11 +1,9 @@
 <template>
-  <div class="wallet-panel-container">
-    <div class="wallet-panel-body">
-      <WalletConnector v-for="(connector, id, i) in connectorList"
-                       :connector="connector"
-                       :key="i" @click="walletLogin(connector.id)">
-      </WalletConnector>
-    </div>
+  <div class="wallet-panel-body">
+    <WalletConnector v-for="(connector, id, i) in connectorList"
+                         :connector="connector"
+                         :key="i" @click="walletLogin(connector.id)">
+    </WalletConnector>
   </div>
 </template>
 
