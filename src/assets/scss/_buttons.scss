@@ -61,3 +61,9 @@
   margin-left: 0.6em;
   box-sizing: border-box;
 }
+.p-buttonset {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
