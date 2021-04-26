@@ -23,10 +23,9 @@ export default {
 <style scoped lang="scss">
   .label {
     @extend %label-bg;
+    @extend %h5;
+    border: $border-light;
     padding: 6px 12px;
-    font-size: 12px;
-    line-height: 1em;
-    text-transform: uppercase;
   }
 
 </style>

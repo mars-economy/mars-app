@@ -34,6 +34,10 @@ div {
   line-height: 1.5em;
   font-weight: 400;
 }
+.text-small-base {
+  font-size: $font-size-small;
+  line-height: 1.5em;
+}
 
 *:focus, *:active {
   outline: none !important;
@@ -65,3 +69,17 @@ h2, .h2 {
 .muted {
   opacity: 0.5;
 }
+.w-100 {
+  width: 100%;
+}
+.fx-grow {
+  flex-grow: 1;
+}
+//milestone list
+.milestone-list-item {
+  .milestone { width: 260px; }
+  .state { width: 65px; }
+  .predictors { width: 70px; }
+  .action { width: 145px; }
+}
+

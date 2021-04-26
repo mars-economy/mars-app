@@ -5,11 +5,12 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 8px 12px;
+  padding: 12px 20px;
   //min-height: 40px;
   box-sizing: border-box;
   backdrop-filter: blur(20px);
   border-radius: $radius-base;
+  font-weight: bold;
 
   &.btn-primary {
     background-color: rgba($colorPrimary, 0.1);
@@ -78,15 +79,33 @@
   .p-button {
     padding: 8px 24px;
     border-radius: $radius-base !important;
-    > icon {
+    > .icon {
       opacity: 0.5;
     }
-    &[aria-pressed="true"] {
+    &.p-highlight {
       background-color: rgba($white, 0.1);
-      > icon {
+      > .icon {
         opacity: 1;
       }
     }
   }
 }
 
+.btn-select {
+  @extend %label-bg;
+  border: $border-light;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  .p-button {
+    padding: 15px 20px 15px 24px;
+    +.p-button {
+      border-left: $border-light;
+    }
+  }
+  .p-button-label {
+    opacity: 0.5;
+  }
+  .p-highlight .p-button-label {
+    opacity: 1;
+  }
+}

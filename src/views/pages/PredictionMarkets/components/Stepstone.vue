@@ -1,14 +1,13 @@
 <template>
-  <div class="stepstone p-grid">
-    <div class="p-col-4 stepstone-description p-pr-6">
-      <Label :labels="'stepstone '+stepstone.index" class="label-muted p-mb-3"></Label>
-      <Heading :name="stepstone.name" level="2" class="p-my-1"></Heading>
+  <div class="stepstone p-d-flex p-my-4">
+
+    <div class="stepstone-description p-pr-6">
+      <Label :labels="'stepstone '+stepstone.index" class="label-muted p-mb-3" />
+      <Heading :name="stepstone.name" level="2" class="p-my-1" />
       <div class="p-mt-3 text-body"> {{stepstone.description}}</div>
     </div>
 
-    <div class="p-col">
-      <MilestoneList :milestones="milestones"></MilestoneList>
-    </div>
+      <MilestoneList :milestones="milestones" class="fx-grow" />
 
   </div>
 
@@ -30,7 +29,7 @@ export default {
     return {
       milestones: [
         { name: 'Crew for first Human Exploration Announced', dueTo: '1688862699', predictors: '12456' },
-        { name: 'Crew for first Human', dueTo: '1699864699', predictors: '12456' }
+        { name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ', dueTo: '1699864699', predictors: '12456' }
       ]
     }
   }
@@ -39,7 +38,7 @@ export default {
 
 <style scoped lang="scss">
   .stepstone-description {
-    //;
+    width: 29%;
   }
 
 </style>
