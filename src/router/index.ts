@@ -4,13 +4,19 @@ import Home from '../views/Home.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/prediction-markets',
     component: () => import('@/views/layout/Layout.vue'),
     children: [
       {
         path: '/home',
         name: 'Home',
         component: Home,
+        props: true
+      },
+      {
+        path: '/prediction-markets',
+        name: 'PredictionMarkets',
+        component: () => import('@/views/pages/PredictionMarkets/PredictionMarkets.vue'),
         props: true
       },
       {
