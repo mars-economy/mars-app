@@ -1,6 +1,6 @@
 <template>
   <div class="toggle-view">
-    <SelectButton v-model="view" :options="views" dataKey="value">
+    <SelectButton v-model="view" :options="views">
       <template #option="slotProps">
         <Icon :name="slotProps.option" size="16"></Icon>
       </template>
