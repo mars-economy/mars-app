@@ -28,20 +28,10 @@ const actions = {
     try {
       await apolloProvider.defaultClient.query({ query: getAllDataQuery }).then(res => {
         commit(PHASES_MUTATION_TYPES.SET_STATE, {
-          key: 'categories',
-          data: res.data.categories
-        })
-        commit(PHASES_MUTATION_TYPES.SET_STATE, {
-          key: 'milestones',
-          data: res.data.milestones
-        })
-        commit(PHASES_MUTATION_TYPES.SET_STATE, {
-          key: 'predictions',
-          data: res.data.predictions
-        })
-        commit(PHASES_MUTATION_TYPES.SET_STATE, {
-          key: 'outcomes',
-          data: res.data.outcomes
+          categories: res.data.categories,
+          milestones: res.data.milestones,
+          predictions: res.data.predictions,
+          outcomes: res.data.outcomes
         })
       })
     } catch (e) {
@@ -52,7 +42,7 @@ const actions = {
 const mutations = {
   [PHASES_MUTATION_TYPES.SET_STATE] (_state, payload) {
     Object.keys(payload).forEach(key => {
-      _state[payload[key]] = payload[key].data
+      _state[key] = payload[key]
     })
   }
 }

@@ -1,19 +1,21 @@
 <template>
   <div class="p-d-flex p-flex-column p-ai-stretch">
 
-    <Heading name="Prediction Markets" level="1" class="p-my-3" />
+    <Heading class="p-my-3" level="1" name="Prediction Markets"/>
 
     <div class="p-d-flex p-ai-center p-jc-between p-mt-1 p-my-3">
       <div class="p-mx-auto">
         <SelectButton v-model="option" :options="options" class="btn-select"/>
       </div>
-      <ToggleViewButton />
+      <ToggleViewButton/>
     </div>
 
-    <div class="p-d-flex p-flex-column">
-      <Stepstone :stepstone="step" />
-    </div>
-    <Divider type="dashed" />
+    <template v-for="(category, index) in categories" :key="index">
+      <div class="p-d-flex p-flex-column">
+        <Stepstone :stepstone="category"/>
+      </div>
+      <Divider type="dashed"/>
+    </template>
 
   </div>
 
