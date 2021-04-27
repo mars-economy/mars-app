@@ -1,8 +1,11 @@
 
 // OverlayPanel
 
-.p-overlaypanel {
-  transform: translateY(10px);
+.p-overlaypanel.wallet-panel {
+  //transform: translateY(12px);
+  margin-top: 23.5px;
+  right: 2rem;
+  left: unset !important;
 }
 
 .wallet-panel-container {

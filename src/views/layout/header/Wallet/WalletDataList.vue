@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <Divider class="p-my-3" borderStyle="solid" />
+      <Divider class="p-my-3" type="solid" />
 
       <div class="p-d-flex p-flex-column">
         <ActionLink label="Change wallet" class="muted" @click="onChangeWallet()" />

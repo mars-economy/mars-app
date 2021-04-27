@@ -1,5 +1,5 @@
 <template>
-  <div class="p-divider" :style="{'border-style': borderStyle}"></div>
+  <div class="p-divider" :style="{'border-style': type}"></div>
 
 </template>
 
@@ -7,7 +7,7 @@
 export default {
   name: 'Divider',
   props: {
-    borderStyle: String
+    type: String
   }
 }
 </script>

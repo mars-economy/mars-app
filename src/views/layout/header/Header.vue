@@ -40,5 +40,6 @@ export default {
     background-color: rgba($white, 0.03);
     border-bottom: 1px solid rgba($white, 0.03);
     backdrop-filter: blur(20px);
+    z-index: 1024;
   }
 </style>

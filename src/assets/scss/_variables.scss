@@ -4,6 +4,7 @@ $white:         #ffffff;
 $black:         #04001C;
 $colorPrimary: #FFC22E;
 $bgColor: #212852;
+//$bgColor: #04001C;
 
 // Font
 
@@ -15,17 +16,20 @@ $textShadowBase: 0px 4px 4px rgba(13, 20, 41, 0.2);
 $headingFontWeight: 600;
 
 $radius-base: 0.5rem;
+$border-light: 1px solid rgba($white, 0.05);
 
-%card {
+%card-bg, %label-bg {
   background: rgba($white, 0.05);
   border: 1px solid rgba($white, 0.05);
   backdrop-filter: blur(20px);
-  padding: 20px;
   border-radius: $radius-base;
   box-sizing: border-box;
-  font-size: 0.875rem;
-  line-height: 1.43em;
-  letter-spacing: -0.02em;
-  // font-weight: 300;
 }
+%h5 {
+  font-size: 12px;
+  line-height: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+$font-size-small: 12px;
 $overlayContentBorder: 1px solid rgba($white, 0.05);
