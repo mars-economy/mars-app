@@ -1,0 +1,499 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    subscription: Subscription
+}
+
+type Category {
+    description: String
+    id: ID!
+    name: String!
+    position: Int!
+}
+
+type Milestone {
+    category: Category!
+    description: String
+    id: ID!
+    name: String!
+    position: Int!
+    status: MilestoneStatus!
+}
+
+type Outcome {
+    id: ID!
+    name: String!
+    position: Int!
+    prediction: Prediction!
+}
+
+type Prediction {
+    description: String
+    dueDate: BigInt!
+    id: ID!
+    milestone: Milestone!
+    name: String!
+    position: Int!
+    predictorsNumber: Int
+    state: PredictionState!
+    token: Bytes!
+}
+
+type Query {
+    "Access to subgraph metadata"
+    _meta(block: Block_height): _Meta_
+    categories(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Category_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Category_filter
+    ): [Category!]!
+    category(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Category
+    milestone(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Milestone
+    milestones(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Milestone_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Milestone_filter
+    ): [Milestone!]!
+    outcome(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Outcome
+    outcomes(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Outcome_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Outcome_filter
+    ): [Outcome!]!
+    prediction(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Prediction
+    predictions(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Prediction_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Prediction_filter
+    ): [Prediction!]!
+}
+
+type Subscription {
+    "Access to subgraph metadata"
+    _meta(block: Block_height): _Meta_
+    categories(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Category_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Category_filter
+    ): [Category!]!
+    category(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Category
+    milestone(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Milestone
+    milestones(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Milestone_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Milestone_filter
+    ): [Milestone!]!
+    outcome(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Outcome
+    outcomes(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Outcome_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Outcome_filter
+    ): [Outcome!]!
+    prediction(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        id: ID!
+    ): Prediction
+    predictions(
+        "The block at which the query should be executed. Can either be an `{ number: Int }` containing the block number or a `{ hash: Bytes }` value containing a block hash. Defaults to the latest block when omitted."
+        block: Block_height,
+        first: Int = 100,
+        orderBy: Prediction_orderBy,
+        orderDirection: OrderDirection,
+        skip: Int = 0,
+        where: Prediction_filter
+    ): [Prediction!]!
+}
+
+type _Block_ {
+    "The hash of the block"
+    hash: Bytes
+    "The block number"
+    number: Int!
+}
+
+"The type for the top-level _meta field"
+type _Meta_ {
+    """
+
+    Information about a specific subgraph block. The hash of the block
+    will be null if the _meta field has a block constraint that asks for
+    a block number. It will be filled if the _meta field has no block constraint
+    and therefore asks for the latest  block
+    """
+    block: _Block_!
+    "The deployment ID"
+    deployment: String!
+    "If `true`, the subgraph encountered indexing errors at some past block"
+    hasIndexingErrors: Boolean!
+}
+
+enum Category_orderBy {
+    description
+    id
+    name
+    position
+}
+
+enum MilestoneStatus {
+    Current
+    Future
+    Historical
+}
+
+enum Milestone_orderBy {
+    category
+    description
+    id
+    name
+    position
+    status
+}
+
+enum OrderDirection {
+    asc
+    desc
+}
+
+enum Outcome_orderBy {
+    id
+    name
+    position
+    prediction
+}
+
+enum PredictionState {
+    Closed
+    Open
+    Settlement
+}
+
+enum Prediction_orderBy {
+    description
+    dueDate
+    id
+    milestone
+    name
+    position
+    predictorsNumber
+    state
+    token
+}
+
+enum _SubgraphErrorPolicy_ {
+    "Data will be returned even if the subgraph has indexing errors"
+    allow
+    "If the subgraph has indexing errors, data will be omitted. The default."
+    deny
+}
+
+input Block_height {
+    hash: Bytes
+    number: Int
+}
+
+input Category_filter {
+    description: String
+    description_contains: String
+    description_ends_with: String
+    description_gt: String
+    description_gte: String
+    description_in: [String!]
+    description_lt: String
+    description_lte: String
+    description_not: String
+    description_not_contains: String
+    description_not_ends_with: String
+    description_not_in: [String!]
+    description_not_starts_with: String
+    description_starts_with: String
+    id: ID
+    id_gt: ID
+    id_gte: ID
+    id_in: [ID!]
+    id_lt: ID
+    id_lte: ID
+    id_not: ID
+    id_not_in: [ID!]
+    name: String
+    name_contains: String
+    name_ends_with: String
+    name_gt: String
+    name_gte: String
+    name_in: [String!]
+    name_lt: String
+    name_lte: String
+    name_not: String
+    name_not_contains: String
+    name_not_ends_with: String
+    name_not_in: [String!]
+    name_not_starts_with: String
+    name_starts_with: String
+    position: Int
+    position_gt: Int
+    position_gte: Int
+    position_in: [Int!]
+    position_lt: Int
+    position_lte: Int
+    position_not: Int
+    position_not_in: [Int!]
+}
+
+input Milestone_filter {
+    category: String
+    category_contains: String
+    category_ends_with: String
+    category_gt: String
+    category_gte: String
+    category_in: [String!]
+    category_lt: String
+    category_lte: String
+    category_not: String
+    category_not_contains: String
+    category_not_ends_with: String
+    category_not_in: [String!]
+    category_not_starts_with: String
+    category_starts_with: String
+    description: String
+    description_contains: String
+    description_ends_with: String
+    description_gt: String
+    description_gte: String
+    description_in: [String!]
+    description_lt: String
+    description_lte: String
+    description_not: String
+    description_not_contains: String
+    description_not_ends_with: String
+    description_not_in: [String!]
+    description_not_starts_with: String
+    description_starts_with: String
+    id: ID
+    id_gt: ID
+    id_gte: ID
+    id_in: [ID!]
+    id_lt: ID
+    id_lte: ID
+    id_not: ID
+    id_not_in: [ID!]
+    name: String
+    name_contains: String
+    name_ends_with: String
+    name_gt: String
+    name_gte: String
+    name_in: [String!]
+    name_lt: String
+    name_lte: String
+    name_not: String
+    name_not_contains: String
+    name_not_ends_with: String
+    name_not_in: [String!]
+    name_not_starts_with: String
+    name_starts_with: String
+    position: Int
+    position_gt: Int
+    position_gte: Int
+    position_in: [Int!]
+    position_lt: Int
+    position_lte: Int
+    position_not: Int
+    position_not_in: [Int!]
+    status: MilestoneStatus
+    status_not: MilestoneStatus
+}
+
+input Outcome_filter {
+    id: ID
+    id_gt: ID
+    id_gte: ID
+    id_in: [ID!]
+    id_lt: ID
+    id_lte: ID
+    id_not: ID
+    id_not_in: [ID!]
+    name: String
+    name_contains: String
+    name_ends_with: String
+    name_gt: String
+    name_gte: String
+    name_in: [String!]
+    name_lt: String
+    name_lte: String
+    name_not: String
+    name_not_contains: String
+    name_not_ends_with: String
+    name_not_in: [String!]
+    name_not_starts_with: String
+    name_starts_with: String
+    position: Int
+    position_gt: Int
+    position_gte: Int
+    position_in: [Int!]
+    position_lt: Int
+    position_lte: Int
+    position_not: Int
+    position_not_in: [Int!]
+    prediction: String
+    prediction_contains: String
+    prediction_ends_with: String
+    prediction_gt: String
+    prediction_gte: String
+    prediction_in: [String!]
+    prediction_lt: String
+    prediction_lte: String
+    prediction_not: String
+    prediction_not_contains: String
+    prediction_not_ends_with: String
+    prediction_not_in: [String!]
+    prediction_not_starts_with: String
+    prediction_starts_with: String
+}
+
+input Prediction_filter {
+    description: String
+    description_contains: String
+    description_ends_with: String
+    description_gt: String
+    description_gte: String
+    description_in: [String!]
+    description_lt: String
+    description_lte: String
+    description_not: String
+    description_not_contains: String
+    description_not_ends_with: String
+    description_not_in: [String!]
+    description_not_starts_with: String
+    description_starts_with: String
+    dueDate: BigInt
+    dueDate_gt: BigInt
+    dueDate_gte: BigInt
+    dueDate_in: [BigInt!]
+    dueDate_lt: BigInt
+    dueDate_lte: BigInt
+    dueDate_not: BigInt
+    dueDate_not_in: [BigInt!]
+    id: ID
+    id_gt: ID
+    id_gte: ID
+    id_in: [ID!]
+    id_lt: ID
+    id_lte: ID
+    id_not: ID
+    id_not_in: [ID!]
+    milestone: String
+    milestone_contains: String
+    milestone_ends_with: String
+    milestone_gt: String
+    milestone_gte: String
+    milestone_in: [String!]
+    milestone_lt: String
+    milestone_lte: String
+    milestone_not: String
+    milestone_not_contains: String
+    milestone_not_ends_with: String
+    milestone_not_in: [String!]
+    milestone_not_starts_with: String
+    milestone_starts_with: String
+    name: String
+    name_contains: String
+    name_ends_with: String
+    name_gt: String
+    name_gte: String
+    name_in: [String!]
+    name_lt: String
+    name_lte: String
+    name_not: String
+    name_not_contains: String
+    name_not_ends_with: String
+    name_not_in: [String!]
+    name_not_starts_with: String
+    name_starts_with: String
+    position: Int
+    position_gt: Int
+    position_gte: Int
+    position_in: [Int!]
+    position_lt: Int
+    position_lte: Int
+    position_not: Int
+    position_not_in: [Int!]
+    predictorsNumber: Int
+    predictorsNumber_gt: Int
+    predictorsNumber_gte: Int
+    predictorsNumber_in: [Int!]
+    predictorsNumber_lt: Int
+    predictorsNumber_lte: Int
+    predictorsNumber_not: Int
+    predictorsNumber_not_in: [Int!]
+    state: PredictionState
+    state_not: PredictionState
+    token: Bytes
+    token_contains: Bytes
+    token_in: [Bytes!]
+    token_not: Bytes
+    token_not_contains: Bytes
+    token_not_in: [Bytes!]
+}
+
+
+scalar BigDecimal
+
+scalar BigInt
+
+scalar Bytes

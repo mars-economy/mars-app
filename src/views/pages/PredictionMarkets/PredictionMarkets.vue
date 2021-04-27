@@ -22,6 +22,8 @@
 <script>
 import SelectButton from 'primevue/selectbutton'
 import Stepstone from '@/views/pages/PredictionMarkets/components/Stepstone'
+import { mapState } from 'vuex'
+import { MODULE_NAMES } from '@/store'
 
 export default {
   name: 'PredictionMarkets',
@@ -39,6 +41,13 @@ export default {
       option: 'current',
       options: ['current', 'historical']
     }
+  },
+  computed: {
+    ...mapState(MODULE_NAMES.PHASES, {
+      categories (state) {
+        return state.categories
+      }
+    })
   }
 }
 </script>

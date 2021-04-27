@@ -5,5 +5,15 @@ module.exports = {
         prependData: '@import "~@/assets/scss/styles.scss";'
       }
     }
+  },
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.(graphql|gql)$/,
+          use: 'graphql-tag/loader'
+        }
+      ]
+    }
   }
 }

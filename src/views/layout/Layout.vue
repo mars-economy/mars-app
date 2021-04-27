@@ -11,9 +11,11 @@
 <script>
 import Header from '@/views/layout/header/Header.vue'
 import Footer from '@/views/layout/footer/Footer'
+import apolloMixin from '@/mixins/apollo.mixins'
 
 export default {
   name: 'Layout',
+  mixins: [apolloMixin],
   components: {
     Footer,
     Header

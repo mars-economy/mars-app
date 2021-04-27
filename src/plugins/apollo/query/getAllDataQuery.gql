@@ -1,0 +1,33 @@
+query getAllDataQuery {
+    categories(orderBy: position orderDirection: asc) {
+        id
+        position
+        name
+        description
+    },
+    milestones(orderBy: position orderDirection: asc) {
+        id
+        category {id}
+        position
+        name
+        description
+        status
+    }
+    predictions(orderBy: position orderDirection: asc) {
+        id
+        milestone {id, name, category {id, name}}
+        position
+        name
+        description
+        state
+        token
+        dueDate
+        predictorsNumber
+    }
+    outcomes(orderBy: position orderDirection: asc) {
+        id
+        prediction {id}
+        position
+        name
+    }
+}
