@@ -11,7 +11,7 @@
       <TextPair :data="milestone.predictors" icon="users" />
     </div>
     <div class="milestone-data-item action">
-      <Button label="Predict now"
+      <Button label="see predictions"
               class="btn-primary"
               icon="pi pi-angle-right"
               iconPos="right" />
@@ -41,6 +41,6 @@ export default {
     &.milestone { width: 260px; }
     &.state { width: 85px; }
     &.predictors { width: 70px; }
-    &.action { width: 145px; }
+    &.action { width: 170px; }
   }
 </style>

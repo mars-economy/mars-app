@@ -44,7 +44,7 @@ export default {
   .milestone-list-headers {
     @extend %card-bg;
     @extend %h5;
-    padding: 8px 32px;
+    padding: 12px 32px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: $border-light;

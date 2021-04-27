@@ -7,14 +7,16 @@
       <div class="p-mx-auto">
         <SelectButton v-model="option" :options="options" class="btn-select"/>
       </div>
+      <!--
       <ToggleViewButton/>
+      -->
     </div>
 
     <template v-for="(category, index) in categories" :key="index">
       <div class="p-d-flex p-flex-column">
         <Stepstone :stepstone="category"/>
       </div>
-      <Divider type="dashed"/>
+      <Divider type="dashed" v-if="!isLastItem(index)"/>
     </template>
 
   </div>
@@ -44,6 +46,11 @@ export default {
       options: ['current', 'historical']
     }
   },
+  methods: {
+    isLastItem (index) {
+      return index === this.categories.length - 1
+    }
+  },
   computed: {
     ...mapState(MODULE_NAMES.PHASES, {
       categories (state) {
@@ -56,7 +63,7 @@ export default {
 
 <style scoped>
   .btn-select {
-    transform: translateX(64px);
+    /* transform: translateX(64px); */
   }
 
 </style>
