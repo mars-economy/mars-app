@@ -28,8 +28,8 @@ export default {
   data: function () {
     return {
       milestones: [
-        { name: 'Crew for first Human Exploration Announced', dueTo: '1688862699', predictors: '12456' },
-        { name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ', dueTo: '1699864699', predictors: '12456' }
+        { name: 'Crew for first Human Exploration Announced', state: 'open', predictors: '12456' },
+        { name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ', state: 'open', predictors: '12456' }
       ]
     }
   }

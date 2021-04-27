@@ -5,7 +5,7 @@
       {{ milestone.name }}
     </div>
     <div class="milestone-data-item state">
-      <TextPair :data="getTime(milestone.dueTo)" icon="statePoint" />
+      <TextPair :data="milestone.state.toUpperCase()" icon="statePoint" />
     </div>
     <div class="milestone-data-item predictors">
       <TextPair :data="milestone.predictors" icon="users" />

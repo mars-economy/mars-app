@@ -13,7 +13,7 @@
       <WalletDataButton @click="toggleWalletPanel($event)" :walletData="walletData"></WalletDataButton>
     </template>
 
-    <OverlayPanel ref="walletPanel">
+    <OverlayPanel ref="walletPanel" class="wallet-panel">
       <WalletPanel :walletData="getWalletData()" />
     </OverlayPanel>
 
