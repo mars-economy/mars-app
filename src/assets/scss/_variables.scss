@@ -17,9 +17,10 @@ $headingFontWeight: 600;
 
 $radius-base: 0.5rem;
 $border-light: 1px solid rgba($white, 0.05);
+$bg-light: rgba($white, 0.05);
 
 %card-bg, %label-bg {
-  background: rgba($white, 0.05);
+  background: $bg-light;
   border: 1px solid rgba($white, 0.05);
   backdrop-filter: blur(20px);
   border-radius: $radius-base;
@@ -31,5 +32,6 @@ $border-light: 1px solid rgba($white, 0.05);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
+
 $font-size-small: 12px;
 $overlayContentBorder: 1px solid rgba($white, 0.05);

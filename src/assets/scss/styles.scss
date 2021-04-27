@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'overlaypanel';
 @import 'buttons';
+@import  'card';
 @import 'node_modules/primeflex/src/variables';
 @import 'node_modules/primeflex/src/grid';
 @import 'node_modules/primeflex/src/formlayout';
@@ -38,7 +39,9 @@ div {
   font-size: $font-size-small;
   line-height: 1.5em;
 }
-
+.text-primary {
+  color: $colorPrimary;
+}
 *:focus, *:active {
   outline: none !important;
 }
@@ -71,6 +74,9 @@ h2, .h2 {
 }
 .w-100 {
   width: 100%;
+}
+.w-50 {
+  width: 50%
 }
 .fx-grow {
   flex-grow: 1;
