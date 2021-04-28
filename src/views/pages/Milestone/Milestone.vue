@@ -1,25 +1,23 @@
 <template>
   <div>
-    <PreviousPageLink text="Back to the list of Milestones" class="p-mb-4" />
-
-    <div class="p-d-flex" v-if="milestone">
-
+    <PreviousPageLink class="p-mb-4" text="Back to the list of Milestones"/>
+    <div v-if="Object.keys(milestone).length > 0" class="p-d-flex">
       <div class="milestone-description p-mr-4">
-        <Label :labels="['stepstone '+milestone.category.position, milestone.category.name]" class=" p-mb-3" />
-        <Heading :name="milestone.name" class="p-my-1" level="2" />
+        <Label :labels="['stepstone '+milestone.category.position, milestone.category.name]" class=" p-mb-3"/>
+        <Heading :name="milestone.name" class="p-my-1" level="2"/>
         <TextPair :data="milestone.status" label="current state" icon="state" class="p-my-3"></TextPair>
-        <div class="p-mt-3 text-body">{{milestone.description}}</div>
+        <div class="p-mt-3 text-body">{{ milestone.description }}</div>
       </div>
-
-      <PredictionList />
-
+      <PredictionList :predictions="milestone.predictions"/>
     </div>
-
   </div>
 </template>
 
 <script>
 import PredictionList from '@/views/pages/Milestone/components/PredictionList'
+import { mapState } from 'vuex'
+import { MODULE_NAMES } from '@/store'
+
 export default {
   name: 'Milestone',
   components: {
@@ -27,19 +25,34 @@ export default {
   },
   data: function () {
     return {
-      milestone: {
-        category: {
-          id: '0x5ffabec44f7a4cd58bf8fae36fe99003',
-          name: 'Preparing for Mars',
-          position: 1
-        },
-        description: '',
-        id: '0x0f7f86d810024f96ad265b067ec6c348',
-        name: 'Crew for first Human Exploration Announced',
-        position: 1,
-        status: 'Current'
-      }
+      milestoneUuid: null
     }
+  },
+  watch: {
+    $route: {
+      handler: async function (route) {
+        if (route.params.id) {
+          this.milestoneUuid = route.params.id
+        }
+      },
+      immediate: true
+    }
+  },
+  computed: {
+    ...mapState(MODULE_NAMES.PHASES, {
+      milestone (state) {
+        let milestone = {}
+        if (!this.milestoneUuid) {
+          return milestone
+        }
+        milestone = Array.from(state.milestones).find(item => item.id === this.milestoneUuid) || {}
+        if (Object.keys(milestone).length > 0) {
+          const predictions = Array.from(state.predictions).filter(item => item.milestone.id === this.milestoneUuid)
+          Object.assign(milestone, { predictions })
+        }
+        return milestone
+      }
+    })
   }
 }
 </script>

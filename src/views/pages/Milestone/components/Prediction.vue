@@ -6,7 +6,7 @@
     </div>
     <div class="p-d-flex p-jc-between p-flex-wrap p-ai-start">
       <template v-for="(outcome, index) in outcomes" :key="index">
-        <PredictionOutcome :outcome="outcome" />
+        <PredictionOutcome :outcome="outcome"/>
       </template>
     </div>
 
@@ -16,6 +16,7 @@
 
 <script>
 import PredictionOutcome from '@/views/pages/Milestone/components/PredictionOutcome'
+
 export default {
   name: 'Prediction',
   components: {
@@ -24,43 +25,12 @@ export default {
   props: {
     prediction: Object
   },
-  data: function () {
-    return {
-      outcomes: [
-        {
-          id: '0x6f2c59ae3ef74e48a11e6906e960fa9e',
-          name: 'NASA',
-          position: 1,
-          prediction: {
-            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
-          },
-          probability: 55,
-          profit: 130,
-          stake: 2000000
-        },
-        {
-          id: '0x3f28d8be756f4bd7814b55a3ff89d5ce',
-          name: 'ESA',
-          position: 2,
-          prediction: {
-            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
-          },
-          probability: 15,
-          profit: 130,
-          stake: 2000000
-        },
-        {
-          id: '0x338e8e790e2e4d509c7adc17e60c16f7',
-          name: 'JAXA',
-          position: 3,
-          prediction: {
-            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
-          },
-          probability: 35,
-          profit: 130,
-          stake: 2000000
-        }
-      ]
+  computed: {
+    outcomes () {
+      if (Object.keys(this.prediction) === 0) {
+        return []
+      }
+      return Array.from(this.$store.state.phases.outcomes).filter(item => this.prediction.id === item.prediction.id)
     }
   }
 }
@@ -73,6 +43,7 @@ export default {
     border: $border-light;
     padding: 20px 24px;
   }
+
   .outcome.card {
     margin-bottom: 2rem;
   }
