@@ -20,6 +20,7 @@ export default {
 
 <style scoped lang="scss">
   .pair {
+    font-size: 14px;
     line-height: 1em;
     letter-spacing: -0.02em;
   }

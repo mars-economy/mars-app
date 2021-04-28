@@ -2,11 +2,12 @@
   <div>
     <PreviousPageLink text="Back to the list of Milestones" class="p-mb-4" />
 
-    <div class="p-d-flex">
+    <div class="p-d-flex" v-if="milestone">
 
       <div class="milestone-description p-mr-4">
-        <Label :labels="['stepstone n', 'name']" class=" p-mb-3" />
+        <Label :labels="['stepstone '+milestone.category.position, milestone.category.name]" class=" p-mb-3" />
         <Heading :name="milestone.name" class="p-my-1" level="2" />
+        <TextPair :data="milestone.status" label="current state" icon="state" class="p-my-3"></TextPair>
         <div class="p-mt-3 text-body">{{milestone.description}}</div>
       </div>
 
@@ -28,7 +29,9 @@ export default {
     return {
       milestone: {
         category: {
-          id: '0x5ffabec44f7a4cd58bf8fae36fe99003'
+          id: '0x5ffabec44f7a4cd58bf8fae36fe99003',
+          name: 'Preparing for Mars',
+          position: 1
         },
         description: '',
         id: '0x0f7f86d810024f96ad265b067ec6c348',
@@ -36,12 +39,6 @@ export default {
         position: 1,
         status: 'Current'
       }
-    }
-  },
-  methods: {
-    getMilestone () {
-      console.log(this.$store.state.phases.milestones)
-      // return $this.store.state.phases.milestones.filter(item => item.id === '0x0f7f86d810024f96ad265b067ec6c348')
     }
   }
 }

@@ -4,8 +4,10 @@
       <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
       <span class="text-body p-ml-1">{{ prediction.name }}</span>
     </div>
-    <div class="p-d-flex p-jc-between">
-      <PredictionOutcomes />
+    <div class="p-d-flex p-jc-between p-flex-wrap p-ai-start">
+      <template v-for="(outcome, index) in outcomes" :key="index">
+        <PredictionOutcome :outcome="outcome" />
+      </template>
     </div>
 
   </div>
@@ -13,11 +15,11 @@
 </template>
 
 <script>
-import PredictionOutcomes from '@/views/pages/Milestone/components/PredictionOutcomes'
+import PredictionOutcome from '@/views/pages/Milestone/components/PredictionOutcome'
 export default {
   name: 'Prediction',
   components: {
-    PredictionOutcomes
+    PredictionOutcome
   },
   props: {
     prediction: Object
@@ -26,40 +28,37 @@ export default {
     return {
       outcomes: [
         {
-          description: '',
-          dueDate: '1735689600',
-          id: '0x9fbb1106b708ea5e261acc6fdb9cd85fd3ec78ee',
-          milestone: {
-            category: {
-              id: '0x5ffabec44f7a4cd58bf8fae36fe99003',
-              name: 'Preparing for Mars'
-            },
-            id: '0x0f7f86d810024f96ad265b067ec6c348',
-            name: 'Crew for first Human Exploration Announced'
-          },
-          name: 'By 2025',
+          id: '0x6f2c59ae3ef74e48a11e6906e960fa9e',
+          name: 'NASA',
           position: 1,
-          predictorsNumber: 0,
-          state: 'Open',
-          token: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee'
+          prediction: {
+            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
+          },
+          probability: 55,
+          profit: 130,
+          stake: 2000000
         },
         {
-          description: '',
-          dueDate: '1735689600',
-          id: '0x9f35f71610a4f748203fb20941cd881e83ac490b',
-          milestone: {
-            category: {
-              id: '0x5ffabec44f7a4cd58bf8fae36fe99003',
-              name: 'Preparing for Mars'
-            },
-            id: '0x0f7f86d810024f96ad265b067ec6c348',
-            name: 'Crew for first Human Exploration Announced'
-          },
-          name: 'Which Agency?',
+          id: '0x3f28d8be756f4bd7814b55a3ff89d5ce',
+          name: 'ESA',
           position: 2,
-          predictorsNumber: 0,
-          state: 'Open',
-          token: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee'
+          prediction: {
+            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
+          },
+          probability: 15,
+          profit: 130,
+          stake: 2000000
+        },
+        {
+          id: '0x338e8e790e2e4d509c7adc17e60c16f7',
+          name: 'JAXA',
+          position: 3,
+          prediction: {
+            id: '0x9f35f71610a4f748203fb20941cd881e83ac490b'
+          },
+          probability: 35,
+          profit: 130,
+          stake: 2000000
         }
       ]
     }
@@ -73,6 +72,9 @@ export default {
     @extend %card-bg;
     border: $border-light;
     padding: 20px 24px;
+  }
+  .outcome.card {
+    margin-bottom: 2rem;
   }
 
 </style>

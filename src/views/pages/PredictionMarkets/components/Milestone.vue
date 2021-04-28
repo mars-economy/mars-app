@@ -5,7 +5,7 @@
       {{ milestone.name }}
     </div>
     <div class="milestone-data-item state">
-      <TextPair :data="milestone.status.toUpperCase()" icon="statePoint"/>
+      <TextPair :data="milestone.status.toUpperCase()" icon="state"/>
     </div>
     <div class="milestone-data-item predictors">
       <TextPair :data="milestone.predictors" icon="users" />
