@@ -1,5 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Heading name="This is an about page" level="1" class="p-my-3" />
+
   </div>
 </template>
+
+<script>
+export default {
+  name: 'About'
+}
+
+</script>

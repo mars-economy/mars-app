@@ -1,8 +1,8 @@
 <template>
   <div class="pair p-d-inline-flex p-ai-center">
-    <Icon class="pair-icon p-mr-1" v-if="icon" :name="icon"></Icon>
-    <div class="pair-data">{{data}}</div>
-    <div class="pair-label p-ml-2 muted" v-if="label">{{label}}</div>
+    <Icon class="pair-icon p-mr-1" v-if="icon" :name="icon" :class="{'icon-primary': color  }"></Icon>
+    <div class="pair-data" :class="{ 'text-primary': color }">{{data}}</div>
+    <div class="pair-label p-ml-2 muted" v-if="label" :class="{'text-primary' : color }">{{label}}</div>
   </div>
 
 </template>
@@ -13,7 +13,8 @@ export default {
   props: {
     label: String,
     data: [String, Number],
-    icon: String
+    icon: String,
+    color: String
   }
 }
 </script>

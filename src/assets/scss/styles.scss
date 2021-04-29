@@ -35,7 +35,7 @@ div {
   line-height: 1.5em;
   font-weight: 400;
 }
-.text-small-base {
+.text-small-base, .text-small {
   font-size: $font-size-small;
   line-height: 1.5em;
 }
@@ -72,6 +72,12 @@ h2, .h2 {
 }
 .icon-small {
   width: 14px;
+}
+.icon-primary {
+  color: $colorPrimary;
+  svg * {
+    fill: $colorPrimary !important;
+  }
 }
 .muted {
   opacity: 0.5;

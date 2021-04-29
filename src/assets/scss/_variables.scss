@@ -26,6 +26,11 @@ $bg-light: rgba($white, 0.05);
   border-radius: $radius-base;
   box-sizing: border-box;
 }
+$card-padding-h: 24px;
+%card-px {
+  padding-left: $card-padding-h;
+  padding-right: $card-padding-h;
+}
 %h5 {
   font-size: 12px;
   line-height: 1.1em;

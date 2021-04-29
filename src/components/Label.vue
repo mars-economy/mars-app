@@ -14,9 +14,9 @@
 <script>
 export default {
   name: 'Label',
-  props: [
-    'labels'
-  ]
+  props: {
+    labels: Array
+  }
 }
 </script>
 

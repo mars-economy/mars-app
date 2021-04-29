@@ -1,7 +1,3 @@
-%card-px {
-  padding-left: 24px;
-  padding-right: 24px;
-}
 .card {
   @extend %card-bg;
   border: $border-light;
