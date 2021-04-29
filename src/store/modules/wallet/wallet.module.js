@@ -1,5 +1,6 @@
 import { getInstance } from '@snapshot-labs/lock/plugins/vue3'
 import { Web3Provider } from '@ethersproject/providers'
+import connectors from '@/helpers/connectors.json'
 
 let auth
 
@@ -10,34 +11,55 @@ export const WALLET_ACTION_TYPES = {
   LOAD_PROVIDER: 'loadProvider'
 }
 
+export const WALLET_MUTATION_TYPES = {
+  SET_STATE: 'setState'
+}
+
 export const state = {
   isInjected: false,
   web3: null,
-  provider: null
+  network: null,
+  account: null,
+  connector: null
 }
-export const getters = {}
+export const getters = {
+  getWalletShortName: state => {
+    if (state.account) {
+      const f = (str, n) => (str.length > n) ? str.substr(0, n - 1) + '...' : str
+      return f(state.account, 10)
+    }
+    return null
+  },
+  getWalletData: (state, getters) => {
+    if (!state.account) return null
+    return {
+      walletName: getters.getWalletShortName,
+      connectorIcon: state.connector ? state.connector.icon : null,
+      connectorName: state.connector ? state.connector.name : null
+    }
+  }
+}
 export const actions = {
   async [WALLET_ACTION_TYPES.INIT_WALLET] ({ dispatch }) {
     const auth = getInstance()
     auth.getConnector().then(connector => {
-      console.log('connector', connector)
       if (connector) dispatch(WALLET_ACTION_TYPES.WALLET_LOGIN, connector)
     })
   },
   async [WALLET_ACTION_TYPES.WALLET_LOGIN] ({
-    state,
+    commit,
     dispatch
   }, connector = 'injected') {
     auth = getInstance()
     await auth.login(connector)
     if (auth.provider.value) {
       auth.web3 = new Web3Provider(auth.provider.value)
+      commit(WALLET_MUTATION_TYPES.SET_STATE, { connector: connectors[connector] })
       await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
     }
-    console.log(state, connector)
   },
   async [WALLET_ACTION_TYPES.LOAD_PROVIDER] ({
-    state,
+    commit,
     dispatch
   }) {
     try {
@@ -63,22 +85,42 @@ export const actions = {
             auth.web3.getNetwork(),
             auth.web3.listAccounts()
           ])
+          commit(WALLET_MUTATION_TYPES.SET_STATE, {
+            isInjected: true,
+            web3: auth.web3,
+            network: network,
+            account: accounts[0]
+          })
         } catch (e) {
-          console.log(e)
+          console.debug(e)
         }
-        console.log('network, accounts', network, accounts)
-        // auth.provider.on('disconnect', async () => {});
       }
     } catch (e) {
       return Promise.reject(e)
     }
-    console.log(state)
   },
-  async [WALLET_ACTION_TYPES.WALLET_LOGOUT] ({ dispatch }) {
-    await auth.logout()
+  async [WALLET_ACTION_TYPES.WALLET_LOGOUT] ({ commit }) {
+    try {
+      await auth.logout()
+      commit(WALLET_MUTATION_TYPES.SET_STATE, {
+        isInjected: false,
+        web3: null,
+        network: null,
+        account: null
+      })
+      window.location.reload()
+    } catch (e) {
+      console.debug(e)
+    }
   }
 }
-export const mutations = {}
+export const mutations = {
+  [WALLET_MUTATION_TYPES.SET_STATE] (_state, payload) {
+    Object.keys(payload).forEach(key => {
+      _state[key] = payload[key]
+    })
+  }
+}
 
 export default {
   namespaced: true,

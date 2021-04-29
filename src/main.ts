@@ -25,9 +25,9 @@ requireComponent.keys().forEach(fileName => {
     camelCase(fileName.replace(/^\.\//, '').replace(/\.\w+$/, ''))
   )
   app.component(componentName, componentConfig.default || componentConfig)
-  app.component('Button', Button)
-  app.component('OverlayPanel', OverlayPanel)
 })
+app.component('Button', Button)
+app.component('OverlayPanel', OverlayPanel)
 
 app.mount('#app')
 

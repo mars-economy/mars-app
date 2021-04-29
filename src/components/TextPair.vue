@@ -12,7 +12,7 @@ export default {
   name: 'TextPair',
   props: {
     label: String,
-    data: String,
+    data: [String, Number],
     icon: String
   }
 }
