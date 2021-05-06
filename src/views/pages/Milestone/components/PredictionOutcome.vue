@@ -5,7 +5,7 @@
       <Probability :value="probability"/>
     </div>
     <div class="card-profit p-py-2">
-      <TextPair :data="estimatedProfit+'%'" icon="profit" label="estimated profit"/>
+      <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
     </div>
 
     <div v-if="!$store.state.wallet.isInjected" class="card-body p-py-3">
@@ -20,7 +20,7 @@
 
     <div class="card-footer-collapse">
       <PanelCollapse header="Show more" headerAlt="Show less" headerPos="right" :panelId="outcome.id" collapsed>
-        <TextPair :data="fromWei(outcome.stakedAmount)+' BUSD'" icon="coins" label="total stake"/>
+        <TextPair :data="fromWei(outcome.stakedAmount)" unit="BUSD" icon="coins" label="total stake"/>
       </PanelCollapse>
     </div>
 

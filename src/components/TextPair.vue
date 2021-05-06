@@ -1,7 +1,7 @@
 <template>
   <div class="pair p-d-inline-flex p-ai-center">
     <Icon class="pair-icon p-mr-1" v-if="icon" :name="icon" :class="{'icon-primary': color  }"></Icon>
-    <div class="pair-data" :class="{ 'text-primary': color }">{{data}}</div>
+    <div class="pair-data" :class="{ 'text-primary': color }">{{data}} {{unit}}</div>
     <div class="pair-label p-ml-2 muted" v-if="label" :class="{'text-primary' : color }">{{label}}</div>
   </div>
 
@@ -13,6 +13,7 @@ export default {
   props: {
     label: String,
     data: [String, Number],
+    unit: String,
     icon: String,
     color: String
   }
@@ -27,5 +28,6 @@ export default {
   }
   .pair-data {
     font-weight: 700;
+    white-space: nowrap;
   }
 </style>
