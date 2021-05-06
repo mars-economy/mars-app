@@ -1,4 +1,5 @@
 import { apolloProvider } from '@/plugins/apollo/apollo'
+import { PhasesTree } from '@/utils/tree.structure'
 
 const getAllDataQuery = require('../../../plugins/apollo/query/getAllDataQuery.gql')
 
@@ -6,7 +7,8 @@ const state = {
   categories: {},
   milestones: {},
   predictions: {},
-  outcomes: {}
+  outcomes: {},
+  phases: {}
 }
 
 const getters = {
@@ -24,14 +26,38 @@ export const PHASES_MUTATION_TYPES = {
 }
 
 const actions = {
-  async [PHASES_ACTION_TYPES.GET_DATA] ({ commit }) {
+  async [PHASES_ACTION_TYPES.GET_DATA] ({
+    commit,
+    rootState,
+    dispatch
+  }) {
     try {
-      await apolloProvider.defaultClient.query({ query: getAllDataQuery }).then(res => {
-        commit(PHASES_MUTATION_TYPES.SET_STATE, {
+      await apolloProvider.defaultClient.query({
+        query: getAllDataQuery,
+        fetchPolicy: 'no-cache'
+      }).then(res => {
+        const sortedData = {
           categories: res.data.categories,
           milestones: res.data.milestones,
           predictions: res.data.predictions,
           outcomes: res.data.outcomes
+        }
+        const phases = new PhasesTree(sortedData)
+        phases.nodes.forEach(async item => {
+          if (item.nodeType === 'predictions') {
+            if (!rootState.wallet.isInjected) return
+            // const stakes = await dispatch(MODULE_NAMES.CONTRACTS + '/' + CONTRACTS_ACTION_TYPES.GET_USER_STAKES, { prediction: item }, { root: true }) || null
+            // console.log('item.totalStakeAmount.valueOf()', item.totalStakeAmount.valueOf())
+            // item.stakes = stakes
+            return item
+          }
+        })
+        commit(PHASES_MUTATION_TYPES.SET_STATE, {
+          categories: res.data.categories,
+          milestones: res.data.milestones,
+          predictions: res.data.predictions,
+          outcomes: res.data.outcomes,
+          phases: phases
         })
       })
     } catch (e) {

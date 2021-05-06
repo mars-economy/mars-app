@@ -12,7 +12,7 @@
       -->
     </div>
 
-    <template v-for="(category, index) in categories" :key="index">
+    <template v-for="(category, index) in phases" :key="index">
       <div class="p-d-flex p-flex-column">
         <Stepstone :stepstone="category"/>
       </div>
@@ -55,6 +55,10 @@ export default {
     ...mapState(MODULE_NAMES.PHASES, {
       categories (state) {
         return state.categories
+      },
+      phases (state) {
+        if (Object.keys(state.phases).length === 0) return []
+        return state.phases.nodes.filter(item => item.nodeType === 'categories')
       }
     })
   }

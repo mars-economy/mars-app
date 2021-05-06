@@ -5,7 +5,7 @@
       <span class="text-body p-ml-1">{{ prediction.name }}</span>
     </div>
     <div class="p-d-flex p-jc-between p-flex-wrap p-ai-start">
-      <template v-for="(outcome, index) in outcomes" :key="index">
+      <template v-for="(outcome, index) in prediction.getChildrenList()" :key="index">
         <PredictionOutcome :outcome="outcome"/>
       </template>
     </div>
@@ -24,14 +24,6 @@ export default {
   },
   props: {
     prediction: Object
-  },
-  computed: {
-    outcomes () {
-      if (Object.keys(this.prediction) === 0) {
-        return []
-      }
-      return Array.from(this.$store.state.phases.outcomes).filter(item => this.prediction.id === item.prediction.id)
-    }
   }
 }
 </script>

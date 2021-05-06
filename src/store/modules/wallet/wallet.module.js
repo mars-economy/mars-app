@@ -1,6 +1,7 @@
 import { getInstance } from '@snapshot-labs/lock/plugins/vue3'
-import { Web3Provider } from '@ethersproject/providers'
 import connectors from '@/helpers/connectors.json'
+import Web3 from 'web3'
+import erc20 from '@/data/abi/erc20.json'
 
 let auth
 
@@ -8,7 +9,8 @@ export const WALLET_ACTION_TYPES = {
   WALLET_LOGIN: 'walletLogin',
   WALLET_LOGOUT: 'walletLogout',
   INIT_WALLET: 'initWallet',
-  LOAD_PROVIDER: 'loadProvider'
+  LOAD_PROVIDER: 'loadProvider',
+  GET_WALLET_BALANCES: 'getWalletBalances'
 }
 
 export const WALLET_MUTATION_TYPES = {
@@ -20,7 +22,9 @@ export const state = {
   web3: null,
   network: null,
   account: null,
-  connector: null
+  connector: null,
+  balance: null,
+  balanceBUSD: null
 }
 export const getters = {
   getWalletShortName: state => {
@@ -37,6 +41,9 @@ export const getters = {
       connectorIcon: state.connector ? state.connector.icon : null,
       connectorName: state.connector ? state.connector.name : null
     }
+  },
+  getWalletBalance: state => {
+    return state.balance
   }
 }
 export const actions = {
@@ -53,8 +60,11 @@ export const actions = {
     auth = getInstance()
     await auth.login(connector)
     if (auth.provider.value) {
-      auth.web3 = new Web3Provider(auth.provider.value)
-      commit(WALLET_MUTATION_TYPES.SET_STATE, { connector: connectors[connector] })
+      // auth.web3 = new Web3Provider(auth.provider.value)
+      auth.web3 = new Web3(auth.provider.value)
+      commit(WALLET_MUTATION_TYPES.SET_STATE, {
+        connector: connectors[connector]
+      })
       await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
     }
   },
@@ -82,14 +92,16 @@ export const actions = {
         let network, accounts
         try {
           [network, accounts] = await Promise.all([
-            auth.web3.getNetwork(),
-            auth.web3.listAccounts()
+            auth.web3.eth.net.getId(),
+            auth.web3.eth.getAccounts()
           ])
+          const balance = await auth.web3.eth.getBalance(accounts[0], 'latest')
           commit(WALLET_MUTATION_TYPES.SET_STATE, {
             isInjected: true,
             web3: auth.web3,
             network: network,
-            account: accounts[0]
+            account: accounts[0],
+            balance: balance
           })
         } catch (e) {
           console.debug(e)
@@ -109,6 +121,24 @@ export const actions = {
         account: null
       })
       window.location.reload()
+    } catch (e) {
+      console.debug(e)
+    }
+  },
+  async [WALLET_ACTION_TYPES.GET_WALLET_BALANCES] ({
+    commit,
+    state
+  }, data) {
+    try {
+      const tokenContract = await new state.web3.eth.Contract(erc20, data)
+      await tokenContract.methods.balanceOf(state.account).call()
+        .then(async function (bal) {
+          commit(WALLET_MUTATION_TYPES.SET_STATE, { balanceBUSD: bal })
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(e => {
+          console.debug(e)
+        })
     } catch (e) {
       console.debug(e)
     }

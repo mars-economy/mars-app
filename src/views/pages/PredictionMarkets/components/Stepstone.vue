@@ -7,7 +7,7 @@
       <div class="p-mt-3 text-body"> {{ stepstone.description }}</div>
     </div>
 
-    <MilestoneList :milestones="milestones(stepstone.id)" class="fx-grow"/>
+    <MilestoneList :milestones="stepstone.getChildrenList()" class="fx-grow"/>
 
   </div>
 
@@ -35,22 +35,22 @@ export default {
   //   }
   // },
   methods: {
-    milestones (categoryId, categoryIndex) {
-      return this.$store.state.phases.milestones
-        .filter(item => item.category.id === categoryId)
-        .map((value, index, arr) => {
-          let predictors = 0
-          const predictions = this.$store.state.phases.predictions.filter(item => item.milestone.id === arr[index].id)
-          Array.from(predictions).forEach(prediction => {
-            predictors += prediction.predictorsNumber
-          })
-          Object.assign(arr[index], {
-            predictions,
-            predictors
-          })
-          return arr[index]
-        })
-    }
+    // milestones (categoryId, categoryIndex) {
+    //   return this.$store.state.phases.milestones
+    //     .filter(item => item.category.id === categoryId)
+    //     .map((value, index, arr) => {
+    //       let predictors = 0
+    //       const predictions = this.$store.state.phases.predictions.filter(item => item.milestone.id === arr[index].id)
+    //       Array.from(predictions).forEach(prediction => {
+    //         predictors += prediction.predictorsNumber
+    //       })
+    //       Object.assign(arr[index], {
+    //         predictions,
+    //         predictors
+    //       })
+    //       return arr[index]
+    //     })
+    // }
   }
 }
 </script>

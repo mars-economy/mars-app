@@ -2,28 +2,30 @@
   <div class="outcome card">
     <div class="card-header p-py-3 p-d-flex p-ai-center p-jc-between text-primary">
       <div>{{ outcome.name }}</div>
-      <Probability :value=outcome.probability />
+      <Probability :value="probability"/>
     </div>
     <div class="card-profit p-py-2">
-      <TextPair :data="outcome.profit+'%'" label="estimated profit" icon="profit" />
+      <TextPair :data="estimatedProfit+'%'" icon="profit" label="estimated profit"/>
     </div>
 
-    <div class="card-body p-py-3" v-if="isWalletConnected" >
+    <div v-if="!$store.state.wallet.isInjected" class="card-body p-py-3">
       <Button @click="openWalletPanel($event)"
-              label="Connect wallet" class="btn-primary btn-block" />
+              class="btn-primary btn-block" label="Connect wallet"/>
     </div>
     <div v-else>
-      <Order></Order>
+      <Order :outcome="outcome"
+             :prediction="outcome.getParent()"
+             v-on:update:profit="estimatedProfit = $event"></Order>
     </div>
 
     <div class="card-footer-collapse">
       <PanelCollapse header="Show more" headerAlt="Show less" headerPos="right" :panelId="outcome.id" collapsed>
-        <TextPair :data="outcome.stake" label="total stake" icon="coins" />
+        <TextPair :data="fromWei(outcome.stakedAmount)+' BUSD'" icon="coins" label="total stake"/>
       </PanelCollapse>
     </div>
 
     <OverlayPanel ref="walletPanel" class="wallet-panel">
-      <WalletPanel :walletData=null />
+      <WalletPanel :walletData="null"/>
     </OverlayPanel>
 
   </div>
@@ -33,6 +35,9 @@
 <script>
 import WalletPanel from '@/views/layout/header/Wallet/WalletPanel'
 import Order from '@/views/pages/Milestone/components/stake/Order'
+import { convertFromWei } from '@/utils/contract'
+import BigNumber from 'bignumber.js'
+
 export default {
   name: 'PredictionOutcome',
   components: {
@@ -44,12 +49,24 @@ export default {
   },
   data: function () {
     return {
-      isWalletConnected: false
+      isWalletConnected: false,
+      estimatedProfit: 0
     }
   },
   methods: {
     openWalletPanel (event) {
       this.$refs.walletPanel.show(event)
+    },
+    fromWei (stakedAmount) {
+      return convertFromWei(stakedAmount)
+    }
+  },
+  computed: {
+    probability () {
+      const probability = new BigNumber(this.outcome.stakedAmount)
+        .dividedBy(this.outcome.getParent().totalStakeAmount)
+        .multipliedBy(100)
+      return probability.isNaN() ? 0 : probability.toNumber().toFixed(0)
     }
   }
 }

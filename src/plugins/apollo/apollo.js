@@ -13,7 +13,10 @@ const cache = new InMemoryCache()
 // Create the apollo client
 const apolloClient = new ApolloClient({
   link: httpLink,
-  cache
+  cache,
+  defaultOptions: {
+    fetchPolicy: 'no-cache'
+  }
 })
 
 // Vue.use(VueApollo)

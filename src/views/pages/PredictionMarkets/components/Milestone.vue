@@ -8,7 +8,7 @@
       <TextPair :data="milestone.status.toUpperCase()" icon="state"/>
     </div>
     <div class="milestone-data-item predictors">
-      <TextPair :data="milestone.predictors" icon="users" />
+      <TextPair :data="milestone.predictorsNumber" icon="users"/>
     </div>
     <div class="milestone-data-item action">
       <Button label="see predictions"

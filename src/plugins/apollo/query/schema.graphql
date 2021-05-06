@@ -15,9 +15,11 @@ type Category {
 type Milestone {
     category: Category!
     description: String
+    dueDate: BigInt!
     id: ID!
     name: String!
     position: Int!
+    predictorsNumber: Int
     status: MilestoneStatus!
 }
 
@@ -26,6 +28,7 @@ type Outcome {
     name: String!
     position: Int!
     prediction: Prediction!
+    stakedAmount: BigInt!
 }
 
 type Prediction {
@@ -201,9 +204,11 @@ enum MilestoneStatus {
 enum Milestone_orderBy {
     category
     description
+    dueDate
     id
     name
     position
+    predictorsNumber
     status
 }
 
@@ -217,6 +222,7 @@ enum Outcome_orderBy {
     name
     position
     prediction
+    stakedAmount
 }
 
 enum PredictionState {
@@ -325,6 +331,14 @@ input Milestone_filter {
     description_not_in: [String!]
     description_not_starts_with: String
     description_starts_with: String
+    dueDate: BigInt
+    dueDate_gt: BigInt
+    dueDate_gte: BigInt
+    dueDate_in: [BigInt!]
+    dueDate_lt: BigInt
+    dueDate_lte: BigInt
+    dueDate_not: BigInt
+    dueDate_not_in: [BigInt!]
     id: ID
     id_gt: ID
     id_gte: ID
@@ -355,6 +369,14 @@ input Milestone_filter {
     position_lte: Int
     position_not: Int
     position_not_in: [Int!]
+    predictorsNumber: Int
+    predictorsNumber_gt: Int
+    predictorsNumber_gte: Int
+    predictorsNumber_in: [Int!]
+    predictorsNumber_lt: Int
+    predictorsNumber_lte: Int
+    predictorsNumber_not: Int
+    predictorsNumber_not_in: [Int!]
     status: MilestoneStatus
     status_not: MilestoneStatus
 }
@@ -404,6 +426,14 @@ input Outcome_filter {
     prediction_not_in: [String!]
     prediction_not_starts_with: String
     prediction_starts_with: String
+    stakedAmount: BigInt
+    stakedAmount_gt: BigInt
+    stakedAmount_gte: BigInt
+    stakedAmount_in: [BigInt!]
+    stakedAmount_lt: BigInt
+    stakedAmount_lte: BigInt
+    stakedAmount_not: BigInt
+    stakedAmount_not_in: [BigInt!]
 }
 
 input Prediction_filter {
