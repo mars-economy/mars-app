@@ -103,7 +103,7 @@ export default {
       const estRight = newStake.plus(stakedAmount)
 
       let estimatedProfit = ((estLeft.dividedBy(estRight)).minus(1)).multipliedBy(100)
-      estimatedProfit = estimatedProfit.isNaN() ? new BigNumber(0) : estimatedProfit
+      estimatedProfit = estimatedProfit.isNaN() || +estimatedProfit.valueOf() === Infinity ? new BigNumber(0) : estimatedProfit
       this.$emit('update:profit', estimatedProfit.toNumber().toFixed(0))
     },
     calculateEstimatedWin () {
