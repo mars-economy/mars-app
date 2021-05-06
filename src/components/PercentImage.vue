@@ -13,7 +13,7 @@
 export default {
   name: 'PercentImage',
   props: {
-    value: Number
+    value: [Number, String]
   },
   methods: {
     getStyle () {

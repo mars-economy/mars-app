@@ -11,7 +11,7 @@
 export default {
   name: 'Probability',
   props: {
-    value: Number
+    value: [Number, String]
   }
 }
 </script>

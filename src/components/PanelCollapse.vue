@@ -2,7 +2,7 @@
   <div class="panel-collapse">
     <div class="panel-header" :style="{'text-align':headerPos}">
       <Button :label="header" class="btn-text"
-              :icon="{'pi pi-angle-up': !panelCollapsed, 'pi pi-angle-down': panelCollapsed}"
+              :icon="panelCollapsed ? 'pi pi-angle-down' : 'pi pi-angle-up'"
               iconPos="right"
               @click="toggle"
               :id="panelId +  '_header'"

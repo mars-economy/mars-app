@@ -23,9 +23,9 @@
       <InfoMessage v-if="isInvalid" color="primary" small text="Invalid Input"
                    type="warning"/>
     </template>
-    <template v-if="!isProgress">
+    <template v-if="isProgress">
+      <Loader message="We are checking your wallet. Please wait for a moment" class="p-mt-3"/>
     </template>
-    <Loader message="We are checking your wallet. Please wait for a moment" class="p-mt-3"/>
 
   </div>
 
