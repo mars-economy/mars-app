@@ -1,0 +1,39 @@
+{
+  "injected": {
+    "id": "injected",
+    "name": "MetaMask",
+    "icon": "/images/connectors/metamask-icon.svg"
+  },
+  "binance": {
+    "id": "binance",
+    "name": "Binance Chain",
+    "icon": "/images/connectors/binance.jpg",
+    "options": {
+      "rpc": {
+        "97": "https://data-seed-prebsc-1-s1.binance.org:8545/"
+      }
+    }
+  },
+  "portis": {
+    "id": "portis",
+    "name": "Portis",
+    "icon": "/images/connectors/portis.svg",
+    "options": {
+      "dappId": "79f378d6-be05-4c38-87ff-68f1dc842475",
+      "network": "mainnet"
+    }
+  },
+  "walletconnect": {
+    "id": "walletconnect",
+    "name": "WalletConnect",
+    "network": "1",
+    "icon": "/images/connectors/walletconnect.svg",
+    "options": {
+      "rpc": {
+        "1": "https://cloudflare-eth.com",
+        "4": "https://eth-rinkeby.alchemyapi.io/v2/twReQE9Px03E-E_N_Fbb3OVF7YgHxoGq",
+        "42": "https://eth-kovan.alchemyapi.io/v2/QCsM2iU0bQ49eGDmZ7-Y--Wpu0lVWXSO"
+      }
+    }
+  }
+}

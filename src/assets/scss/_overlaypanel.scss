@@ -1,0 +1,24 @@
+
+// OverlayPanel
+
+.p-overlaypanel.wallet-panel {
+  //transform: translateY(12px);
+  top: 79px !important;
+  right: 2rem;
+  margin-top: 0;
+  left: unset !important;
+  position: fixed;
+  display: block !important;
+}
+
+.wallet-panel-container {
+  font-size: 12px;
+  line-height: 1.3em;
+  background: rgba($white, 0.03);
+  border: 1px solid rgba($white, 0.05);
+  box-sizing: border-box;
+  backdrop-filter: blur(20px);
+  border-radius: 0 0 $radius-base $radius-base;
+  padding: 16px 20px;
+  min-width: 140px;
+}

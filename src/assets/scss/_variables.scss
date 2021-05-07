@@ -1,0 +1,43 @@
+@import url('/fonts/fonts.css');
+
+$white:         #ffffff;
+$black:         #04001C;
+$colorPrimary: #FFC22E;
+$bgColor: #212852;
+//$bgColor: #04001C;
+
+// Font
+
+$font-family-base: "Karla", "Helvetica Neue", sans-serif;
+$fontFamily: $font-family-base;
+$fontSize: 1rem;
+$textColor: $white;
+$textShadowBase: 0px 4px 4px rgba(13, 20, 41, 0.2);
+$headingFontWeight: 600;
+
+$radius-base: 0.5rem;
+$border-light: 1px solid rgba($white, 0.05);
+$bg-light: rgba($white, 0.05);
+
+%card-bg, %label-bg {
+  background: $bg-light;
+  border: 1px solid rgba($white, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: $radius-base;
+  box-sizing: border-box;
+}
+$card-padding-h: 24px;
+%card-px {
+  padding-left: $card-padding-h;
+  padding-right: $card-padding-h;
+}
+%h5 {
+  font-size: 12px;
+  line-height: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+$font-size-small: 14px;
+$font-size-smallest: 12px;
+$overlayContentBorder: 1px solid rgba($white, 0.05);

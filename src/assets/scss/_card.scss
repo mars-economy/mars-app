@@ -1,0 +1,23 @@
+.card {
+  @extend %card-bg;
+  border: $border-light;
+
+  .card-header {
+    @extend %card-px;
+  }
+  .card-profit {
+    @extend %card-px;
+    border-top: $border-light;
+    border-bottom: $border-light;
+    background-color: $bg-light;
+  }
+  .card-body {
+    @extend %card-px;
+  }
+  .card-footer {
+    @extend %card-px;
+    border-top: $border-light;
+    padding-top: 10px;
+    padding-bottom: 12px;
+  }
+}
