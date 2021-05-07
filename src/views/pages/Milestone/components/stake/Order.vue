@@ -1,31 +1,34 @@
 <template>
-  <div class="current-order p-py-3">
+  <div class="order">
     <template v-if="isStakeSuccess()">
-      <CardLabel color="primary" label="your stake" labelPos="right"/>
-      <TextPair :color="'primary'" :data="yourTotalStake.amount" unit="BUSD" class="p-mt-2" icon="coins"
-                label="your total stake"/>
-      <TextPair :color="'primary'" :data="yourTotalStake.win" unit="BUSD" class="p-mt-2" icon="win"
-                label="total estimated win"/>
-      <Divider class="p-my-3" type="solid"/>
+      <div class="order-block p-py-3">
+        <CardLabel color="primary" label="your stake" labelPos="right"/>
+        <TextPair :color="'primary'" :data="yourTotalStake.amount" unit="BUSD" class="p-mt-2" icon="coins"
+                  label="your total stake"/>
+        <TextPair :color="'primary'" :data="yourTotalStake.win" unit="BUSD" class="p-mt-2" icon="win"
+                  label="total estimated win"/>
+      </div>
+      <Divider type="solid"/>
     </template>
 
-    <CardLabel label="current order" labelPos="right"/>
-    <TextPair :data="currentStake.amount"  unit="BUSD" class="p-mt-2" icon="coins" label="your stake"/>
-    <TextPair :data="calculateEstimatedWin().toString()" unit="BUSD" class="p-mt-2" icon="win" label="estimated win"/>
-    <Divider type="solid" class="p-my-3"/>
-
-    <template v-if="isShow">
-      <StakeInput :outcome="outcome" :v-model="userStake" v-on:update:stake="handleUpdateStake($event)"></StakeInput>
-      <Button :disabled="isLimit || isInvalid || !userStake" class="btn-primary btn-block p-my-2" label="Place a stake"
+    <div class="order-block p-py-3">
+      <CardLabel label="current order" labelPos="right"/>
+      <TextPair :data="currentStake.amount"  unit="BUSD" class="p-mt-2" icon="coins" label="your stake"/>
+      <TextPair :data="calculateEstimatedWin().toString()" unit="BUSD" class="p-mt-2" icon="win" label="estimated win"/>
+      <Divider type="solid" class="p-my-3"/>
+      <template v-if="isShow">
+        <StakeInput :outcome="outcome" :v-model="userStake" v-on:update:stake="handleUpdateStake($event)"></StakeInput>
+        <Button :disabled="isLimit || isInvalid || !userStake" class="btn-primary btn-block p-my-2" label="Place a stake"
               @click="doContract()"/>
-      <InfoMessage v-if="isLimit" color="primary" small text="You don’t have enough tokens in your wallet"
+        <InfoMessage v-if="isLimit" color="primary" small text="You don’t have enough tokens in your wallet"
                    type="warning"/>
-      <InfoMessage v-if="isInvalid" color="primary" small text="Invalid Input"
+        <InfoMessage v-if="isInvalid" color="primary" small text="Invalid Input"
                    type="warning"/>
-    </template>
-    <template v-if="isProgress">
-      <Loader message="We are checking your wallet. Please wait for a moment" class="p-mt-3"/>
-    </template>
+      </template>
+      <template v-if="isProgress">
+       <Loader message="We are checking your wallet. Please wait for a moment" class="p-mt-3"/>
+      </template>
+    </div>
 
   </div>
 
@@ -156,7 +159,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .current-order {
+  .order-block {
     position: relative;
     @extend %card-px;
   }

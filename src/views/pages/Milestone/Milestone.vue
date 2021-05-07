@@ -5,7 +5,7 @@
       <div class="milestone-description">
         <Label :labels="['stepstone '+milestone.getParent().position, milestone.getParent().name]" class=" p-mb-3"/>
         <Heading :name="milestone.name" class="p-my-1" level="2"/>
-        <TextPair :data="milestone.status" label="current state" icon="state" class="p-my-3"></TextPair>
+        <TextPair :data="milestone.status" label="state" icon="state" class="p-my-3"></TextPair>
         <div class="p-mt-3 text-body">{{ milestone.description }}</div>
       </div>
       <div class="prediction-list-container">
