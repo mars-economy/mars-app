@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="!isWalletConnect">
+    <template v-if="!$store.state.wallet.isInjected">
       <Button
         label="Connect wallet"
         iconPos="right"
@@ -9,12 +9,12 @@
       </Button>
     </template>
 
-    <template  v-else>
-      <WalletDataButton @click="toggleWalletPanel($event)" :walletData="walletData"></WalletDataButton>
+    <template v-else>
+      <WalletDataButton :walletData="getWalletData" @click="toggleWalletPanel($event)"></WalletDataButton>
     </template>
 
     <OverlayPanel ref="walletPanel" class="wallet-panel">
-      <WalletPanel :walletData="getWalletData()" />
+      <WalletPanel :walletData="getWalletData"/>
     </OverlayPanel>
 
   </div>
@@ -24,6 +24,8 @@
 import OverlayPanel from 'primevue/overlaypanel'
 import WalletDataButton from './WalletDataButton'
 import WalletPanel from './WalletPanel'
+import { mapGetters } from 'vuex'
+import { MODULE_NAMES } from '@/store'
 
 export default {
   name: 'Wallet',
@@ -34,21 +36,18 @@ export default {
   },
   data () {
     return {
-      isWalletConnect: true,
-      walletData: {
-        walletName: '0x641c8fe...',
-        connectorIcon: '/images/connectors/metamask-icon.svg',
-        connectorName: 'MetaMask'
-      }
+      isWalletConnect: this.$store.state.wallet.isInjected
     }
   },
   methods: {
     toggleWalletPanel (event) {
       this.$refs.walletPanel.toggle(event)
-    },
-    getWalletData () {
-      return this.isWalletConnect ? this.walletData : null
     }
+  },
+  computed: {
+    ...mapGetters(MODULE_NAMES.WALLET, {
+      getWalletData: 'getWalletData'
+    })
   }
 }
 </script>

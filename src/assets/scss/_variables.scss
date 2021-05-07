@@ -17,13 +17,19 @@ $headingFontWeight: 600;
 
 $radius-base: 0.5rem;
 $border-light: 1px solid rgba($white, 0.05);
+$bg-light: rgba($white, 0.05);
 
 %card-bg, %label-bg {
-  background: rgba($white, 0.05);
+  background: $bg-light;
   border: 1px solid rgba($white, 0.05);
   backdrop-filter: blur(20px);
   border-radius: $radius-base;
   box-sizing: border-box;
+}
+$card-padding-h: 24px;
+%card-px {
+  padding-left: $card-padding-h;
+  padding-right: $card-padding-h;
 }
 %h5 {
   font-size: 12px;
@@ -31,5 +37,7 @@ $border-light: 1px solid rgba($white, 0.05);
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
-$font-size-small: 12px;
+
+$font-size-small: 14px;
+$font-size-smallest: 12px;
 $overlayContentBorder: 1px solid rgba($white, 0.05);

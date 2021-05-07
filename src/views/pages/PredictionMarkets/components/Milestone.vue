@@ -5,16 +5,16 @@
       {{ milestone.name }}
     </div>
     <div class="milestone-data-item state">
-      <TextPair :data="milestone.status.toUpperCase()" icon="statePoint"/>
+      <TextPair :data="milestone.status.toUpperCase()" icon="state"/>
     </div>
     <div class="milestone-data-item predictors">
-      <TextPair :data="milestone.predictors" icon="users" />
+      <TextPair :data="milestone.predictorsNumber" icon="users"/>
     </div>
     <div class="milestone-data-item action">
       <Button label="see predictions"
               class="btn-primary"
               icon="pi pi-angle-right"
-              iconPos="right" />
+              iconPos="right" @click="onLoadMilestone(milestone.id)"/>
     </div>
 
   </div>
@@ -31,6 +31,9 @@ export default {
   methods: {
     getTime: function (time) {
       return moment.unix(time).format('MMMM YYYY')
+    },
+    onLoadMilestone (id) {
+      this.$router.push('/milestone/' + id)
     }
   }
 }

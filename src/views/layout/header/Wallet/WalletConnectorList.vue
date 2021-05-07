@@ -1,8 +1,8 @@
 <template>
   <div class="wallet-panel-body">
     <WalletConnector v-for="(connector, id, i) in connectorList"
-                         :connector="connector"
-                         :key="i" @click="walletLogin(connector.id)">
+                     :key="i"
+                     :connector="connector" @click="walletLogin(connector.id)">
     </WalletConnector>
   </div>
 </template>
@@ -24,14 +24,9 @@ export default {
       connectorList: connectors
     }
   },
-  mounted () {
-    this.walletInit()
-  },
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
-      walletLogin: WALLET_ACTION_TYPES.WALLET_LOGIN,
-      walletLogout: WALLET_ACTION_TYPES.WALLET_LOGOUT,
-      walletInit: WALLET_ACTION_TYPES.INIT_WALLET
+      walletLogin: WALLET_ACTION_TYPES.WALLET_LOGIN
     })
   }
 }

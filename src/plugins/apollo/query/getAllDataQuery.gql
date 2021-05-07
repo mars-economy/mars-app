@@ -4,14 +4,16 @@ query getAllDataQuery {
         position
         name
         description
-    },
+    }
     milestones(orderBy: position orderDirection: asc) {
         id
-        category {id}
+        category {id, name, position}
         position
         name
         description
-        status
+        status,
+        dueDate,
+        predictorsNumber
     }
     predictions(orderBy: position orderDirection: asc) {
         id
@@ -28,6 +30,7 @@ query getAllDataQuery {
         id
         prediction {id}
         position
-        name
+        name,
+        stakedAmount
     }
 }

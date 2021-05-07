@@ -61,7 +61,7 @@ export default class Connector extends LockConnector {
           const message = BinanceChain
             ? 'Non-MetaMask window.BinanceChain detected.'
             : 'Unable to detect window.BinanceChain.'
-          console.log('message', message)
+          console.debug('message', message)
           resolve(null)
         }
       }

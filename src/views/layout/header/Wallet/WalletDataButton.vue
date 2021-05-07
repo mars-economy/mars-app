@@ -2,9 +2,9 @@
   <span class="p-buttonset" id="wallet-data">
     <Button class="btn-light-stroke btn-small">
       <img :src="getConnectorIcon()" class="p-mr-2" style="height: 14px" :alt="walletData.walletName">
-      <span>{{walletData.walletName}}</span>
+      <span>{{ walletData.walletName }}</span>
     </Button>
-    <Button :label="getConnectorName()" class="btn-light btn-small" />
+    <Button :label="getConnectorName()" class="btn-light btn-small"/>
   </span>
 </template>
 
@@ -12,16 +12,11 @@
 export default {
   name: 'WalletDataButton',
   props: {
-    walletData: {
-      walletName: '0x641c8fe...',
-      connectorIcon: '/images/connectors/metamask-icon.svg',
-      connectorName: 'MetaMask'
-    }
+    walletData: Object
   },
   methods: {
     getConnectorName () {
-      console.log(this.walletData.connectorName)
-      return this.walletData.connectorName.toString()
+      return this.walletData.connectorName
     },
     getConnectorIcon () {
       return this.walletData.connectorIcon

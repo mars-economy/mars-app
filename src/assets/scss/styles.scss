@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'overlaypanel';
 @import 'buttons';
+@import  'card';
 @import 'node_modules/primeflex/src/variables';
 @import 'node_modules/primeflex/src/grid';
 @import 'node_modules/primeflex/src/formlayout';
@@ -34,11 +35,17 @@ div {
   line-height: 1.5em;
   font-weight: 400;
 }
-.text-small-base {
+.text-small-base, .text-small {
   font-size: $font-size-small;
   line-height: 1.5em;
 }
-
+.text-smallest  {
+  font-size: $font-size-smallest;
+  line-height: 1.3em;
+}
+.text-primary {
+  color: $colorPrimary;
+}
 *:focus, *:active {
   outline: none !important;
 }
@@ -66,11 +73,20 @@ h2, .h2 {
 .icon-small {
   width: 14px;
 }
+.icon-primary {
+  color: $colorPrimary;
+  svg * {
+    fill: $colorPrimary !important;
+  }
+}
 .muted {
   opacity: 0.5;
 }
 .w-100 {
   width: 100%;
+}
+.w-50 {
+  width: 50%
 }
 .fx-grow {
   flex-grow: 1;

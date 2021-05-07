@@ -7,7 +7,12 @@
   "binance": {
     "id": "binance",
     "name": "Binance Chain",
-    "icon": "/images/connectors/binance.jpg"
+    "icon": "/images/connectors/binance.jpg",
+    "options": {
+      "rpc": {
+        "97": "https://data-seed-prebsc-1-s1.binance.org:8545/"
+      }
+    }
   },
   "portis": {
     "id": "portis",

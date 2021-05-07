@@ -12,6 +12,9 @@
 import Header from '@/views/layout/header/Header.vue'
 import Footer from '@/views/layout/footer/Footer'
 import apolloMixin from '@/mixins/apollo.mixins'
+import { mapActions } from 'vuex'
+import { MODULE_NAMES } from '@/store'
+import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
 
 export default {
   name: 'Layout',
@@ -19,6 +22,14 @@ export default {
   components: {
     Footer,
     Header
+  },
+  mounted () {
+    this.walletInit()
+  },
+  methods: {
+    ...mapActions(MODULE_NAMES.WALLET, {
+      walletInit: WALLET_ACTION_TYPES.INIT_WALLET
+    })
   }
 }
 </script>

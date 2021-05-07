@@ -5,7 +5,7 @@ import VueApollo from 'vue-apollo'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const httpLink = createHttpLink({
-  uri: 'https://graphql.marseconomy.org/subgraphs/name/mars-economy/mars-prediction-markets'
+  uri: process.env.VUE_APP_GRAPHQL_URL
 })
 
 const cache = new InMemoryCache()
@@ -13,7 +13,10 @@ const cache = new InMemoryCache()
 // Create the apollo client
 const apolloClient = new ApolloClient({
   link: httpLink,
-  cache
+  cache,
+  defaultOptions: {
+    fetchPolicy: 'no-cache'
+  }
 })
 
 // Vue.use(VueApollo)

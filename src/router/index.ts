@@ -20,6 +20,12 @@ const routes: Array<RouteRecordRaw> = [
         props: true
       },
       {
+        path: '/milestone/:id',
+        name: 'Milestone',
+        component: () => import('@/views/pages/Milestone/Milestone.vue'),
+        props: true
+      },
+      {
         path: '/about',
         name: 'About',
         // route level code-splitting

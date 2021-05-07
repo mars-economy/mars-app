@@ -1,5 +1,5 @@
 <template>
-  <div class="icon p-b-flex p-jc-center p-ai-center"
+  <div class="icon p-b-inline-flex p-jc-center p-ai-center"
        :style="[size ? {width: size+'px', height: size+'px'} : {width: '20px', height: '20px'}]"
        v-html="getIconSvg(name)">
   </div>

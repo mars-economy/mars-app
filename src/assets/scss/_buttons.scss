@@ -47,20 +47,34 @@
   &.btn-block {
     width: 100%;
   }
+
+  &.btn-text {
+    border-color: transparent;
+    background-color: transparent;
+    color: $white;
+    backdrop-filter: none;
+    padding: 0;
+  }
 }
 .p-button-icon-right:before {
   order: 1;
   font-size: 11px;
   width: 20px;
   height: 20px;
-  background-color: rgba($colorPrimary, 0.05);
-  border: 1px solid rgba($colorPrimary, 0.1);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 0.6em;
   box-sizing: border-box;
+}
+.btn-primary .p-button-icon-right:before {
+  background-color: rgba($colorPrimary, 0.05);
+  border: 1px solid rgba($colorPrimary, 0.1);
+}
+.btn-text .p-button-icon-right:before {
+  background-color: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.1);
 }
 .p-buttonset {
   display: flex;
