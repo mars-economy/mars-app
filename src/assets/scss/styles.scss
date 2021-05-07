@@ -18,6 +18,10 @@ html {
   font-weight: normal;
   letter-spacing: -0.02em;
   background-color: $bgColor;
+  background-image: url("/images/bg.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 html, body {
