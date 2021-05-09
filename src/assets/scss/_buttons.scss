@@ -109,6 +109,7 @@
   @extend %label-bg;
   border: $border-light;
   border-radius: 20px;
+  overflow: hidden;
   backdrop-filter: blur(20px);
   .p-button {
     padding: 15px 20px 15px 24px;

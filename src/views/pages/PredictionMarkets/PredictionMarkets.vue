@@ -6,13 +6,23 @@
       Prediction Markets
     </div>
 
-    <div class="p-d-flex p-ai-center p-jc-between p-mt-1 p-my-3">
+    <div class="p-d-flex p-flex-column p-flex-sm-row p-ai-center p-jc-between p-mt-1 p-my-3">
       <div class="p-mx-auto">
         <SelectButton v-model="option" :options="options" class="btn-select"/>
       </div>
       <!--
       <ToggleViewButton/>
       -->
+      <Divider type="dashed" v-if="isMobile" class="p-my-3"/>
+
+      <div class="p-d-inline-flex p-ai-center switch">
+        <span class="p-mr-2 clickable" :class="{'checked' : !showMine}" @click="showMine = false">
+          show all predictions</span>
+        <InputSwitch v-model="showMine"></InputSwitch>
+        <span class="p-ml-2 clickable" :class="{'checked' : showMine}" @click="showMine = true">
+          only mine</span>
+      </div>
+
     </div>
     <Divider type="dashed" v-if="isMobile" />
 
@@ -29,6 +39,7 @@
 
 <script>
 import SelectButton from 'primevue/selectbutton'
+import InputSwitch from 'primevue/inputswitch'
 import Stepstone from '@/views/pages/PredictionMarkets/components/Stepstone'
 import { mapState } from 'vuex'
 import { MODULE_NAMES } from '@/store'
@@ -36,6 +47,7 @@ import { MODULE_NAMES } from '@/store'
 export default {
   name: 'PredictionMarkets',
   components: {
+    InputSwitch,
     Stepstone,
     SelectButton
   },
@@ -50,7 +62,8 @@ export default {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
       option: 'current',
-      options: ['current', 'historical']
+      options: ['current', 'historical'],
+      showMine: false
     }
   },
   methods: {
