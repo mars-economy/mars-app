@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="p-d-flex milestone-list-headers p-jc-between p-mb-1">
+    <div class="p-d-flex milestone-list-headers p-jc-between p-mb-1" v-if="!isMobile">
       <div v-for="(header, index) in columnHeaders"  class="milestone-data-item" :class="header" :key="index">
         {{ header }}
       </div>
     </div>
-    <div class="milestone-list-content text-small-base">
+    <div class="text-small-base" :class="{'milestone-list-content' : !isMobile}">
       <template v-for="(milestone, index) in milestones" :key="index">
-        <Milestone :milestone="milestone" />
-        <Divider type="solid" v-if="!isLastItem(index)" />
+        <Milestone :milestone="milestone" :isMobile="isMobile"/>
+        <Divider type="solid" v-if="!isLastItem(index) && !isMobile" />
       </template>
     </div>
   </div>
@@ -23,7 +23,8 @@ export default {
     Milestone
   },
   props: {
-    milestones: Array
+    milestones: Array,
+    isMobile: Boolean
   },
   data: function () {
     return {
@@ -48,6 +49,13 @@ export default {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: $border-light;
+    .milestone-data-item {
+      &.milestone { width: 260px; }
+      &.state { width: 85px; }
+      &.predictors { width: 70px; }
+      &.action { width: 170px; }
+    }
+
   }
   .milestone-list-content {
     @extend %card-bg;

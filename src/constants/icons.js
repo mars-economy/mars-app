@@ -79,6 +79,14 @@ export const ICONS = {
     '<path d="M2.04944 10.7155C2.57683 10.666 3.08774 10.6331 3.58216 10.5836C4.14251 13.9457 6.08725 15.8904 9.43287 16.4508C9.39991 16.9617 9.35046 17.4726 9.30102 18C5.016 17.6539 2.16481 13.9787 2.04944 10.7155Z" fill="white" />\n' +
     '<path d="M16.0253 7.83128L16.0252 7.83131C15.7945 7.18855 15.4813 6.6282 15.0693 6.1173C14.6738 5.58991 14.1958 5.16141 13.6684 4.76587C13.9816 4.32088 14.2782 3.89238 14.5914 3.46388C15.9593 4.45273 16.9317 5.70528 17.525 7.28744C17.0141 7.46872 16.5197 7.65 16.0253 7.83128Z" fill="white" />\n' +
     '</g>\n' +
+    '</svg>\n',
+
+  menu: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+    '<g opacity="0.8">\n' +
+    '<path d="M5.00195 7H18.9999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+    '<path d="M5 11.666H18.9945" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+    '<path d="M9.66797 16.332H18.9941" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+    '</g>\n' +
     '</svg>\n'
 
 }

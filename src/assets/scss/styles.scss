@@ -18,10 +18,15 @@ html {
   font-weight: normal;
   letter-spacing: -0.02em;
   background-color: $bgColor;
-  background-image: url("/images/bg.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  @media (min-width: $screen-md-min) {
+    background-image: url("/images/bg.png");
+  }
+  @media (max-width: $screen-sm-max) {
+    background-image: url("/images/bg-mobile.png");
+  }
 }
 
 html, body {
@@ -71,6 +76,29 @@ h2, .h2 {
   text-shadow: $textShadowBase;
 }
 
+.headline {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.main-container-mobile {
+  .h2 {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+  }
+  .h4 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.02em;
+  }
+}
 .clickable, *[clickable] {
   cursor: pointer;
 }

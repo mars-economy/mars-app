@@ -1,13 +1,15 @@
 <template>
-  <div class="stepstone p-d-flex p-my-4">
+  <div class="stepstone p-grid p-my-0 p-my-sm-3 p-my-lg-4" :class="{'mobile' : isMobile}">
 
-    <div class="stepstone-description p-pr-6">
+    <div class="stepstone-description p-pr-md-6 p-col-12 p-lg-4">
       <Label :labels="'stepstone '+stepstone.position" class="label-muted p-mb-3"/>
       <Heading :name="stepstone.name" class="p-my-1" level="2"/>
-      <div class="p-mt-3 text-body"> {{ stepstone.description }}</div>
+      <div class="p-my-3 text-body"> {{ stepstone.description }}</div>
     </div>
 
-    <MilestoneList :milestones="stepstone.getChildrenList()" class="fx-grow"/>
+    <div class="p-col-12 p-lg-8">
+      <MilestoneList :milestones="stepstone.getChildrenList()" class="fx-grow" :isMobile="isMobile" />
+    </div>
 
   </div>
 
@@ -24,7 +26,8 @@ export default {
     Label
   },
   props: {
-    stepstone: Object
+    stepstone: Object,
+    isMobile: Boolean
   },
   // data: function () {
   //   return {
@@ -56,8 +59,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .stepstone-description {
-    width: 29%;
+
+  .stepstone.mobile {
+    padding-top: 16px;
   }
 
 </style>

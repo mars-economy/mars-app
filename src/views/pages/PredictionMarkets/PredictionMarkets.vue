@@ -1,7 +1,10 @@
 <template>
-  <div class="p-d-flex p-flex-column p-ai-stretch">
+  <div class="p-d-flex p-flex-column p-ai-stretch" :class="{'mobile' : isMobile}">
 
-    <Heading class="p-my-3" level="1" name="Prediction Markets"/>
+    <Heading class="p-my-3" level="1" name="Prediction Markets" v-if="!isMobile" />
+    <div class="headline" v-else>
+      Prediction Markets
+    </div>
 
     <div class="p-d-flex p-ai-center p-jc-between p-mt-1 p-my-3">
       <div class="p-mx-auto">
@@ -11,10 +14,11 @@
       <ToggleViewButton/>
       -->
     </div>
+    <Divider type="dashed" v-if="isMobile" />
 
     <template v-for="(category, index) in phases" :key="index">
       <div class="p-d-flex p-flex-column">
-        <Stepstone :stepstone="category"/>
+        <Stepstone :stepstone="category" :isMobile="isMobile" />
       </div>
       <Divider type="dashed" v-if="!isLastItem(index)"/>
     </template>
@@ -34,6 +38,9 @@ export default {
   components: {
     Stepstone,
     SelectButton
+  },
+  props: {
+    isMobile: Boolean
   },
   data: function () {
     return {
