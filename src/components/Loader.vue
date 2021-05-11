@@ -4,7 +4,7 @@
       <div class="spinner">
         <svg class="spinner-svg" viewBox="25 25 50 50">
           <circle class="spinner-circle" cx="50" cy="50" r="20" fill="none" stroke-width="3px" strokeMiterlimit="10" />
-          <circle cx="50" cy="50" r="20" stroke="#FFC22E1A" stroke-width="3px" opacity="0.7" fill="none"/>
+          <circle cx="50" cy="50" r="20" stroke="#FFC22E" stroke-width="3px" opacity="0.1" fill="none"/>
         </svg>
       </div>
   </div>

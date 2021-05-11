@@ -22,6 +22,8 @@ interface IBaseNode {
 
   getChildrenList (): Array<IBaseNode>
 
+  searchChildrenList (searchParam: string, searchString: string): Array<IBaseNode> | []
+
   addChildren (data: IBaseNode): IBaseNode
 }
 
@@ -54,6 +56,10 @@ class TreeNode implements IBaseNode {
 
   getChildrenList (): Array<IBaseNode> {
     return this.children
+  }
+
+  searchChildrenList (searchParam: string, searchString: string): Array<IBaseNode> | [] {
+    return this.children.filter(item => item[searchParam].toLowerCase() === searchString.toLowerCase())
   }
 
   getParent (): IBaseNode | null {

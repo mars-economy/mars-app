@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Header></Header>
-    <div class="main-container container-lg">
-      <router-view/>
+    <Header :isMobile="isMobile"></Header>
+    <div class="container-lg" :class="isMobile ? 'main-container-mobile' : 'main-container'">
+      <router-view :isMobile="isMobile" />
     </div>
-    <Footer></Footer>
+    <Footer v-if="!isMobile"></Footer>
   </div>
 </template>
 
@@ -23,13 +23,25 @@ export default {
     Footer,
     Header
   },
+  data: function () {
+    return {
+      screenSm: 576,
+      isMobile: window.innerWidth < 576
+    }
+  },
   mounted () {
     this.walletInit()
+    window.onresize = () => {
+      this.onScreenResize()
+    }
   },
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
       walletInit: WALLET_ACTION_TYPES.INIT_WALLET
-    })
+    }),
+    onScreenResize: function () {
+      this.isMobile = window.innerWidth <= this.screenSm
+    }
   }
 }
 </script>
@@ -39,6 +51,10 @@ export default {
     margin: 80px auto 60px auto;
     max-width: 1168px;
     padding: 2rem 1rem;
-
   }
+  .main-container-mobile {
+    width: 100%;
+    padding: 20px 24px;
+  }
+
 </style>

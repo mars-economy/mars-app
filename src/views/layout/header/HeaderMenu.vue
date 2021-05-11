@@ -1,5 +1,5 @@
 <template>
-  <div id="nav" class="p-menubar p-d-flex">
+  <div id="nav" class="p-menubar p-d-flex p-flex-column p-flex-sm-row">
     <router-link :class="{'active': $route.path.includes('/')}" class="p-menuitem p-d-inline-block" to="/">Prediction
       markets
     </router-link>
