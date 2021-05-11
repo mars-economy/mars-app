@@ -6,6 +6,9 @@ $colorPrimary: #FFC22E;
 $bgColor: #212852;
 //$bgColor: #04001C;
 
+$screen-md-min: 576px;
+$screen-sm-max: $screen-md-min - 1px;
+
 // Font
 
 $font-family-base: "Karla", "Helvetica Neue", sans-serif;

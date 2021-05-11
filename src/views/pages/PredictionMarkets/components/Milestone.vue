@@ -1,18 +1,20 @@
 <template>
-  <div class="p-d-flex milestone-data p-jc-between p-ai-center p-my-2">
+  <div class="p-d-flex milestone-data p-jc-between p-my-3 p-my-md-2" :class="{'mobile' : isMobile}">
 
-    <div class="milestone-data-item milestone">
+    <CardLabel label="milestone" labelPos="left" v-if="isMobile"/>
+
+    <div class="milestone-data-item milestone h4">
       {{ milestone.name }}
     </div>
     <div class="milestone-data-item state">
-      <TextPair :data="milestone.status.toUpperCase()" icon="state"/>
+      <TextPair :data="milestone.status" icon="state"/>
     </div>
     <div class="milestone-data-item predictors">
       <TextPair :data="milestone.predictorsNumber" icon="users"/>
     </div>
-    <div class="milestone-data-item action">
+    <div class="milestone-data-item action p-as-center">
       <Button label="see predictions"
-              class="btn-primary"
+              class="btn-primary p-mx-auto"
               icon="pi pi-angle-right"
               iconPos="right" @click="onLoadMilestone(milestone.id)"/>
     </div>
@@ -26,7 +28,8 @@ import moment from 'moment'
 export default {
   name: 'Milestone',
   props: {
-    milestone: Object
+    milestone: Object,
+    isMobile: Boolean
   },
   methods: {
     getTime: function (time) {
@@ -40,10 +43,24 @@ export default {
 </script>
 
 <style lang="scss">
-  .milestone-data-item {
-    &.milestone { width: 260px; }
-    &.state { width: 85px; }
-    &.predictors { width: 70px; }
-    &.action { width: 170px; }
+  .milestone-data:not(.mobile) {
+    align-items: center;
+    .milestone-data-item {
+      &.milestone { width: 260px; }
+      &.state { width: 85px; }
+      &.predictors { width: 70px; }
+      &.action { width: 170px; }
+    }
+  }
+
+  .milestone-data.mobile {
+    @extend %card-bg;
+    padding: 42px 16px 16px 16px;
+    flex-direction: column;
+    align-items: stretch;
+
+    .h4 {
+      margin-bottom: 14px;
+    }
   }
 </style>
