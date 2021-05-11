@@ -1,14 +1,14 @@
 <template>
   <div class="p-d-flex p-flex-column p-ai-stretch" :class="{'mobile' : isMobile}">
 
-    <Heading class="p-my-3" level="1" name="Prediction Markets" v-if="!isMobile" />
+    <Heading v-if="!isMobile" class="p-my-3" level="1" name="Prediction Markets"/>
     <div class="headline" v-else>
       Prediction Markets
     </div>
 
     <div class="p-d-flex p-flex-column p-flex-sm-row p-ai-center p-jc-between p-mt-1 p-my-3">
       <div class="p-mx-auto">
-        <SelectButton v-model="option" :options="options" class="btn-select"/>
+        <SelectButton v-model="option" :options="options" class="btn-select" v-on:select="option = $event"/>
       </div>
       <!--
       <ToggleViewButton/>
@@ -24,11 +24,11 @@
       </div>
 
     </div>
-    <Divider type="dashed" v-if="isMobile" />
+    <Divider v-if="isMobile" type="dashed"/>
 
     <template v-for="(category, index) in phases" :key="index">
       <div class="p-d-flex p-flex-column">
-        <Stepstone :stepstone="category" :isMobile="isMobile" />
+        <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
       </div>
       <Divider type="dashed" v-if="!isLastItem(index)"/>
     </template>
@@ -54,13 +54,16 @@ export default {
   props: {
     isMobile: Boolean
   },
+  watch: {
+    option: function (val) {
+      console.debug(val)
+    },
+    showMine: function (val) {
+      console.debug(val)
+    }
+  },
   data: function () {
     return {
-      step: {
-        index: '1',
-        name: 'Preparing for Mars',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
       option: 'current',
       options: ['current', 'historical'],
       showMine: false
@@ -78,7 +81,8 @@ export default {
       },
       phases (state) {
         if (Object.keys(state.phases).length === 0) return []
-        return state.phases.nodes.filter(item => item.nodeType === 'categories')
+        return state.phases.nodes
+          .filter(item => item.nodeType === 'categories')
       }
     })
   }
