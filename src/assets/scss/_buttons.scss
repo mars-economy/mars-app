@@ -107,6 +107,7 @@
 
 .btn-select {
   @extend %label-bg;
+  display: inline-flex;
   border: $border-light;
   border-radius: 20px;
   overflow: hidden;

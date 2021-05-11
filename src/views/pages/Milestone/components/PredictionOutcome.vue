@@ -1,5 +1,5 @@
 <template>
-  <div class="outcome card">
+  <div class="outcome card" :class="{'mobile' : isMobile}">
     <div class="card-header p-py-3 p-d-flex p-ai-center p-jc-between text-primary">
       <div>{{ outcome.name }}</div>
       <Probability :value="probability"/>
@@ -45,7 +45,8 @@ export default {
     WalletPanel
   },
   props: {
-    outcome: Object
+    outcome: Object,
+    isMobile: Boolean
   },
   data: function () {
     return {
@@ -73,8 +74,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .outcome {
-    width: 47%;
+  .outcome.mobile {
+    border: 1px solid rgba($colorPrimary, 0.5);
   }
 
 </style>

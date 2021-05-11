@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <div class="prediction-name p-d-flex p-ai-center p-mb-4">
-      <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
-      <span class="text-body p-ml-1">{{ prediction.name }}</span>
+  <div class="p-grid">
+    <div class="p-col-12">
+      <div class="prediction-name p-d-flex p-ai-start p-ai-md-center p-mb-3">
+        <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
+        <span class="text-body p-ml-1">{{ prediction.name }}</span>
+      </div>
     </div>
-    <div class="p-d-flex p-jc-between p-flex-wrap p-ai-start">
       <template v-for="(outcome, index) in prediction.getChildrenList()" :key="index">
-        <PredictionOutcome :outcome="outcome"/>
+        <div class="p-col-12 p-md-6">
+            <PredictionOutcome :outcome="outcome" :isMobile="isMobile"/>
+        </div>
       </template>
-    </div>
 
   </div>
 
@@ -23,7 +25,8 @@ export default {
     PredictionOutcome
   },
   props: {
-    prediction: Object
+    prediction: Object,
+    isMobile: Boolean
   }
 }
 </script>
@@ -34,10 +37,6 @@ export default {
     @extend %card-bg;
     border: $border-light;
     padding: 20px 24px;
-  }
-
-  .outcome.card {
-    margin-bottom: 2rem;
   }
 
 </style>
