@@ -15,13 +15,13 @@
       -->
       <Divider type="dashed" v-if="isMobile" class="p-my-3"/>
 
-      <div class="p-d-inline-flex p-ai-center switch">
-        <span class="p-mr-2 clickable" :class="{'checked' : !showMine}" @click="showMine = false">
-          show all predictions</span>
-        <InputSwitch v-model="showMine"></InputSwitch>
-        <span class="p-ml-2 clickable" :class="{'checked' : showMine}" @click="showMine = true">
-          only mine</span>
-      </div>
+      <!--      <div class="p-d-inline-flex p-ai-center switch">-->
+      <!--        <span class="p-mr-2 clickable" :class="{'checked' : !showMine}" @click="showMine = false">-->
+      <!--          show all predictions</span>-->
+      <!--        <InputSwitch v-model="showMine"></InputSwitch>-->
+      <!--        <span class="p-ml-2 clickable" :class="{'checked' : showMine}" @click="showMine = true">-->
+      <!--          only mine</span>-->
+      <!--      </div>-->
 
     </div>
     <Divider v-if="isMobile" type="dashed"/>
@@ -30,7 +30,7 @@
       <div class="p-d-flex p-flex-column">
         <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
       </div>
-      <Divider type="dashed" v-if="!isLastItem(index)"/>
+      <Divider v-if="(phases.length - 1) !== index" type="dashed"/>
     </template>
 
   </div>
@@ -39,7 +39,7 @@
 
 <script>
 import SelectButton from 'primevue/selectbutton'
-import InputSwitch from 'primevue/inputswitch'
+// import InputSwitch from 'primevue/inputswitch'
 import Stepstone from '@/views/pages/PredictionMarkets/components/Stepstone'
 import { mapState } from 'vuex'
 import { MODULE_NAMES } from '@/store'
@@ -47,7 +47,7 @@ import { MODULE_NAMES } from '@/store'
 export default {
   name: 'PredictionMarkets',
   components: {
-    InputSwitch,
+    // InputSwitch,
     Stepstone,
     SelectButton
   },
@@ -69,16 +69,8 @@ export default {
       showMine: false
     }
   },
-  methods: {
-    isLastItem (index) {
-      return index === this.categories.length - 1
-    }
-  },
   computed: {
     ...mapState(MODULE_NAMES.PHASES, {
-      categories (state) {
-        return state.categories
-      },
       phases (state) {
         if (Object.keys(state.phases).length === 0) return []
         return state.phases.nodes
