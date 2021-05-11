@@ -13,20 +13,22 @@
 
     <div class="order-block p-py-3">
       <CardLabel label="current order" labelPos="right"/>
-      <TextPair :data="currentStake.amount"  unit="BUSD" class="p-mt-2" icon="coins" label="your stake"/>
+      <TextPair :data="calculateEstimatedAmount(currentStake.amount)" class="p-mt-2" icon="coins" label="your stake"
+                unit="BUSD"/>
       <TextPair :data="calculateEstimatedWin().toString()" unit="BUSD" class="p-mt-2" icon="win" label="estimated win"/>
       <Divider type="solid" class="p-my-3"/>
       <template v-if="isShow">
         <StakeInput :outcome="outcome" :v-model="userStake" v-on:update:stake="handleUpdateStake($event)"></StakeInput>
-        <Button :disabled="isLimit || isInvalid || !userStake" class="btn-primary btn-block p-my-2" label="Place a stake"
-              @click="doContract()"/>
+        <Button :disabled="isLimit || isInvalid || !userStake" class="btn-primary btn-block p-my-2"
+                label="Place a stake"
+                @click="doContract()"/>
         <InfoMessage v-if="isLimit" color="primary" small text="You don’t have enough tokens in your wallet"
-                   type="warning"/>
+                     type="warning"/>
         <InfoMessage v-if="isInvalid" color="primary" small text="Invalid Input"
-                   type="warning"/>
+                     type="warning"/>
       </template>
       <template v-if="isProgress">
-       <Loader message="We are checking your wallet. Please wait for a moment" class="p-mt-3"/>
+        <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
       </template>
     </div>
 
@@ -65,6 +67,7 @@ export default {
         amount: null,
         win: null
       },
+      fee: process.env.VUE_APP_BASE_FEE || 0.003,
       currentStake: {
         amount: 0,
         win: 0
@@ -76,7 +79,7 @@ export default {
       const win = new BigNumber(this.outcome.stakedAmount).dividedBy(new BigNumber(val))
       this.currentStake = {
         amount: +val || 0,
-        win: 111
+        win: win
       }
     }
   },
@@ -97,7 +100,7 @@ export default {
       this.isInvalid = !!isNaN(userStake)
     },
     calculateEstimatedProfit () {
-      const fee = 0.003
+      const fee = this.fee
       const newStake = new BigNumber(this.userStake).multipliedBy(1 - fee)
       const totalStakeAmount = new BigNumber(convertFromWei(this.prediction.totalStakeAmount))
       const stakedAmount = new BigNumber(convertFromWei(this.outcome.stakedAmount))
@@ -110,7 +113,7 @@ export default {
       this.$emit('update:profit', estimatedProfit.toNumber().toFixed(0))
     },
     calculateEstimatedWin () {
-      const fee = 0.003
+      const fee = this.fee
       const newStake = new BigNumber(this.userStake).multipliedBy(1 - fee)
       const totalStakeAmount = new BigNumber(convertFromWei(this.prediction.totalStakeAmount))
       const stakedAmount = new BigNumber(convertFromWei(this.outcome.stakedAmount))
@@ -121,6 +124,9 @@ export default {
 
       estimatedWin = estimatedWin.isNaN() || +estimatedWin.valueOf() === Infinity ? new BigNumber(0) : estimatedWin
       return estimatedWin
+    },
+    calculateEstimatedAmount (amount) {
+      return new BigNumber(amount).multipliedBy(1 - this.fee).valueOf()
     },
     handleUpdateStake ($event) {
       this.userStake = $event
