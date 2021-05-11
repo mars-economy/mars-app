@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     prepareData (data) {
-      return mathRound(data)
+      return this.unit ? mathRound(data) : data
     }
   }
 }
