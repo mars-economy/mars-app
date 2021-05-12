@@ -1,7 +1,7 @@
 <template>
-  <div class="p-d-flex">
-    <span v-for="(social, index) in socials" :key="index">
-      <a :href="social.link" class="p-ml-4" v-html="icons[social.name.toLowerCase()]"></a>
+  <div class="p-d-flex p-ai-center">
+    <span v-for="(social, index) in socials" :key="index" @click="openExternalLink(social.link)" class="clickable muted">
+      <span class="p-ml-5" v-html="icons[social.name.toLowerCase()]"></span>
     </span>
   </div>
 
@@ -16,11 +16,36 @@ export default {
     return {
       icons: ICONS,
       socials: [
-        { name: 'GitHub', link: '' },
-        { name: 'Twitter', link: '' },
-        { name: 'mail', link: '' },
-        { name: 'Telegram', link: '' }
+        {
+          name: 'Twitter',
+          link: 'https://twitter.com/MarsEconomy'
+        },
+        {
+          name: 'Telegram',
+          link: 'https://t.me/marseconomy'
+        },
+        {
+          name: 'Instagram',
+          link: 'https://www.instagram.com/mars_economy/'
+        },
+        {
+          name: 'Gitbook',
+          link: 'https://mars-10.gitbook.io/mars/'
+        },
+        {
+          name: 'GitHub',
+          link: 'https://github.com/mars-economy'
+        },
+        {
+          name: 'Reddit',
+          link: 'https://www.reddit.com/r/MarsEconomy/'
+        }
       ]
+    }
+  },
+  methods: {
+    openExternalLink (url) {
+      window.open(url, '_blank')
     }
   }
 }
