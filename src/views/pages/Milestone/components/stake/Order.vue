@@ -1,5 +1,5 @@
 <template>
-  <div class="order">
+  <div class="order p-d-flex p-flex-column" :class="{'mobile' : isMobile}">
     <template v-if="isStakeSuccess()">
       <div class="order-block p-py-3">
         <CardLabel color="primary" label="your stake" labelPos="right"/>
@@ -54,7 +54,8 @@ export default {
   props: {
     prediction: Object,
     outcome: Object,
-    totalStakeAmount: BigNumber
+    totalStakeAmount: BigNumber,
+    isMobile: Boolean
   },
   data: function () {
     return {
@@ -167,7 +168,13 @@ export default {
 <style scoped lang="scss">
   .order-block {
     position: relative;
+    display: flex;
+    flex-direction: column;
     @extend %card-px;
+  }
+
+  .mobile .order-block {
+    @extend %card-mobile-px;
   }
 
 </style>

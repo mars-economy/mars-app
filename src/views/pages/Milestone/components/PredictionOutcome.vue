@@ -4,7 +4,7 @@
       <div>{{ outcome.name }}</div>
       <Probability :value="probability"/>
     </div>
-    <div class="card-profit p-py-2">
+    <div class="card-profit p-py-2 p-d-flex p-ai-center">
       <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
     </div>
 
@@ -15,6 +15,7 @@
     <div v-else>
       <Order :outcome="outcome"
              :prediction="outcome.getParent()"
+             :isMobile="isMobile"
              v-on:update:profit="estimatedProfit = $event"></Order>
     </div>
 
@@ -24,7 +25,7 @@
       </PanelCollapse>
     </div>
 
-    <OverlayPanel ref="walletPanel" class="wallet-panel">
+    <OverlayPanel ref="walletPanel" class="wallet-panel" :class="{'mobile' : isMobile}">
       <WalletPanel :walletData="null"/>
     </OverlayPanel>
 
@@ -76,6 +77,7 @@ export default {
 <style scoped lang="scss">
   .outcome.mobile {
     border: 1px solid rgba($colorPrimary, 0.5);
+
   }
 
 </style>

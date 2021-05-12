@@ -8,12 +8,12 @@
       <HeaderMenu></HeaderMenu>
     </div>
     <div class="header-item">
-      <Wallet></Wallet>
+      <Wallet :isMobile="isMobile"></Wallet>
     </div>
   </div>
   <div class="menu-trigger clickable" @click="onMenuToggle" v-if="isMobile">
-    <Icon name="menu" size="24" v-if="!isMenuOpen"></Icon>
-    <Icon name="close" size="24" v-else></Icon>
+    <div class="p-d-inline-flex pi pi-bars" v-if="!isMenuOpen"></div>
+    <div class="p-d-inline-flex pi pi-times" v-else></div>
   </div>
 </header>
 </template>

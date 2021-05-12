@@ -21,3 +21,12 @@
     padding-bottom: 12px;
   }
 }
+
+.card.mobile {
+  .card-header,
+  .card-profit,
+  .card-body,
+  .card-footer {
+    @extend %card-mobile-px;
+  }
+}

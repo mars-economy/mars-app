@@ -13,7 +13,7 @@
       <WalletDataButton :walletData="getWalletData" @click="toggleWalletPanel($event)"></WalletDataButton>
     </template>
 
-    <OverlayPanel ref="walletPanel" class="wallet-panel">
+    <OverlayPanel ref="walletPanel" class="wallet-panel" :class="{'mobile' : isMobile}">
       <WalletPanel :walletData="getWalletData"/>
     </OverlayPanel>
 
@@ -33,6 +33,9 @@ export default {
     WalletPanel,
     WalletDataButton,
     OverlayPanel
+  },
+  props: {
+    isMobile: Boolean
   },
   data () {
     return {

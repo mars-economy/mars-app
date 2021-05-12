@@ -1,7 +1,7 @@
 <template>
   <div class="p-grid">
     <div class="p-col-12">
-      <div class="prediction-name p-d-flex p-ai-start p-ai-md-center p-mb-3">
+      <div class="prediction-name p-d-flex p-ai-start p-ai-md-center p-mb-lg-3" :class="{'mobile' : isMobile}">
         <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
         <span class="text-body p-ml-1">{{ prediction.name }}</span>
       </div>
@@ -37,6 +37,9 @@ export default {
     @extend %card-bg;
     border: $border-light;
     padding: 20px 24px;
+    &.mobile {
+      padding: $card-padding-mobile-h
+    }
   }
 
 </style>

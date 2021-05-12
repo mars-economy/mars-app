@@ -45,6 +45,11 @@ $card-padding-h: 24px;
   padding-left: $card-padding-h;
   padding-right: $card-padding-h;
 }
+$card-padding-mobile-h: 16px;
+%card-mobile-px {
+  padding-left: $card-padding-mobile-h;
+  padding-right: $card-padding-mobile-h;
+}
 %h5 {
   font-size: 12px;
   line-height: 1.1em;
