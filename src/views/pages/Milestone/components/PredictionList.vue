@@ -1,7 +1,7 @@
 <template>
   <div class="prediction-list p-d-flex p-flex-column fx-grow">
     <template v-for="(prediction, index) in predictions" :key="index">
-      <Prediction :prediction="prediction"/>
+      <Prediction :prediction="prediction" :isMobile="isMobile"/>
     </template>
   </div>
 
@@ -19,7 +19,8 @@ export default {
     Prediction
   },
   props: {
-    predictions: Array
+    predictions: Array,
+    isMobile: Boolean
   },
   watch: {
     '$store.state.wallet.isInjected': {
