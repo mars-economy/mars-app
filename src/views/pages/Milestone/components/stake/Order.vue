@@ -11,7 +11,7 @@
       <Divider type="solid"/>
     </template>
 
-    <div class="order-block p-py-3">
+    <div v-if="prediction.state === 'Open' && !yourTotalStake.suspended" class="order-block p-py-3">
       <CardLabel label="current order" labelPos="right"/>
       <TextPair :data="calculateEstimatedAmount(currentStake.amount)" class="p-mt-2" icon="coins" label="your stake"
                 unit="BUSD"/>
@@ -31,7 +31,14 @@
         <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
       </template>
     </div>
-
+    <div v-if="prediction.state === 'Closed' && yourTotalStake.win > 0" class="order-block p-py-3">
+      <Button :label="`Get reward ${yourTotalStake.win} BUSD`"
+              class="btn-primary btn-block p-my-2"
+              v-on:click="doGetReward($event)"/>
+      <template v-if="isProgress">
+        <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
+      </template>
+    </div>
   </div>
 
 </template>
@@ -66,7 +73,8 @@ export default {
       isInvalid: false,
       yourTotalStake: {
         amount: null,
-        win: null
+        win: null,
+        suspended: false
       },
       fee: process.env.VUE_APP_BASE_FEE || 0.003,
       currentStake: {
@@ -89,7 +97,8 @@ export default {
       getAllData: PHASES_ACTION_TYPES.GET_DATA
     }),
     ...mapActions(MODULE_NAMES.CONTRACTS, {
-      buyOutcome: CONTRACTS_ACTION_TYPES.BUY_OUTCOME
+      buyOutcome: CONTRACTS_ACTION_TYPES.BUY_OUTCOME,
+      getRewards: CONTRACTS_ACTION_TYPES.GET_REWARDS
     }),
     ...mapActions(MODULE_NAMES.WALLET, {
       getWalletBalances: WALLET_ACTION_TYPES.GET_WALLET_BALANCES
@@ -140,7 +149,8 @@ export default {
       const stake = this.prediction.stakes.find(item => item.outcomeUuid === this.outcome.id)
       this.yourTotalStake = {
         amount: convertFromWei(stake.stakeAmount),
-        win: convertFromWei(stake.currentReward)
+        win: convertFromWei(stake.currentReward),
+        suspended: stake.suspended
       }
       return stake ? new BigNumber(stake.stakeAmount).gt(0) : false
     },
@@ -157,6 +167,17 @@ export default {
       this.isProgress = false
       this.isShow = true
       this.userStake = 0
+    },
+    async doGetReward ($event) {
+      this.isProgress = true
+      await this.getRewards({
+        prediction: this.prediction,
+        outcome: this.outcome,
+        reward: this.yourTotalStake
+      })
+      await this.getWalletBalances(this.prediction.token)
+      await this.getAllData()
+      this.isProgress = false
     }
   },
   mounted () {

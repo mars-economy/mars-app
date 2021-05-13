@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://graphql.marseconomy.org/subgraphs/name/mars-economy/mars-prediction-markets",
+        "url": "https://graphql.marseconomy.org/subgraphs/name/mars-economy/mars-prediction-markets-test",
         "headers": {
           "user-agent": "JS GraphQL"
         },
