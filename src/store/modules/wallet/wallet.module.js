@@ -1,5 +1,6 @@
 import { getInstance } from '@snapshot-labs/lock/plugins/vue3'
 import connectors from '@/helpers/connectors.json'
+import networks from '@/helpers/networks.json'
 import Web3 from 'web3'
 import erc20 from '@/data/abi/erc20.json'
 
@@ -36,10 +37,11 @@ export const getters = {
   },
   getWalletData: (state, getters) => {
     if (!state.account) return null
+    const name = networks[state.network].shortName ? networks[state.network].shortName : networks[state.network].name
     return {
       walletName: getters.getWalletShortName,
       connectorIcon: state.connector ? state.connector.icon : null,
-      connectorName: state.connector ? state.connector.name : null
+      connectorName: state.connector ? name : null
     }
   },
   getWalletBalance: state => {
@@ -81,12 +83,14 @@ export const actions = {
       if (auth.provider.value.on) {
         auth.provider.value.on('chainChanged', async chainId => {
           console.log('HANDLE_CHAIN_CHANGED', chainId)
-          await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
+          // await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
+          window.location.reload()
         })
         auth.provider.value.on('accountsChanged', async accounts => {
           if (accounts.length !== 0) {
             console.log('WEB3_SET', { account: accounts[0] })
-            await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
+            // await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
+            window.location.reload()
           }
         })
         let network, accounts
