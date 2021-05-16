@@ -1,7 +1,10 @@
 <template>
-  <div class="p-d-flex p-ai-center">
-    <span v-for="(social, index) in socials" :key="index" @click="openExternalLink(social.link)" class="clickable muted">
-      <span class="p-ml-5" v-html="icons[social.name.toLowerCase()]"></span>
+  <div class="p-d-flex p-ai-center p-jc-between p-jc-md-end">
+    <span v-for="(social, index) in socials"
+          :key="index"
+          @click="openExternalLink(social.link)"
+          class="clickable muted">
+      <span class="p-ml-md-5" v-html="icons[social.name.toLowerCase()]"></span>
     </span>
   </div>
 
@@ -11,7 +14,7 @@
 import { ICONS } from '@/constants/socialIcons'
 
 export default {
-  name: 'SocialLink',
+  name: 'SocialIcons',
   data: function () {
     return {
       icons: ICONS,
