@@ -61,6 +61,7 @@ export const actions = {
   }, connector = 'injected') {
     auth = getInstance()
     await auth.login(connector)
+    console.log(auth.provider)
     if (auth.provider.value) {
       // auth.web3 = new Web3Provider(auth.provider.value)
       auth.web3 = new Web3(auth.provider.value)

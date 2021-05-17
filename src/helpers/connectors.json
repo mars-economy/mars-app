@@ -44,18 +44,20 @@
   "walletconnect": {
     "id": "walletconnect",
     "name": "WalletConnect",
-    "network": "1",
+    "network": "binance",
+    "chainId": 56,
     "icon": "/images/connectors/walletconnect.svg",
     "options": {
+      "rpcUrl": "https://bsc-dataseed1.binance.org",
+      "network": "mainnet",
+      "chainId": 56,
       "rpc": {
-        "1": "https://cloudflare-eth.com",
-        "4": "https://eth-rinkeby.alchemyapi.io/v2/twReQE9Px03E-E_N_Fbb3OVF7YgHxoGq",
-        "42": "https://eth-kovan.alchemyapi.io/v2/QCsM2iU0bQ49eGDmZ7-Y--Wpu0lVWXSO",
-        "56": "https://bsc-dataseed1.binance.org",
-        "97": "https://data-seed-prebsc-1-s1.binance.org:8545"
+        "56": "https://bsc-dataseed1.binance.org"
       }
     },
     "detect": [
+      "isMobile",
+      "isBrowser"
     ]
   }
 }
