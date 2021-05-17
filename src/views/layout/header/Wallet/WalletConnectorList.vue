@@ -33,7 +33,7 @@ export default {
   computed: {
     getWalletList () {
       const wallets = []
-      const showOption = !detectIsMobile ? 'isMobile' : 'isBrowser'
+      const showOption = detectIsMobile ? 'isMobile' : 'isBrowser'
       Object.keys(connectors).forEach(item => {
         if (connectors[item].detect.includes(showOption)) {
           wallets.push(connectors[item])
