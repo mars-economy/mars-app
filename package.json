@@ -31,6 +31,7 @@
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "lodash": "^4.17.15",
+    "mobile-device-detect": "^0.4.3",
     "moment": "^2.29.1",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
