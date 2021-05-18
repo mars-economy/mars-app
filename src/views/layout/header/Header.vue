@@ -18,7 +18,6 @@
         <SocialIcons></SocialIcons>
       </div>
       <div class="header-item w-100 p-d-flex p-jc-between text-smallest">
-        <div class="muted">Disclaimer</div>
         <div class="muted">&copy; Mars Economy 2021</div>
       </div>
     </template>
