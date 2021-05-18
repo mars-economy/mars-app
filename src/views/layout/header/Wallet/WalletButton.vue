@@ -9,19 +9,13 @@
       </Button>
     </template>
 
-    <template v-if="$store.state.wallet.isInjected && !isMobile">
+    <template v-if="$store.state.wallet.isInjected">
       <WalletDataButton :walletData="getWalletData" @click="toggleWalletPanel($event)"></WalletDataButton>
     </template>
 
     <OverlayPanel ref="walletPanel" class="wallet-panel" :class="{'mobile' : isMobile}">
       <WalletPanel :walletData="getWalletData" @onSelectWallet="toggleWalletPanel($event)"/>
     </OverlayPanel>
-
-    <template v-if="isMobile && !isWalletPanelOpen">
-      <div class="wallet-panel-mobile">
-        <WalletPanel :walletData="getWalletData"/>
-      </div>
-    </template>
 
   </div>
 </template>
@@ -51,11 +45,7 @@ export default {
   },
   methods: {
     toggleWalletPanel (event) {
-      if (!this.isMobile) {
-        this.$refs.walletPanel.toggle(event)
-      } else {
-        this.isWalletPanelOpen = !this.isWalletPanelOpen
-      }
+      this.$refs.walletPanel.toggle(event)
     }
   },
   computed: {
