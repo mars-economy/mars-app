@@ -2,7 +2,7 @@
   <div class="stepstone p-grid" :class="{'mobile' : isMobile}">
 
     <div class="stepstone-description p-pr-md-6 p-col-12 p-lg-4">
-      <Label :labels="'stepstone '+stepstone.position" class="label-muted p-mb-3"/>
+      <Label :labels="'phase '+stepstone.position" class="label-muted p-mb-3"/>
       <Heading :name="stepstone.name" class="p-my-1" level="2"/>
       <div class="p-mt-lg-3 text-body"> {{ stepstone.description }}</div>
     </div>

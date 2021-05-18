@@ -7,7 +7,7 @@
 
     <div v-if="Object.keys(milestone).length > 0" class="p-grid p-mt-3 p-mt-lg-0">
       <div class="milestone-description p-pr-md-6 p-col-12 p-lg-4">
-        <Label :labels="['stepstone '+milestone.getParent().position, milestone.getParent().name]" class=" p-mb-3"/>
+        <Label :labels="['phase '+milestone.getParent().position, milestone.getParent().name]" class=" p-mb-3"/>
         <Heading :name="milestone.name" class="p-my-1" level="2"/>
         <TextPair :data="milestone.status" label="state" icon="state" class="p-my-2"></TextPair>
         <div class="p-mt-lg-3 text-body">{{ milestone.description }}</div>
