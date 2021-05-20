@@ -2,7 +2,7 @@
   <div class="wallet-panel-body">
     <WalletConnector v-for="(connector, id, i) in getWalletList"
                      :key="i"
-                     :connector="connector" @click="walletLogin(connector.id)">
+                     :connector="connector" @click="walletLogin(connector.id); $emit('onSelectWallet')">
     </WalletConnector>
   </div>
 </template>

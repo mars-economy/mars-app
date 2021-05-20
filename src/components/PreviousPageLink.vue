@@ -13,6 +13,7 @@ export default {
   },
   methods: {
     goToBack () {
+      console.log(window.history.length)
       this.$router.back()
     }
   }

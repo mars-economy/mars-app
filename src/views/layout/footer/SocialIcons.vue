@@ -32,8 +32,8 @@ export default {
           link: 'https://www.instagram.com/mars_economy/'
         },
         {
-          name: 'Gitbook',
-          link: 'https://mars-10.gitbook.io/mars/'
+          name: 'Medium',
+          link: 'https://marseconomy.medium.com/'
         },
         {
           name: 'GitHub',

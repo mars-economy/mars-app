@@ -65,11 +65,11 @@ export default {
     box-sizing: border-box;
     position: fixed;
     z-index: 1000;
-    height: 80px;
     right: 0;
     top: 0;
     left: 0;
     &:not(.mobile) {
+      height: 80px;
       font-size: 0.75rem;
       line-height: 1.3em;
       padding: 1rem 2rem;
@@ -79,6 +79,7 @@ export default {
     }
   }
   header.mobile {
+    height: 60px;
     .menu-trigger {
       position: absolute;
       right: 24px;
