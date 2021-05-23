@@ -8,7 +8,8 @@
     </div>
 
     <div class="p-col-12 p-lg-8">
-      <MilestoneList :isMobile="isMobile" :milestones="stepstone.searchChildrenList('status', status)" class="fx-grow"/>
+      <MilestoneList :isMobile="isMobile"
+                     :milestones="stepstone.searchChildrenList('status', status)" class="fx-grow"/>
     </div>
 
   </div>

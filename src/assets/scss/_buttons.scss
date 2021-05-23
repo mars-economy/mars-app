@@ -5,8 +5,8 @@
   letter-spacing: 0.01em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 12px 20px;
-  //min-height: 40px;
+  padding: 8px 20px;
+  min-height: 40px;
   box-sizing: border-box;
   backdrop-filter: blur(20px);
   border-radius: $radius-base;
@@ -130,7 +130,8 @@
   .p-button-label {
     opacity: 0.5;
   }
-  .p-highlight .p-button-label {
+  .p-highlight .p-button-label,
+  .p-button-label:hover {
     opacity: 1;
   }
 }

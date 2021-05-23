@@ -21,5 +21,8 @@ export default {
 </script>
 
 <style scoped>
+  .muted.clickable:hover {
+    opacity: 1;
+  }
 
 </style>

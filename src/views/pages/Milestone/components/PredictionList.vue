@@ -3,7 +3,7 @@
     <template v-for="(prediction, index) in predictions" :key="index">
       <Prediction :prediction="prediction"
                   :isMobile="isMobile"
-                  :class="[{'p-mt-3' : index !== 0}]"/>
+                  :class="[{'p-mt-2' : index !== 0}]"/>
     </template>
   </div>
 

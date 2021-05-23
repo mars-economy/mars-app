@@ -3,7 +3,7 @@
     <span v-for="(social, index) in socials"
           :key="index"
           @click="openExternalLink(social.link)"
-          class="clickable muted">
+          class="social-icon">
       <span class="p-ml-md-5" v-html="icons[social.name.toLowerCase()]"></span>
     </span>
   </div>
@@ -54,6 +54,12 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .social-icon {
+    opacity: 0.8;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
 </style>

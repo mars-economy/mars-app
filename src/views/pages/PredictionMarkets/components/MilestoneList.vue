@@ -45,11 +45,13 @@ export default {
   .milestone-list-headers {
     @extend %card-bg;
     @extend %h5;
+    font-weight: bold;
     padding: 12px 32px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border: $border-light;
     .milestone-data-item {
+      opacity: 0.5;
       &.milestone { width: 260px; }
       &.state { width: 85px; }
       &.predictors { width: 70px; }
@@ -58,10 +60,10 @@ export default {
 
   }
   .milestone-list-content {
-    @extend %card-bg;
+    background: rgba($black, 0.01);
+    border: 1px solid rgba($white, 0.05);
+    backdrop-filter: blur(60px);
+    border-radius: 2px 2px 8px 8px;
     padding: 12px 32px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border: $border-light;
   }
 </style>
