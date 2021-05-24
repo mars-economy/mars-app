@@ -1,7 +1,7 @@
 <template>
   <div class="p-d-inline-flex p-ai-center">
     <Icon :name="type" :class="getIconClass()" class="p-mr-2" :size="getIconSize()" />
-    <span :class="getTextClass()">
+    <span :class="getTextClass()" class="p-text-nowrap">
       {{text}}
     </span>
 
@@ -16,18 +16,27 @@ export default {
     type: String,
     text: String,
     color: String,
-    small: Boolean
+    small: Boolean,
+    large: Boolean
   },
   methods: {
     getIconClass () {
       return this.color ? ' icon-' + this.color : ''
     },
     getIconSize () {
-      return this.small ? '16' : null
+      let size = null
+      if (this.small) {
+        size = '16'
+      }
+      if (this.large) {
+        size = '24'
+      }
+      return size
     },
     getTextClass () {
       let cls = this.color ? ' text-' + this.color : ''
       cls += this.small ? ' text-smallest' : ''
+      cls += this.large ? ' h2' : ''
       return cls
     }
   }

@@ -37,7 +37,7 @@
     <template v-else>
       <MessageCard header="There is no historical prediction market yet"
                    text="Choose current prediction market and stake on it."
-                   button-name="show current predictions"
+                   button-name="show all predictions"
                    @click="option = 'current'" />
     </template>
 
