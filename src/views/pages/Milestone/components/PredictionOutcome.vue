@@ -1,5 +1,5 @@
 <template>
-  <div class="outcome card" :class="{'mobile' : isMobile}">
+  <div class="outcome card" :class="{'stake-success' : isStake}">
     <div class="card-header p-py-3 p-d-flex p-ai-center p-jc-between text-primary">
       <div>{{ outcome.name }}</div>
       <Probability :value="probability"/>
@@ -16,7 +16,8 @@
       <Order :outcome="outcome"
              :prediction="outcome.getParent()"
              :isMobile="isMobile"
-             v-on:update:profit="estimatedProfit = $event"></Order>
+             v-on:update:profit="estimatedProfit = $event"
+             v-on:isStake="isStake = $event"></Order>
     </div>
 
     <div class="card-footer-collapse">
@@ -52,7 +53,8 @@ export default {
   data: function () {
     return {
       isWalletConnected: false,
-      estimatedProfit: 0
+      estimatedProfit: 0,
+      isStake: false
     }
   },
   methods: {
@@ -75,7 +77,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .outcome.mobile {
+  .outcome.stake-success {
     border: 1px solid rgba($colorPrimary, 0.5);
 
   }

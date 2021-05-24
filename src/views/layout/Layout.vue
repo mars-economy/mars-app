@@ -48,7 +48,7 @@ export default {
 
 <style scoped lang="scss">
   .main-container {
-    margin: 80px auto 60px auto;
+    margin: 60px auto 48px auto;
     max-width: 1168px;
     padding: 2rem 1rem;
   }

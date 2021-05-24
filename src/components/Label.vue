@@ -1,7 +1,7 @@
 <template>
   <div class="label p-d-inline-flex p-ai-center">
     <template v-if="Array.isArray(labels)">
-      <span class="muted p-pr-2 p-text-nowrap">{{ labels[0] }}</span>
+      <span class="p-pr-2 p-text-nowrap" :class="{'muted' : labels.length > 1}">{{ labels[0] }}</span>
       <span class="label-divider p-mx-2"></span>
       <span class="p-pl-2">{{ labels[1] }}</span>
     </template>
@@ -27,6 +27,7 @@ export default {
     border: $border-light;
     height: 26px;
     padding: 0 12px;
+    font-weight: bold;
     .label-divider:after {
       content: '';
       position: absolute;

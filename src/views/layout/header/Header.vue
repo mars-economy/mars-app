@@ -69,11 +69,11 @@ export default {
     top: 0;
     left: 0;
     &:not(.mobile) {
-      height: 80px;
+      height: 60px;
       font-size: 0.75rem;
       line-height: 1.3em;
       padding: 1rem 2rem;
-      background-color: rgba($white, 0.03);
+      background-color: rgba($black, 0.05);
       border-bottom: 1px solid rgba($white, 0.03);
       backdrop-filter: blur(20px);
     }
