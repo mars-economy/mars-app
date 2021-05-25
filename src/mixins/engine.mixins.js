@@ -7,14 +7,14 @@ const engineMixins = {
   async mounted () {
     if (process.env.VUE_APP_DATA_SOURCE === 'register') {
       await Promise.all([
-        await this.initEngine(),
+        await this.initWeb3Engine(),
         await this.getDataFromEngine()
       ])
     }
   },
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
-      initEngine: WALLET_ACTION_TYPES.INIT_WEB_3_ENGINE
+      initWeb3Engine: WALLET_ACTION_TYPES.INIT_WEB_3_ENGINE
     }),
     ...mapActions(MODULE_NAMES.PHASES, {
       getDataFromEngine: PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE

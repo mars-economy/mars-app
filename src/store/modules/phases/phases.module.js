@@ -1,13 +1,13 @@
 import { apolloProvider } from '@/plugins/apollo/apollo'
 import { PhasesTree } from '@/utils/tree.structure'
 import MarsRegister from '@/data/MarsRegister.json'
-import BigNumber from 'bignumber.js'
 import {
   createCategoriesArray,
   createMilestonesArray,
   createOutcomesArray,
   createPredictionsArray
 } from '@/helpers/phases.objects'
+import BigNumber from 'bignumber.js'
 
 const getAllDataQuery = require('../../../plugins/apollo/query/getAllDataQuery.gql')
 
@@ -44,7 +44,7 @@ const actions = {
     const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
     const timestampS = new BigNumber(Math.floor(Date.now() / 1000))
     console.log(Math.floor(Date.now() / 1000), timestampS.valueOf())
-    await registerContract.methods.getPredictionData(timestampS).call()
+    await registerContract.methods.getPredictionData(Math.floor(Date.now() / 1000)).call()
       .then(res => {
         if (res) {
           console.log(res)
