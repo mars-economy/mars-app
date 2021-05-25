@@ -43,6 +43,7 @@ const actions = {
     console.log('register')
     const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
     const timestampS = new BigNumber(Math.floor(Date.now() / 1000))
+    console.log(Math.floor(Date.now() / 1000), timestampS.valueOf())
     await registerContract.methods.getPredictionData(timestampS).call()
       .then(res => {
         if (res) {
