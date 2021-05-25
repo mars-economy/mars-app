@@ -26,11 +26,19 @@
     </div>
     <Divider v-if="isMobile" type="dashed"/>
 
-    <template v-for="(category, index) in phases" :key="index">
-      <div class="p-d-flex p-flex-column p-my-0 p-my-sm-3">
-        <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
-      </div>
-      <Divider v-if="(phases.length - 1) !== index && !isMobile" type="dashed" class="p-my-md-3"/>
+    <template v-if="!dataEmpty">
+      <template v-for="(category, index) in phases" :key="index">
+        <div class="p-d-flex p-flex-column p-my-0 p-my-sm-3">
+          <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
+        </div>
+        <Divider v-if="(phases.length - 1) !== index && !isMobile" type="dashed" class="p-my-md-3"/>
+      </template>
+    </template>
+    <template v-else>
+      <MessageCard header="There is no historical prediction market yet"
+                   text="Choose current prediction market and stake on it."
+                   button-name="show all predictions"
+                   @click="option = 'current'" />
     </template>
 
   </div>
@@ -43,10 +51,12 @@ import SelectButton from 'primevue/selectbutton'
 import Stepstone from '@/views/pages/PredictionMarkets/components/Stepstone'
 import { mapState } from 'vuex'
 import { MODULE_NAMES } from '@/store'
+import MessageCard from '../../layout/MessageCard'
 
 export default {
   name: 'PredictionMarkets',
   components: {
+    MessageCard,
     // InputSwitch,
     Stepstone,
     SelectButton
@@ -66,7 +76,8 @@ export default {
     return {
       option: 'current',
       options: ['current', 'historical'],
-      showMine: false
+      showMine: false,
+      dataEmpty: false
     }
   },
   computed: {

@@ -1,7 +1,9 @@
 <template>
   <div class="prediction-list p-d-flex p-flex-column fx-grow">
     <template v-for="(prediction, index) in predictions" :key="index">
-      <Prediction :prediction="prediction" :isMobile="isMobile"/>
+      <Prediction :prediction="prediction"
+                  :isMobile="isMobile"
+                  :class="[{'p-mt-2' : index !== 0}]"/>
     </template>
   </div>
 

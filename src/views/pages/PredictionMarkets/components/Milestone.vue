@@ -53,6 +53,7 @@ export default {
   .milestone-data:not(.mobile) {
     align-items: center;
 
+    font-weight: 400;
     .milestone-data-item {
       &.milestone {
         width: 260px;

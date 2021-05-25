@@ -23,7 +23,7 @@ export default {
 
 <style scoped lang="scss">
 footer {
-  height: 80px;
+  height: 48px;
   box-sizing: border-box;
   position: fixed;
   left: 0;
@@ -32,7 +32,7 @@ footer {
   font-size: 0.75rem;
   line-height: 1.3em;
   padding: 1rem 2rem;
-  background-color: rgba($white, 0.03);
+  background-color: rgba($black, 0.05);
   border-bottom: 1px solid rgba($white, 0.03);
   backdrop-filter: blur(20px);
 }

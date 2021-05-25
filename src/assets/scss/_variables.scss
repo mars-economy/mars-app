@@ -3,8 +3,8 @@
 $white:         #ffffff;
 $black:         #04001C;
 $colorPrimary: #FFC22E;
-$bgColor: #212852;
-//$bgColor: #04001C;
+//$bgColor: #212852;
+$bgColor: #04001C;
 
 $sm:576px !default;
 $md:768px !default;
@@ -29,7 +29,7 @@ $textColor: $white;
 $textShadowBase: 0px 4px 4px rgba(13, 20, 41, 0.2);
 $headingFontWeight: 600;
 
-$radius-base: 0.5rem;
+$radius-base: 8px;
 $border-light: 1px solid rgba($white, 0.05);
 $bg-light: rgba($white, 0.05);
 

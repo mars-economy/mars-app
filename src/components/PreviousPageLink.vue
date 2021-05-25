@@ -13,6 +13,7 @@ export default {
   },
   methods: {
     goToBack () {
+      console.log(window.history.length)
       this.$router.back()
     }
   }
@@ -20,5 +21,8 @@ export default {
 </script>
 
 <style scoped>
+  .muted.clickable:hover {
+    opacity: 1;
+  }
 
 </style>

@@ -1,9 +1,15 @@
 <template>
   <div class="p-grid">
     <div class="p-col-12">
-      <div class="prediction-name p-d-flex p-ai-start p-ai-md-center p-mb-lg-3" :class="{'mobile' : isMobile}">
-        <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
-        <span class="text-body p-ml-1">{{ prediction.name }}</span>
+      <div class="prediction-title p-d-flex p-flex-column" :class="{'mobile' : isMobile}">
+        <div class="p-d-flex p-ai-start p-ai-md-center">
+          <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
+          <span class="text-body p-text-bold p-ml-1">{{ prediction.name }}</span>
+        </div>
+        <div class="prediction-info p-d-flex p-ai-start p-ai-md-center p-mt-3" v-if="!isMobile">
+          <TextPair label="today share price" data="120" unit="BUSD" icon="price" class="p-mr-3"/>
+          <TextPair label="state" :data="prediction.state" icon="state" />
+        </div>
       </div>
     </div>
       <template v-for="(outcome, index) in prediction.getChildrenList()" :key="index">
@@ -33,7 +39,7 @@ export default {
 
 <style scoped lang="scss">
 
-  .prediction-name {
+  .prediction-title {
     @extend %card-bg;
     border: $border-light;
     padding: 20px 24px;
@@ -41,5 +47,4 @@ export default {
       padding: $card-padding-mobile-h
     }
   }
-
 </style>

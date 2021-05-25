@@ -152,6 +152,7 @@ export default {
         win: convertFromWei(stake.currentReward),
         suspended: stake.suspended
       }
+      this.$emit('isStake', stake.suspended)
       return stake ? new BigNumber(stake.stakeAmount).gt(0) : false
     },
     async doContract () {
