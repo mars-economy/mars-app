@@ -46,17 +46,21 @@ const actions = {
     }
   },
   async [CONTRACTS_ACTION_TYPES.GET_USER_STAKES] ({ rootState }, data) {
-    try {
-      const [WALLET, PREDICTION_MARKET_ADDR] = [
-        rootState.wallet.account,
-        data.prediction.id
-      ]
-      const predictionMarketContract = await new rootState.wallet.web3.eth.Contract(MarsPredictionMarket.abi, PREDICTION_MARKET_ADDR)
-      return await predictionMarketContract.methods.getUserPredictionState().call({ from: WALLET })
-    } catch (e) {
-      console.debug(e)
-      return Promise.reject(e)
-    }
+    console.log('getUserStakes INIT')
+    // try {
+    const [WALLET, PREDICTION_MARKET_ADDR] = [
+      rootState.wallet.account,
+      data.prediction.id
+    ]
+    const predictionMarketContract = await new rootState.wallet.web3engine.eth.Contract(MarsPredictionMarket.abi, PREDICTION_MARKET_ADDR)
+    console.log('predictionMarketContract', predictionMarketContract)
+    const states = await predictionMarketContract.methods.getUserPredictionState().call()
+    console.log('getUserPredictionState', states)
+    return states
+    // } catch (e) {
+    //   console.debug(e)
+    //   return Promise.reject(e)
+    // }
   },
   async [CONTRACTS_ACTION_TYPES.GET_REWARDS] ({ rootState }, data) {
     try {

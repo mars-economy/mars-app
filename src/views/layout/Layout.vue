@@ -15,10 +15,11 @@ import apolloMixin from '@/mixins/apollo.mixins'
 import { mapActions } from 'vuex'
 import { MODULE_NAMES } from '@/store'
 import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
+import engineMixins from '@/mixins/engine.mixins'
 
 export default {
   name: 'Layout',
-  mixins: [apolloMixin],
+  mixins: [apolloMixin, engineMixins],
   components: {
     Footer,
     Header
@@ -30,6 +31,7 @@ export default {
     }
   },
   mounted () {
+    this.initWeb3Engine()
     this.walletInit()
     window.onresize = () => {
       this.onScreenResize()
@@ -37,7 +39,8 @@ export default {
   },
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
-      walletInit: WALLET_ACTION_TYPES.INIT_WALLET
+      walletInit: WALLET_ACTION_TYPES.INIT_WALLET,
+      initWeb3Engine: WALLET_ACTION_TYPES.INIT_WEB_3_ENGINE
     }),
     onScreenResize: function () {
       this.isMobile = window.innerWidth <= this.screenSm

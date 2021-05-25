@@ -3,6 +3,8 @@ import connectors from '@/helpers/connectors.json'
 import networks from '@/helpers/networks.json'
 import Web3 from 'web3'
 import erc20 from '@/data/abi/erc20.json'
+import * as Web3ProviderEngine from 'web3-provider-engine'
+import RpcSubprovider from 'web3-provider-engine/subproviders/rpc'
 
 let auth
 
@@ -11,7 +13,8 @@ export const WALLET_ACTION_TYPES = {
   WALLET_LOGOUT: 'walletLogout',
   INIT_WALLET: 'initWallet',
   LOAD_PROVIDER: 'loadProvider',
-  GET_WALLET_BALANCES: 'getWalletBalances'
+  GET_WALLET_BALANCES: 'getWalletBalances',
+  INIT_WEB_3_ENGINE: 'initWeb3Engine'
 }
 
 export const WALLET_MUTATION_TYPES = {
@@ -25,7 +28,8 @@ export const state = {
   account: null,
   connector: null,
   balance: null,
-  balanceBUSD: null
+  balanceBUSD: null,
+  web3engine: null
 }
 export const getters = {
   getWalletShortName: state => {
@@ -49,6 +53,17 @@ export const getters = {
   }
 }
 export const actions = {
+  async [WALLET_ACTION_TYPES.INIT_WEB_3_ENGINE] ({ commit }) {
+    const engine = new Web3ProviderEngine()
+    engine.addProvider(new RpcSubprovider({
+      rpcUrl: process.env.VUE_APP_ENGINE_NERWORK || null
+    }))
+    engine.start()
+    const web3Engine = new Web3(engine)
+    commit(WALLET_MUTATION_TYPES.SET_STATE, {
+      web3engine: web3Engine
+    })
+  },
   async [WALLET_ACTION_TYPES.INIT_WALLET] ({ dispatch }) {
     const auth = getInstance()
     auth.getConnector().then(connector => {
