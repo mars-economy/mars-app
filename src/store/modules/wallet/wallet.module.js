@@ -92,11 +92,11 @@ export const actions = {
     dispatch
   }) {
     try {
-      if (
-        auth.provider.value.removeAllListeners
-      ) {
-        auth.provider.value.removeAllListeners()
-      }
+      // if (
+      //   auth.provider.value.removeAllListeners
+      // ) {
+      //   auth.provider.value.removeAllListeners()
+      // }
       if (auth.provider.value.on) {
         auth.provider.value.on('chainChanged', async chainId => {
           console.log('HANDLE_CHAIN_CHANGED', chainId)
