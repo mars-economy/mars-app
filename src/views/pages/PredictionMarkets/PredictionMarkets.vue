@@ -38,7 +38,7 @@
       <MessageCard header="There is no historical prediction market yet"
                    text="Choose current prediction market and stake on it."
                    button-name="show all predictions"
-                   @click="option = 'current'" />
+                   @click="option = 'current'"/>
     </template>
 
   </div>
@@ -67,6 +67,14 @@ export default {
   watch: {
     option: function (val) {
       console.debug(val)
+      let empty = true
+      const categories = this.$store.state.phases.phases.nodes
+        .filter(item => item.nodeType === 'categories')
+      categories.forEach(category => {
+        const milestones = category.searchChildrenList('status', val)
+        if (milestones.length > 0) empty = false
+      })
+      this.dataEmpty = empty
     },
     showMine: function (val) {
       console.debug(val)
