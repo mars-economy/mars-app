@@ -7,7 +7,7 @@ import {
   createOutcomesArray,
   createPredictionsArray
 } from '@/helpers/phases.objects'
-import BigNumber from 'bignumber.js'
+import _ from 'lodash'
 
 const getAllDataQuery = require('../../../plugins/apollo/query/getAllDataQuery.gql')
 
@@ -27,7 +27,8 @@ const getters = {
 
 export const PHASES_ACTION_TYPES = {
   GET_DATA: 'getData',
-  GET_DATA_FROM_ENGINE: 'getDataFromEngine'
+  GET_DATA_FROM_ENGINE: 'getDataFromEngine',
+  UPDATE_DATA: 'updateData'
 }
 
 export const PHASES_MUTATION_TYPES = {
@@ -35,53 +36,58 @@ export const PHASES_MUTATION_TYPES = {
 }
 
 const actions = {
+  async [PHASES_ACTION_TYPES.UPDATE_DATA] ({ dispatch }) {
+    console.debug('update data')
+    if (process.env.VUE_APP_DATA_SOURCE === 'graphql') {
+      dispatch(PHASES_ACTION_TYPES.GET_DATA)
+    }
+    if (process.env.VUE_APP_DATA_SOURCE === 'register') {
+      dispatch(PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE)
+    }
+  },
   async [PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE] ({
     commit,
     rootState
   }) {
-    // try {
-    console.log('register')
-    const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
-    const timestampS = new BigNumber(Math.floor(Date.now() / 1000))
-    console.log(Math.floor(Date.now() / 1000), timestampS.valueOf())
-    await registerContract.methods.getPredictionData(Math.floor(Date.now() / 1000)).call()
-      .then(res => {
-        if (res) {
-          console.log(res)
-          const categories = createCategoriesArray(res[0])
-          const milestones = createMilestonesArray(res[1], categories)
-          const predictions = createPredictionsArray(res[2], milestones)
-          const outcomes = createOutcomesArray(res[3], predictions)
+    try {
+      console.debug('engine')
+      const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
+      const timestampS = Math.floor(Date.now() / 1000)
+      await registerContract.methods.getPredictionData(timestampS).call()
+        .then(res => {
+          if (res) {
+            const categories = createCategoriesArray(res[0])
+            const milestones = createMilestonesArray(res[1], categories)
+            const predictions = createPredictionsArray(res[2], milestones)
+            let outcomes = createOutcomesArray(res[3], predictions)
+            outcomes = _.uniqBy(outcomes, 'id')
 
-          const sortedData = {
-            categories: categories,
-            milestones: milestones,
-            predictions: predictions,
-            outcomes: outcomes
-          }
-          console.log(sortedData)
-          const phases = new PhasesTree(sortedData)
-          console.log(phases)
-          phases.nodes.forEach(async item => {
-            if (item.nodeType === 'predictions') {
-              if (!rootState.wallet.isInjected) return
-              return item
+            const sortedData = {
+              categories: categories,
+              milestones: milestones,
+              predictions: predictions,
+              outcomes: outcomes
             }
-          })
-          commit(PHASES_MUTATION_TYPES.SET_STATE, {
-            categories: categories,
-            milestones: milestones,
-            predictions: predictions,
-            outcomes: outcomes,
-            phases: phases
-          })
-        }
-        return res
-      })
-    console.log(state.phases)
-    // } catch (e) {
-    //   console.debug(e)
-    // }
+            const phases = new PhasesTree(sortedData)
+            phases.nodes.forEach(async item => {
+              if (item.nodeType === 'predictions') {
+                if (!rootState.wallet.isInjected) return
+                return item
+              }
+            })
+            commit(PHASES_MUTATION_TYPES.SET_STATE, {
+              categories: categories,
+              milestones: milestones,
+              predictions: predictions,
+              outcomes: outcomes,
+              phases: phases
+            })
+          }
+          return res
+        })
+    } catch (e) {
+      console.debug(e)
+    }
   },
   async [PHASES_ACTION_TYPES.GET_DATA] ({
     commit,
@@ -89,7 +95,7 @@ const actions = {
     dispatch
   }) {
     try {
-      console.log('apollo')
+      console.debug('apollo')
       await apolloProvider.defaultClient.query({
         query: getAllDataQuery,
         fetchPolicy: 'no-cache'

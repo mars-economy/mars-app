@@ -36,6 +36,14 @@ export default {
       isWrongNetwork: false
     }
   },
+  watch: {
+    '$store.state.wallet.isNetworkSupported': {
+      async handler (val) {
+        this.isWrongNetwork = !val
+      },
+      immediate: true
+    }
+  },
   mounted () {
     this.initWeb3Engine()
     this.walletInit()

@@ -51,7 +51,7 @@ export function getMilestoneStatus (code) {
     case '2':
       status = 'Future'
       break
-    case '3':
+    default:
       status = 'Historical'
       break
   }
@@ -71,6 +71,25 @@ export function createMilestone (data, category) {
   })
 }
 
+export function getPredictionState (code) {
+  let state = ''
+  switch (code) {
+    case '1':
+      state = 'Settlement'
+      break
+    case '2':
+      state = 'Closed'
+      break
+    case '3':
+      state = 'Waiting'
+      break
+    default:
+      state = 'Open'
+      break
+  }
+  return state
+}
+
 export function createPrediction (data, milestone) {
   return Object.assign({}, {
     id: data.id,
@@ -80,7 +99,7 @@ export function createPrediction (data, milestone) {
     milestone: milestone,
     position: +data.position,
     predictorsNumber: +data.predictorsNumber,
-    state: data.state,
+    state: getPredictionState(data.state),
     token: data.token
   })
 }

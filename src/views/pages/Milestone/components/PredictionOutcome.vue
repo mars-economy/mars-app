@@ -15,6 +15,7 @@
     <div v-else>
       <Order :outcome="outcome"
              :prediction="outcome.getParent()"
+             :predictionPrice="predictionPrice"
              :isMobile="isMobile"
              v-on:update:profit="estimatedProfit = $event"
              v-on:isStake="isStake = $event"></Order>
@@ -48,7 +49,8 @@ export default {
   },
   props: {
     outcome: Object,
-    isMobile: Boolean
+    isMobile: Boolean,
+    predictionPrice: Number
   },
   data: function () {
     return {

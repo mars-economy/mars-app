@@ -37,6 +37,7 @@ export default {
     },
     predictions: {
       handler: async function (val) {
+        console.debug('detect changes predictions')
         if (!this.$store.state.wallet.isInjected) return
         if (val) {
           for (const item of this.predictions) {
@@ -44,7 +45,7 @@ export default {
           }
         }
       },
-      deep: true,
+      // deep: true,
       immediate: true
     }
   },

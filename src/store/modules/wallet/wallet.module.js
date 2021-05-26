@@ -29,7 +29,8 @@ export const state = {
   connector: null,
   balance: null,
   balanceBUSD: null,
-  web3engine: null
+  web3engine: null,
+  isNetworkSupported: true
 }
 export const getters = {
   getWalletShortName: state => {
@@ -76,7 +77,7 @@ export const actions = {
   }, connector = 'injected') {
     auth = getInstance()
     await auth.login(connector)
-    console.log(auth.provider)
+    console.debug(auth.provider)
     if (auth.provider.value) {
       // auth.web3 = new Web3Provider(auth.provider.value)
       auth.web3 = new Web3(auth.provider.value)
@@ -104,28 +105,31 @@ export const actions = {
         })
         auth.provider.value.on('accountsChanged', async accounts => {
           if (accounts.length !== 0) {
-            console.log('WEB3_SET', { account: accounts[0] })
+            console.debug('WEB3_SET', { account: accounts[0] })
             // await dispatch(WALLET_ACTION_TYPES.LOAD_PROVIDER)
             window.location.reload()
           }
         })
-        let network, accounts
-        try {
-          [network, accounts] = await Promise.all([
-            auth.web3.eth.net.getId(),
-            auth.web3.eth.getAccounts()
-          ])
-          const balance = await auth.web3.eth.getBalance(accounts[0], 'latest')
-          commit(WALLET_MUTATION_TYPES.SET_STATE, {
-            isInjected: true,
-            web3: auth.web3,
-            network: network,
-            account: accounts[0],
-            balance: balance
-          })
-        } catch (e) {
-          console.debug(e)
-        }
+        // let network, accounts
+        // try {
+        const [network, accounts] = await Promise.all([
+          auth.web3.eth.net.getId(),
+          auth.web3.eth.getAccounts()
+        ])
+        const balance = await auth.web3.eth.getBalance(accounts[0], 'latest')
+        const supportedNetworks = process.env.VUE_APP_SUPPORTED_NETWORKS ? process.env.VUE_APP_SUPPORTED_NETWORKS.split(',') : []
+        const isSupported = !(supportedNetworks.length > 0 && !supportedNetworks.includes(network.toString()))
+        commit(WALLET_MUTATION_TYPES.SET_STATE, {
+          isInjected: true,
+          web3: auth.web3,
+          network: network,
+          account: accounts[0],
+          balance: balance,
+          isNetworkSupported: isSupported
+        })
+        // } catch (e) {
+        //   console.debug(e)
+        // }
       }
     } catch (e) {
       return Promise.reject(e)
