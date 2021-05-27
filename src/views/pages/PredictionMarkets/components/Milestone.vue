@@ -10,7 +10,7 @@
       <TextPair :data="milestone.status" icon="state"/>
     </div>
     <div class="milestone-data-item predictors">
-      <TextPair :data="milestone.predictorsNumber" icon="users"/>
+      <TextPair :data="getMilestonePredictorNumber(milestone)" icon="users"/>
     </div>
     <div class="milestone-data-item action p-as-center">
       <Button label="see predictions"
@@ -37,6 +37,13 @@ export default {
     },
     onLoadMilestone (id) {
       this.$router.push('/milestone/' + id)
+    },
+    getMilestonePredictorNumber (milestone) {
+      let pNumbers = 0
+      milestone.getChildrenList().forEach(p => {
+        pNumbers += +p.predictorsNumber
+      })
+      return pNumbers
     }
   }
 }
@@ -45,11 +52,24 @@ export default {
 <style lang="scss">
   .milestone-data:not(.mobile) {
     align-items: center;
+
+    font-weight: 400;
     .milestone-data-item {
-      &.milestone { width: 260px; }
-      &.state { width: 85px; }
-      &.predictors { width: 70px; }
-      &.action { width: 170px; }
+      &.milestone {
+        width: 260px;
+      }
+
+      &.state {
+        width: 85px;
+      }
+
+      &.predictors {
+        width: 70px;
+      }
+
+      &.action {
+        width: 170px;
+      }
     }
   }
 

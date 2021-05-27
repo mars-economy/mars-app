@@ -1,5 +1,13 @@
 import { apolloProvider } from '@/plugins/apollo/apollo'
 import { PhasesTree } from '@/utils/tree.structure'
+import MarsRegister from '@/data/MarsRegister.json'
+import {
+  createCategoriesArray,
+  createMilestonesArray,
+  createOutcomesArray,
+  createPredictionsArray
+} from '@/helpers/phases.objects'
+import _ from 'lodash'
 
 const getAllDataQuery = require('../../../plugins/apollo/query/getAllDataQuery.gql')
 
@@ -18,7 +26,9 @@ const getters = {
 }
 
 export const PHASES_ACTION_TYPES = {
-  GET_DATA: 'getData'
+  GET_DATA: 'getData',
+  GET_DATA_FROM_ENGINE: 'getDataFromEngine',
+  UPDATE_DATA: 'updateData'
 }
 
 export const PHASES_MUTATION_TYPES = {
@@ -26,12 +36,66 @@ export const PHASES_MUTATION_TYPES = {
 }
 
 const actions = {
+  async [PHASES_ACTION_TYPES.UPDATE_DATA] ({ dispatch }) {
+    console.debug('update data')
+    if (process.env.VUE_APP_DATA_SOURCE === 'graphql') {
+      dispatch(PHASES_ACTION_TYPES.GET_DATA)
+    }
+    if (process.env.VUE_APP_DATA_SOURCE === 'register') {
+      dispatch(PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE)
+    }
+  },
+  async [PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE] ({
+    commit,
+    rootState
+  }) {
+    try {
+      console.debug('engine')
+      const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
+      const timestampS = Math.floor(Date.now() / 1000)
+      await registerContract.methods.getPredictionData(timestampS).call()
+        .then(res => {
+          if (res) {
+            const categories = createCategoriesArray(res[0])
+            const milestones = createMilestonesArray(res[1], categories)
+            const predictions = createPredictionsArray(res[2], milestones)
+            let outcomes = createOutcomesArray(res[3], predictions)
+            outcomes = _.uniqBy(outcomes, 'id')
+
+            const sortedData = {
+              categories: categories,
+              milestones: milestones,
+              predictions: predictions,
+              outcomes: outcomes
+            }
+            const phases = new PhasesTree(sortedData)
+            phases.nodes.forEach(async item => {
+              if (item.nodeType === 'predictions') {
+                if (!rootState.wallet.isInjected) return
+                return item
+              }
+            })
+            commit(PHASES_MUTATION_TYPES.SET_STATE, {
+              categories: categories,
+              milestones: milestones,
+              predictions: predictions,
+              outcomes: outcomes,
+              phases: phases
+            })
+          }
+          return res
+        })
+    } catch (e) {
+      console.debug(e)
+    }
+  },
   async [PHASES_ACTION_TYPES.GET_DATA] ({
     commit,
     rootState,
     dispatch
   }) {
     try {
+      console.debug('apollo')
       await apolloProvider.defaultClient.query({
         query: getAllDataQuery,
         fetchPolicy: 'no-cache'

@@ -13,12 +13,15 @@ export default {
   },
   methods: {
     goToBack () {
-      this.$router.back()
+      this.$router.push('/')
     }
   }
 }
 </script>
 
 <style scoped>
+  .muted.clickable:hover {
+    opacity: 1;
+  }
 
 </style>

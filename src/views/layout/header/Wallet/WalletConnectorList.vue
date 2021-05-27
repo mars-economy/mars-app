@@ -1,8 +1,8 @@
 <template>
   <div class="wallet-panel-body">
-    <WalletConnector v-for="(connector, id, i) in connectorList"
+    <WalletConnector v-for="(connector, id, i) in getWalletList"
                      :key="i"
-                     :connector="connector" @click="walletLogin(connector.id)">
+                     :connector="connector" @click="walletLogin(connector.id); $emit('onSelectWallet')">
     </WalletConnector>
   </div>
 </template>
@@ -13,6 +13,7 @@ import { mapActions } from 'vuex'
 import { MODULE_NAMES } from '@/store'
 import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
 import WalletConnector from './WalletConnector'
+import { isMobile as detectIsMobile } from 'mobile-device-detect'
 
 export default {
   name: 'WalletConnectorList',
@@ -28,6 +29,18 @@ export default {
     ...mapActions(MODULE_NAMES.WALLET, {
       walletLogin: WALLET_ACTION_TYPES.WALLET_LOGIN
     })
+  },
+  computed: {
+    getWalletList () {
+      const wallets = []
+      const showOption = detectIsMobile ? 'isMobile' : 'isBrowser'
+      Object.keys(connectors).forEach(item => {
+        if (connectors[item].detect.includes(showOption)) {
+          wallets.push(connectors[item])
+        }
+      })
+      return wallets
+    }
   }
 }
 </script>

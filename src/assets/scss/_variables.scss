@@ -3,10 +3,21 @@
 $white:         #ffffff;
 $black:         #04001C;
 $colorPrimary: #FFC22E;
-$bgColor: #212852;
-//$bgColor: #04001C;
+//$bgColor: #212852;
+$bgColor: #04001C;
 
-$screen-md-min: 576px;
+$sm:576px !default;
+$md:768px !default;
+$lg:992px !default;
+$xl:1200px !default;
+$gutter:.5rem !default;
+
+$fieldMargin: 1rem !default;
+$fieldLabelMargin: .5rem !default;
+$helperTextMargin: .25rem !default;
+
+$spacer:1rem !default;
+$screen-md-min: $sm;
 $screen-sm-max: $screen-md-min - 1px;
 
 // Font
@@ -18,7 +29,7 @@ $textColor: $white;
 $textShadowBase: 0px 4px 4px rgba(13, 20, 41, 0.2);
 $headingFontWeight: 600;
 
-$radius-base: 0.5rem;
+$radius-base: 8px;
 $border-light: 1px solid rgba($white, 0.05);
 $bg-light: rgba($white, 0.05);
 
@@ -33,6 +44,11 @@ $card-padding-h: 24px;
 %card-px {
   padding-left: $card-padding-h;
   padding-right: $card-padding-h;
+}
+$card-padding-mobile-h: 16px;
+%card-mobile-px {
+  padding-left: $card-padding-mobile-h;
+  padding-right: $card-padding-mobile-h;
 }
 %h5 {
   font-size: 12px;

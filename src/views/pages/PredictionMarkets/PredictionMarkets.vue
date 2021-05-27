@@ -6,16 +6,16 @@
       Prediction Markets
     </div>
 
-    <div class="p-d-flex p-flex-column p-flex-sm-row p-ai-center p-jc-between p-mt-1 p-my-3">
-      <div class="p-mx-auto">
-        <SelectButton v-model="option" :options="options" class="btn-select" v-on:select="option = $event"/>
+    <div class="p-grid p-ai-center p-mt-1 p-my-3">
+      <div class="p-mb-2 p-mb-lg-0 p-col-12 p-lg-4 p-lg-offset-4 p-d-flex p-ai-center p-jc-center">
+        <SelectButton v-model="option" :options="options" class="btn-select p-mx-auto" v-on:select="option = $event"/>
       </div>
       <!--
       <ToggleViewButton/>
       -->
-      <Divider type="dashed" v-if="isMobile" class="p-my-3"/>
+      <!--            <Divider type="dashed" v-if="isMobile" />-->
 
-      <!--      <div class="p-d-inline-flex p-ai-center switch">-->
+      <!--      <div class="p-col-12 p-lg-4 p-ai-center switch p-mt-3 p-mt-lg-0 p-d-flex p-ai-center p-jc-lg-end p-jc-center">-->
       <!--        <span class="p-mr-2 clickable" :class="{'checked' : !showMine}" @click="showMine = false">-->
       <!--          show all predictions</span>-->
       <!--        <InputSwitch v-model="showMine"></InputSwitch>-->
@@ -26,11 +26,19 @@
     </div>
     <Divider v-if="isMobile" type="dashed"/>
 
-    <template v-for="(category, index) in phases" :key="index">
-      <div class="p-d-flex p-flex-column">
-        <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
-      </div>
-      <Divider v-if="(phases.length - 1) !== index" type="dashed"/>
+    <template v-if="!dataEmpty">
+      <template v-for="(category, index) in phases" :key="index">
+        <div class="p-d-flex p-flex-column p-my-0 p-my-sm-3">
+          <Stepstone :isMobile="isMobile" :status="option" :stepstone="category"/>
+        </div>
+        <Divider v-if="(phases.length - 1) !== index && !isMobile" type="dashed" class="p-my-md-3"/>
+      </template>
+    </template>
+    <template v-else>
+      <MessageCard header="There is no historical prediction market yet"
+                   text="Choose current prediction market and stake on it."
+                   button-name="show all predictions"
+                   @click="option = 'current'"/>
     </template>
 
   </div>
@@ -43,10 +51,12 @@ import SelectButton from 'primevue/selectbutton'
 import Stepstone from '@/views/pages/PredictionMarkets/components/Stepstone'
 import { mapState } from 'vuex'
 import { MODULE_NAMES } from '@/store'
+import MessageCard from '../../layout/MessageCard'
 
 export default {
   name: 'PredictionMarkets',
   components: {
+    MessageCard,
     // InputSwitch,
     Stepstone,
     SelectButton
@@ -57,6 +67,14 @@ export default {
   watch: {
     option: function (val) {
       console.debug(val)
+      let empty = true
+      const categories = this.$store.state.phases.phases.nodes
+        .filter(item => item.nodeType === 'categories')
+      categories.forEach(category => {
+        const milestones = category.searchChildrenList('status', val)
+        if (milestones.length > 0) empty = false
+      })
+      this.dataEmpty = empty
     },
     showMine: function (val) {
       console.debug(val)
@@ -66,7 +84,8 @@ export default {
     return {
       option: 'current',
       options: ['current', 'historical'],
-      showMine: false
+      showMine: false,
+      dataEmpty: false
     }
   },
   computed: {
@@ -82,8 +101,5 @@ export default {
 </script>
 
 <style scoped>
-  .btn-select {
-    /* transform: translateX(64px); */
-  }
 
 </style>

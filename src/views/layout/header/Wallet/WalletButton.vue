@@ -9,12 +9,12 @@
       </Button>
     </template>
 
-    <template v-else>
+    <template v-if="$store.state.wallet.isInjected">
       <WalletDataButton :walletData="getWalletData" @click="toggleWalletPanel($event)"></WalletDataButton>
     </template>
 
-    <OverlayPanel ref="walletPanel" class="wallet-panel">
-      <WalletPanel :walletData="getWalletData"/>
+    <OverlayPanel ref="walletPanel" class="wallet-panel" :class="{'mobile' : isMobile}">
+      <WalletPanel :walletData="getWalletData" @onSelectWallet="toggleWalletPanel($event)"/>
     </OverlayPanel>
 
   </div>
@@ -34,9 +34,13 @@ export default {
     WalletDataButton,
     OverlayPanel
   },
+  props: {
+    isMobile: Boolean
+  },
   data () {
     return {
-      isWalletConnect: this.$store.state.wallet.isInjected
+      isWalletConnect: this.$store.state.wallet.isInjected,
+      isWalletPanelOpen: false
     }
   },
   methods: {
@@ -51,6 +55,11 @@ export default {
   }
 }
 </script>
-<style scoped>
-
+<style scoped lang="scss">
+  .wallet-panel-mobile {
+    &.collapsed {
+      display: none;
+    }
+    transition: all 0.3s;
+  }
 </style>

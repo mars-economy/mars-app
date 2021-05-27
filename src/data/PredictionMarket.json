@@ -53,15 +53,16 @@
     },
     {
       "inputs": [],
-      "name": "getBalancingTimeStart",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
+      "name": "collectOracleFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "collectProtocolFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -98,20 +99,56 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "getTokens",
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_currentTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSharePrice",
       "outputs": [
         {
-          "internalType": "address[]",
+          "internalType": "uint256",
           "name": "",
-          "type": "address[]"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "bytes16",
+          "name": "outcomeUuid",
+          "type": "bytes16"
+        }
+      ],
+      "name": "getTokenOutcomeAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_currentTime",
+          "type": "uint256"
+        }
+      ],
       "name": "getUserPredictionState",
       "outputs": [
         {
@@ -140,6 +177,16 @@
               "internalType": "bool",
               "name": "rewardReceived",
               "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "sharePrice",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "outcomeBalance",
+              "type": "uint256"
             }
           ],
           "internalType": "struct Market.UserOutcomeInfo[]",
@@ -159,11 +206,71 @@
         },
         {
           "internalType": "uint256",
+          "name": "_currentTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "notFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "feeDivisor",
+          "type": "uint256"
+        }
+      ],
+      "name": "isPredictionProfitable",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes16",
+          "name": "_outcome",
+          "type": "bytes16"
+        },
+        {
+          "internalType": "uint256",
           "name": "_amount",
           "type": "uint256"
         }
       ],
       "name": "predict",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newParameters",
+          "type": "address"
+        }
+      ],
+      "name": "setParameters",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_newValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPredictionTimeEnd",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

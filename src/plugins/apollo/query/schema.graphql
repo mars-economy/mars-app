@@ -29,6 +29,7 @@ type Outcome {
     position: Int!
     prediction: Prediction!
     stakedAmount: BigInt!
+    winning: Boolean!
 }
 
 type Prediction {
@@ -223,6 +224,7 @@ enum Outcome_orderBy {
     position
     prediction
     stakedAmount
+    winning
 }
 
 enum PredictionState {
@@ -434,6 +436,10 @@ input Outcome_filter {
     stakedAmount_lte: BigInt
     stakedAmount_not: BigInt
     stakedAmount_not_in: [BigInt!]
+    winning: Boolean
+    winning_in: [Boolean!]
+    winning_not: Boolean
+    winning_not_in: [Boolean!]
 }
 
 input Prediction_filter {

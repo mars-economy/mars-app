@@ -1,10 +1,10 @@
 <template>
-  <div class="outcome card">
+  <div class="outcome card" :class="{'stake-success' : isStake}">
     <div class="card-header p-py-3 p-d-flex p-ai-center p-jc-between text-primary">
       <div>{{ outcome.name }}</div>
       <Probability :value="probability"/>
     </div>
-    <div class="card-profit p-py-2">
+    <div class="card-profit p-py-2 p-d-flex p-ai-center">
       <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
     </div>
 
@@ -15,7 +15,10 @@
     <div v-else>
       <Order :outcome="outcome"
              :prediction="outcome.getParent()"
-             v-on:update:profit="estimatedProfit = $event"></Order>
+             :predictionPrice="predictionPrice"
+             :isMobile="isMobile"
+             v-on:update:profit="estimatedProfit = $event"
+             v-on:isStake="isStake = $event"></Order>
     </div>
 
     <div class="card-footer-collapse">
@@ -24,7 +27,7 @@
       </PanelCollapse>
     </div>
 
-    <OverlayPanel ref="walletPanel" class="wallet-panel">
+    <OverlayPanel ref="walletPanel" class="wallet-panel" :class="{'mobile' : isMobile}">
       <WalletPanel :walletData="null"/>
     </OverlayPanel>
 
@@ -45,12 +48,15 @@ export default {
     WalletPanel
   },
   props: {
-    outcome: Object
+    outcome: Object,
+    isMobile: Boolean,
+    predictionPrice: Number
   },
   data: function () {
     return {
       isWalletConnected: false,
-      estimatedProfit: 0
+      estimatedProfit: 0,
+      isStake: false
     }
   },
   methods: {
@@ -73,8 +79,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .outcome {
-    width: 47%;
+  .outcome.stake-success {
+    border: 1px solid rgba($colorPrimary, 0.5);
+
   }
 
 </style>

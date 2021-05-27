@@ -1,5 +1,5 @@
 <template>
-  <div class="order">
+  <div class="order p-d-flex p-flex-column" :class="{'mobile' : isMobile}">
     <template v-if="isStakeSuccess()">
       <div class="order-block p-py-3">
         <CardLabel color="primary" label="your stake" labelPos="right"/>
@@ -11,7 +11,7 @@
       <Divider type="solid"/>
     </template>
 
-    <div class="order-block p-py-3">
+    <div v-if="prediction.state === 'Open' && !yourTotalStake.suspended" class="order-block p-py-3">
       <CardLabel label="current order" labelPos="right"/>
       <TextPair :data="calculateEstimatedAmount(currentStake.amount)" class="p-mt-2" icon="coins" label="your stake"
                 unit="BUSD"/>
@@ -19,19 +19,28 @@
       <Divider type="solid" class="p-my-3"/>
       <template v-if="isShow">
         <StakeInput :outcome="outcome" :v-model="userStake" v-on:update:stake="handleUpdateStake($event)"></StakeInput>
-        <Button :disabled="isLimit || isInvalid || !userStake" class="btn-primary btn-block p-my-2"
+        <Button :disabled="isLimit || isInvalid || !userStake || isUnprofitable" class="btn-primary btn-block p-my-2"
                 label="Place a stake"
                 @click="doContract()"/>
         <InfoMessage v-if="isLimit" color="primary" small text="You don’t have enough tokens in your wallet"
                      type="warning"/>
         <InfoMessage v-if="isInvalid" color="primary" small text="Invalid Input"
                      type="warning"/>
+        <InfoMessage v-if="isUnprofitable" color="primary" small text="Staking is unprofitable"
+                     type="warning"/>
       </template>
       <template v-if="isProgress">
         <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
       </template>
     </div>
-
+    <div v-if="prediction.state === 'Closed' && yourTotalStake.win > 0" class="order-block p-py-3">
+      <Button :label="`Get reward ${yourTotalStake.win} BUSD`"
+              class="btn-primary btn-block p-my-2"
+              v-on:click="doGetReward($event)"/>
+      <template v-if="isProgress">
+        <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
+      </template>
+    </div>
   </div>
 
 </template>
@@ -54,7 +63,9 @@ export default {
   props: {
     prediction: Object,
     outcome: Object,
-    totalStakeAmount: BigNumber
+    totalStakeAmount: BigNumber,
+    predictionPrice: Number,
+    isMobile: Boolean
   },
   data: function () {
     return {
@@ -63,9 +74,11 @@ export default {
       userStake: 0,
       isLimit: false,
       isInvalid: false,
+      isUnprofitable: false,
       yourTotalStake: {
         amount: null,
-        win: null
+        win: null,
+        suspended: false
       },
       fee: process.env.VUE_APP_BASE_FEE || 0.003,
       currentStake: {
@@ -85,10 +98,12 @@ export default {
   },
   methods: {
     ...mapActions(MODULE_NAMES.PHASES, {
-      getAllData: PHASES_ACTION_TYPES.GET_DATA
+      getAllData: PHASES_ACTION_TYPES.GET_DATA,
+      updateAllData: PHASES_ACTION_TYPES.UPDATE_DATA
     }),
     ...mapActions(MODULE_NAMES.CONTRACTS, {
-      buyOutcome: CONTRACTS_ACTION_TYPES.BUY_OUTCOME
+      buyOutcome: CONTRACTS_ACTION_TYPES.BUY_OUTCOME,
+      getRewards: CONTRACTS_ACTION_TYPES.GET_REWARDS
     }),
     ...mapActions(MODULE_NAMES.WALLET, {
       getWalletBalances: WALLET_ACTION_TYPES.GET_WALLET_BALANCES
@@ -133,15 +148,47 @@ export default {
       this.updateIsValid(this.userStake)
       this.updateLimit(this.userStake)
       this.calculateEstimatedProfit()
+      this.isStakeUnprofitable()
     },
     isStakeSuccess () {
       if (!this.prediction.stakes) return false
       const stake = this.prediction.stakes.find(item => item.outcomeUuid === this.outcome.id)
       this.yourTotalStake = {
         amount: convertFromWei(stake.stakeAmount),
-        win: convertFromWei(stake.currentReward)
+        win: convertFromWei(stake.currentReward),
+        suspended: stake.suspended
       }
+      this.$emit('isStake', stake.suspended)
       return stake ? new BigNumber(stake.stakeAmount).gt(0) : false
+    },
+    isStakeUnprofitable () {
+      const notFee = new BigNumber(1).minus(this.fee)
+      console.debug('notFee', notFee.valueOf())
+      const totalPredicted = new BigNumber(this.prediction.totalStakeAmount)
+      console.debug('totalPredicted', this.prediction.totalStakeAmount.valueOf(), totalPredicted.valueOf())
+      const sharePrice = new BigNumber(this.predictionPrice).multipliedBy(1000000)
+      console.debug('sharePrice', sharePrice.valueOf())
+      const stake = this.prediction.stakes.find(item => item.outcomeUuid === this.outcome.id)
+      const outcomeBalance = new BigNumber(stake.outcomeBalance)
+      console.debug('outcomeBalance', outcomeBalance.valueOf())
+      const amountToStake = new BigNumber(this.userStake).multipliedBy(Math.pow(10, 18)).multipliedBy(notFee)
+      console.debug('amountToStake', amountToStake.valueOf())
+      const tokensToBuy = amountToStake.multipliedBy(1000000).dividedBy(sharePrice)
+      console.debug('tokensToBuy', tokensToBuy.valueOf())
+
+      // sharePrice * notFee > (((totalPredicted + amoutToStake) * 1_000_000) / (outcomeBalance + tokensToBuy)) + 1
+      const fLeft = sharePrice.multipliedBy(notFee)
+      console.debug('sharePrice * notFee', fLeft.valueOf())
+      const fRLeft = (totalPredicted.plus(amountToStake)).multipliedBy(1000000)
+      console.debug('(totalPredicted + amoutToStake)', totalPredicted.plus(amountToStake).valueOf())
+      console.debug('(totalPredicted + amoutToStake) * 1_000_000', fRLeft.valueOf())
+      const fRRight = outcomeBalance.plus(tokensToBuy)
+      console.debug('outcomeBalance + tokensToBuy', fRRight.valueOf())
+      const fRight = (fRLeft.dividedBy(fRRight)).plus(1)
+      console.debug('(((totalPredicted + amoutToStake) * 1_000_000) / (outcomeBalance + tokensToBuy)) + 1', fRight.valueOf())
+      this.isUnprofitable = fLeft.gt(fRight)
+      console.debug('isUnprofitable', this.isUnprofitable, fLeft.valueOf(), fRight.valueOf())
+      return this.isUnprofitable
     },
     async doContract () {
       this.isShow = false
@@ -152,10 +199,21 @@ export default {
         stake: this.userStake
       })
       await this.getWalletBalances(this.prediction.token)
-      await this.getAllData()
+      await this.updateAllData()
       this.isProgress = false
       this.isShow = true
       this.userStake = 0
+    },
+    async doGetReward ($event) {
+      this.isProgress = true
+      await this.getRewards({
+        prediction: this.prediction,
+        outcome: this.outcome,
+        reward: this.yourTotalStake
+      })
+      await this.getWalletBalances(this.prediction.token)
+      await this.updateAllData()
+      this.isProgress = false
     }
   },
   mounted () {
@@ -167,7 +225,13 @@ export default {
 <style scoped lang="scss">
   .order-block {
     position: relative;
+    display: flex;
+    flex-direction: column;
     @extend %card-px;
+  }
+
+  .mobile .order-block {
+    @extend %card-mobile-px;
   }
 
 </style>

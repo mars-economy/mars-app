@@ -1,8 +1,10 @@
 <template>
-  <div id="nav" class="p-menubar p-d-flex p-flex-column p-flex-sm-row">
-    <router-link :class="{'active': $route.path.includes('/')}" class="p-menuitem p-d-inline-block" to="/">Prediction
-      markets
-    </router-link>
+  <div id="nav" class="p-menubar p-d-flex p-flex-column p-flex-sm-row" :class="{'mobile' : isMobile}">
+    <div :class="{'active': $route.path.includes('/')}"
+                 class="p-menuitem p-d-inline-block"
+                 @click="$emit('click')">
+      Prediction markets
+    </div>
     <a :href="navigateToLanding" class="p-menuitem p-d-inline-block" target="_blank">About Mars Economy</a>
     <!--    <router-link to="/about" class="p-menuitem p-d-inline-block">Convert mars milestones</router-link>-->
   </div>
@@ -15,6 +17,9 @@ export default {
     navigateToLanding () {
       return process.env.VUE_APP_MARS_LANDING
     }
+  },
+  props: {
+    isMobile: Boolean
   }
 }
 </script>
@@ -28,10 +33,17 @@ export default {
     color: $textColor;
     text-decoration: none;
     margin: auto 1rem;
+    font-weight: 700;
 
-    &:hover {
+    &:hover, &.active {
       opacity: 1;
     }
   }
-
+  .p-menubar.mobile {
+    .p-menuitem {
+      margin: 20px 0 0 0;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
 </style>

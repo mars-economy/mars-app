@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="p-inputgroup">
-      <input :ref="'input-balance-'+outcome.id" class="fx-grow" placeholder="0"
+      <input :ref="'input-balance-'+outcome.id"  placeholder="0"
              v-on:input="$emit('update:stake', +$event.target.value)">
       <span class="p-inputgroup-addon btn-inputgroup-addon muted p-mr-2 clickable"
             v-on:click="handlePutMax($event)">max</span>
@@ -59,6 +59,9 @@ export default {
       font-family: $font-family-base;
       font-size: $font-size-small;
       color: $white;
+      display: inline-flex;
+      min-width: 110px;
+      flex-grow: 1;
 
       &::placeholder {
         color: $white

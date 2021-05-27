@@ -16,7 +16,7 @@ html {
   font-size: 16px;
   line-height: 1.1em;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   letter-spacing: -0.02em;
   background-color: $bgColor;
   background-size: cover;
@@ -43,7 +43,7 @@ div {
 
 .text-body {
   line-height: 1.5em;
-  font-weight: 400;
+  font-weight: 300;
 }
 .text-small-base, .text-small {
   font-size: $font-size-small;
@@ -79,7 +79,6 @@ h2, .h2 {
 
 .headline {
   font-size: 14px;
-  line-height: 20px;
   letter-spacing: -0.01em;
   font-weight: bold;
   text-transform: uppercase;
