@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     goToBack () {
-      this.$router.back()
+      this.$router.push('/')
     }
   }
 }
