@@ -4,13 +4,16 @@ import { PHASES_ACTION_TYPES } from '@/store/modules/phases/phases.module'
 import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
 
 const engineMixins = {
-  async mounted () {
-    if (process.env.VUE_APP_DATA_SOURCE === 'register') {
-      await Promise.all([
-        await this.initWeb3Engine(),
+  watch: {
+    '$store.state.wallet.isInjected': {
+      async handler (val) {
+        console.log('is Injected', val)
         await this.getDataFromEngine()
-      ])
+      }
     }
+  },
+  async mounted () {
+    await this.init()
   },
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
@@ -18,7 +21,15 @@ const engineMixins = {
     }),
     ...mapActions(MODULE_NAMES.PHASES, {
       getDataFromEngine: PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE
-    })
+    }),
+    async init () {
+      if (process.env.VUE_APP_DATA_SOURCE === 'register') {
+        await Promise.all([
+          await this.initWeb3Engine(),
+          await this.getDataFromEngine()
+        ])
+      }
+    }
   }
 }
 
