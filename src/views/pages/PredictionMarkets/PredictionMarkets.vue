@@ -71,7 +71,7 @@ export default {
       const categories = this.$store.state.phases.phases.nodes
         .filter(item => item.nodeType === 'categories')
       categories.forEach(category => {
-        const milestones = category.searchChildrenList('status', val)
+        const milestones = category.searchChildrenList('status', val, 'asc')
         if (milestones.length > 0) empty = false
       })
       this.dataEmpty = empty

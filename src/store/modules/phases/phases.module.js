@@ -8,6 +8,7 @@ import {
   createPredictionsArray
 } from '@/helpers/phases.objects'
 import _ from 'lodash'
+import REGISTER_ADDR from '@/helpers/register.json'
 
 const getAllDataQuery = require('../../../plugins/apollo/query/getAllDataQuery.gql')
 
@@ -51,7 +52,10 @@ const actions = {
   }) {
     try {
       console.debug('engine')
-      const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, process.env.VUE_APP_REGISTER_ADDR)
+      let registerAddr = process.env.VUE_APP_REGISTER_ADDR
+      if (rootState.wallet.isInjected) registerAddr = REGISTER_ADDR.addr[rootState.wallet.network]
+
+      const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, registerAddr)
       const timestampS = Math.floor(Date.now() / 1000)
       await registerContract.methods.getPredictionData(timestampS).call()
         .then(res => {

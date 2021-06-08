@@ -122,6 +122,7 @@ export const actions = {
         commit(WALLET_MUTATION_TYPES.SET_STATE, {
           isInjected: true,
           web3: auth.web3,
+          web3engine: auth.web3,
           network: network,
           account: accounts[0],
           balance: balance,

@@ -13,7 +13,7 @@
         <div class="p-mt-lg-3 text-body">{{ milestone.description }}</div>
       </div>
       <div class="prediction-list-container p-col-12 p-lg-8">
-        <PredictionList :predictions="milestone.getChildrenList()" :isMobile="isMobile"/>
+        <PredictionList :isMobile="isMobile" :predictions="milestone.getChildrenList('asc')"/>
       </div>
     </div>
   </div>

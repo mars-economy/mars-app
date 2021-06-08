@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted () {
-    this.initWeb3Engine()
+    // this.initWeb3Engine()
     this.walletInit()
     window.onresize = () => {
       this.onScreenResize()

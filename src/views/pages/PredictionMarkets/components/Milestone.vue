@@ -40,7 +40,7 @@ export default {
     },
     getMilestonePredictorNumber (milestone) {
       let pNumbers = 0
-      milestone.getChildrenList().forEach(p => {
+      milestone.getChildrenList('asc').forEach(p => {
         pNumbers += +p.predictorsNumber
       })
       return pNumbers

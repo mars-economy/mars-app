@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <template v-for="(outcome, index) in prediction.getChildrenList()" :key="index">
+    <template v-for="(outcome, index) in prediction.getChildrenList('asc')" :key="index">
       <div class="p-col-12 p-md-6">
         <PredictionOutcome :isMobile="isMobile" :outcome="outcome" :predictionPrice="predictionPrice"/>
       </div>
