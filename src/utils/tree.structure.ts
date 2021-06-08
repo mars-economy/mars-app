@@ -1,4 +1,5 @@
 import BigNumber from 'bignumber.js'
+import _ from 'lodash'
 
 type NODE_TYPE_CATEGORIES = 'categories'
 type NODE_TYPE_OUTCOMES = 'outcomes'
@@ -6,6 +7,11 @@ type NODE_TYPE_PREDICTIONS = 'predictions'
 type NODE_TYPE_MILESTONES = 'milestones'
 
 type INodeTypes = NODE_TYPE_CATEGORIES | NODE_TYPE_MILESTONES | NODE_TYPE_PREDICTIONS | NODE_TYPE_OUTCOMES
+
+export const enum ORDER {
+  ASC = 'asc',
+  DESC = 'desc'
+}
 
 interface IBaseNode {
   nodeType: INodeTypes;
@@ -20,9 +26,9 @@ interface IBaseNode {
 
   getChildren (uuid: string): IBaseNode | null
 
-  getChildrenList (): Array<IBaseNode>
+  getChildrenList (positionSort?: ORDER.ASC | ORDER.DESC): Array<IBaseNode>
 
-  searchChildrenList (searchParam: string, searchString: string): Array<IBaseNode> | []
+  searchChildrenList (searchParam: string, searchString: string, positionSort?: ORDER.ASC | ORDER.DESC): Array<IBaseNode> | []
 
   addChildren (data: IBaseNode): IBaseNode
 }
@@ -54,12 +60,20 @@ class TreeNode implements IBaseNode {
     return this.children.find(item => item.id === uuid) || null
   }
 
-  getChildrenList (): Array<IBaseNode> {
-    return this.children
+  getChildrenList (positionSort: ORDER.ASC | ORDER.DESC): Array<IBaseNode> {
+    let list = this.children
+    if (positionSort) {
+      list = _.orderBy(list, ['position'], [positionSort])
+    }
+    return list
   }
 
-  searchChildrenList (searchParam: string, searchString: string): Array<IBaseNode> | [] {
-    return this.children.filter(item => item[searchParam].toLowerCase() === searchString.toLowerCase())
+  searchChildrenList (searchParam: string, searchString: string, positionSort?: ORDER.ASC | ORDER.DESC): Array<IBaseNode> | [] {
+    let list = this.children.filter(item => item[searchParam].toLowerCase() === searchString.toLowerCase())
+    if (positionSort) {
+      list = _.orderBy(list, ['position'], [positionSort])
+    }
+    return list
   }
 
   getParent (): IBaseNode | null {
