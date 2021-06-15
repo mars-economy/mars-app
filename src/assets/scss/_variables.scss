@@ -33,6 +33,20 @@ $radius-base: 8px;
 $border-light: 1px solid rgba($white, 0.05);
 $bg-light: rgba($white, 0.05);
 
+%card {
+  background: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.05);
+  backdrop-filter: blur(20px);
+  padding: 20px;
+  border-radius: $radius-base;
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.43em;
+  letter-spacing: -0.02em;
+  position: relative;
+  // font-weight: 300;
+}
+
 %card-bg, %label-bg {
   background: $bg-light;
   border: 1px solid rgba($white, 0.05);
@@ -40,6 +54,7 @@ $bg-light: rgba($white, 0.05);
   border-radius: $radius-base;
   box-sizing: border-box;
 }
+
 $card-padding-h: 24px;
 %card-px {
   padding-left: $card-padding-h;
@@ -50,11 +65,26 @@ $card-padding-mobile-h: 16px;
   padding-left: $card-padding-mobile-h;
   padding-right: $card-padding-mobile-h;
 }
+
 %h5 {
   font-size: 12px;
   line-height: 1.1em;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+}
+
+%card-label {
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.16em;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  padding: 0.5em 1em;
+  background-color: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.05);
+  box-sizing: border-box;
+  position: absolute;
 }
 
 $font-size-small: 14px;
