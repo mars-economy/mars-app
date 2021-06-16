@@ -8,6 +8,7 @@ import router from './router'
 import store from './store'
 import PrimeVue from 'primevue/config'
 import Button from 'primevue/button'
+import Dialog from 'primevue/dialog'
 import OverlayPanel from 'primevue/overlaypanel'
 import 'primeicons/primeicons.css'
 import 'primevue/resources/primevue.min.css'
@@ -27,6 +28,7 @@ requireComponent.keys().forEach(fileName => {
   app.component(componentName, componentConfig.default || componentConfig)
 })
 app.component('Button', Button)
+app.component('Dialog', Dialog)
 app.component('OverlayPanel', OverlayPanel)
 
 app.mount('#app')
