@@ -34,8 +34,8 @@ import PredictionOutcome from '@/views/pages/Milestone/components/PredictionOutc
 import { mapActions } from 'vuex'
 import { MODULE_NAMES } from '@/store'
 import { CONTRACTS_ACTION_TYPES } from '@/store/modules/contracts/contracts.module'
-import moment from 'moment'
 import PricePanel from '@/views/pages/Milestone/components/price/PricePanel'
+import { getFormattedData } from '@/helpers/date.helper'
 
 export default {
   name: 'Prediction',
@@ -57,7 +57,7 @@ export default {
       getSharePrice: CONTRACTS_ACTION_TYPES.GET_SHARE_PRICE
     }),
     prepareDate (timeS) {
-      return moment(timeS * 1000).utc().format('MMMM, DD YYYY')
+      return getFormattedData(timeS)
     }
   },
   async mounted () {

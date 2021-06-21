@@ -29,7 +29,7 @@ export default {
   data: function () {
     return {
       columnHeaders: [
-        'milestone', 'state', 'predictors', 'action'
+        'milestone', 'predictors', 'due date', 'action'
       ]
     }
   },
@@ -52,9 +52,22 @@ export default {
     border: $border-light;
     .milestone-data-item {
       opacity: 0.5;
-      &.milestone { width: 260px; }
-      &.state { width: 85px; }
-      &.predictors { width: 70px; }
+
+      &.milestone {
+        width: 210px;
+      }
+
+      &.state {
+        width: 85px;
+      }
+
+      &.due {
+        width: 120px;
+      }
+
+      &.predictors {
+        width: 70px;
+      }
       &.action { width: 170px; }
     }
 

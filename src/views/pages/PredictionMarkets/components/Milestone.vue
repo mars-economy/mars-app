@@ -6,11 +6,13 @@
     <div class="milestone-data-item milestone h4">
       {{ milestone.name }}
     </div>
-    <div class="milestone-data-item state">
-      <TextPair :data="milestone.status" icon="state"/>
-    </div>
     <div class="milestone-data-item predictors">
       <TextPair :data="getMilestonePredictorNumber(milestone)" icon="users"/>
+    </div>
+    <div class="milestone-data-item due-date">
+      <!--      <TextPair :data="milestone.status" icon="state"/>-->
+      <TextPair :data="prepareDate(milestone.getChildrenList()[0]?.dueDate || null)"
+                icon="date"/>
     </div>
     <div class="milestone-data-item action p-as-center">
       <Button label="see predictions"
@@ -24,6 +26,7 @@
 
 <script>
 import moment from 'moment'
+import { getFormattedData } from '@/helpers/date.helper'
 
 export default {
   name: 'Milestone',
@@ -44,6 +47,9 @@ export default {
         pNumbers += +p.predictorsNumber
       })
       return pNumbers
+    },
+    prepareDate (timeS) {
+      return getFormattedData(timeS, 'MMMM YYYY')
     }
   }
 }
@@ -54,13 +60,18 @@ export default {
     align-items: center;
 
     font-weight: 400;
+
     .milestone-data-item {
       &.milestone {
-        width: 260px;
+        width: 210px;
       }
 
       &.state {
         width: 85px;
+      }
+
+      &.due-date {
+        width: 120px;
       }
 
       &.predictors {
