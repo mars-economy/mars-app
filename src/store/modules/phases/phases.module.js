@@ -72,6 +72,7 @@ const actions = {
               predictions: predictions,
               outcomes: outcomes
             }
+            console.log(sortedData)
             const phases = new PhasesTree(sortedData)
             phases.nodes.forEach(async item => {
               if (item.nodeType === 'predictions') {

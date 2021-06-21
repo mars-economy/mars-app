@@ -33,6 +33,14 @@
         <Loader class="p-mt-3" message="We are checking your wallet. Please wait for a moment"/>
       </template>
     </div>
+    <div v-if="yourTotalStake.suspended" class="order-block p-py-3">
+      <InfoMessage v-if="prediction.state === 'Open'" color="primary" small
+                   text="Staking on this outcome is currently unprofitable" type="warning"/>
+      <InfoMessage v-if="prediction.state === 'Settlement'" color="primary" small
+                   text="Predictions closed, settlement in progress" type="warning"/>
+      <InfoMessage v-if="prediction.state === 'Waiting'" color="primary" small
+                   text="Predictions closed, waiting for the due date" type="warning"/>
+    </div>
     <div v-if="prediction.state === 'Closed' && yourTotalStake.win > 0" class="order-block p-py-3">
       <Button :label="`Get reward ${yourTotalStake.win} BUSD`"
               class="btn-primary btn-block p-my-2"
