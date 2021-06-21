@@ -22,8 +22,8 @@
     </div>
 
     <div class="card-footer-collapse">
-      <PanelCollapse header="Show more" headerAlt="Show less" headerPos="right" :panelId="outcome.id" collapsed>
-        <TextPair :data="fromWei(outcome.stakedAmount)" unit="BUSD" icon="coins" label="total stake"/>
+      <PanelCollapse textToggle="Show more" textToggleAlt="Show less" :panelId="outcome.id" collapsed>
+          <TextPair :data="fromWei(outcome.stakedAmount)" unit="BUSD" icon="coins" label="total stake"/>
       </PanelCollapse>
     </div>
 
@@ -81,7 +81,5 @@ export default {
 <style scoped lang="scss">
   .outcome.stake-success {
     border: 1px solid rgba($colorPrimary, 0.5);
-
   }
-
 </style>

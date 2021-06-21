@@ -1,9 +1,14 @@
 <template>
   <div id="nav" class="p-menubar p-d-flex p-flex-column p-flex-sm-row" :class="{'mobile' : isMobile}">
-    <div :class="{'active': $route.path.includes('/')}"
+    <div :class="{'active': $route.path.includes('/prediction-markets')}"
                  class="p-menuitem p-d-inline-block"
-                 @click="$emit('click')">
+                 @click="$router.push('/'); $emit('click')">
       Prediction markets
+    </div>
+    <div :class="{'active': $route.path.includes('/governance')}"
+         class="p-menuitem p-d-inline-block"
+         @click="$router.push('/governance'); $emit('click')">
+      Governance
     </div>
     <a :href="navigateToLanding" class="p-menuitem p-d-inline-block" target="_blank">About Mars Economy</a>
     <!--    <router-link to="/about" class="p-menuitem p-d-inline-block">Convert mars milestones</router-link>-->
@@ -34,6 +39,7 @@ export default {
     text-decoration: none;
     margin: auto 1rem;
     font-weight: 700;
+    cursor: pointer;
 
     &:hover, &.active {
       opacity: 1;

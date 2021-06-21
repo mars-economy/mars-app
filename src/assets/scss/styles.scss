@@ -78,6 +78,13 @@ h2, .h2 {
   text-shadow: $textShadowBase;
 }
 
+h5, .h5 {
+  font-weight: $headingFontWeight;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+}
+
 .headline {
   font-size: 14px;
   letter-spacing: -0.01em;
