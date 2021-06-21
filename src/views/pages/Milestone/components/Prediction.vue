@@ -15,7 +15,6 @@
           <TextPair :data="predictionPrice" icon="price" label="today share price" unit="BUSD"/>
         </div>
         <div v-if="prediction?.meta" class="prediction-panel-p p-d-flex p-ai-start p-ai-md-center p-ac-between">
-          <!--          <PriceBlock :meta="prediction.meta" :isMobile="isMobile"></PriceBlock>-->
           <PricePanel :is-mobile="isMobile" :meta="prediction.meta"></PricePanel>
         </div>
       </div>
@@ -42,7 +41,6 @@ export default {
   name: 'Prediction',
   components: {
     PricePanel,
-    // PriceBlock,
     PredictionOutcome
   },
   props: {
