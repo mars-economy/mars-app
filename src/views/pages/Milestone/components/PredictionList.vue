@@ -42,6 +42,8 @@ export default {
         if (val) {
           for (const item of this.predictions) {
             item.stakes = await this.getUserStakes({ prediction: item }) || null
+            item.meta = await this.getPredictionMeta({ prediction: item }) || null
+            console.log(item.meta)
           }
         }
       },
@@ -51,7 +53,8 @@ export default {
   },
   methods: {
     ...mapActions(MODULE_NAMES.CONTRACTS, {
-      getUserStakes: CONTRACTS_ACTION_TYPES.GET_USER_STAKES
+      getUserStakes: CONTRACTS_ACTION_TYPES.GET_USER_STAKES,
+      getPredictionMeta: CONTRACTS_ACTION_TYPES.GET_PREDICTION_META
     })
   }
 }

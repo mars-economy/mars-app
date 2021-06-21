@@ -12,6 +12,7 @@ import Dialog from 'primevue/dialog'
 import OverlayPanel from 'primevue/overlaypanel'
 import 'primeicons/primeicons.css'
 import 'primevue/resources/primevue.min.css'
+import Panel from 'primevue/panel'
 
 const app = createApp(App)
   .use(store)
@@ -30,6 +31,7 @@ requireComponent.keys().forEach(fileName => {
 app.component('Button', Button)
 app.component('Dialog', Dialog)
 app.component('OverlayPanel', OverlayPanel)
+app.component('Panel', Panel)
 
 app.mount('#app')
 

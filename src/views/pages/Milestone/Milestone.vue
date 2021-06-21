@@ -1,6 +1,6 @@
 <template>
   <div :class="{'mobile' : isMobile}">
-    <div class="headline"  v-if="isMobile">
+    <div v-if="isMobile" class="headline">
       Predictions
     </div>
     <PreviousPageLink class="p-mb-sm-4 p-mt-4 p-mt-sm-0" text="Back to the list of Milestones"/>
@@ -9,7 +9,15 @@
       <div class="milestone-description p-pr-md-6 p-col-12 p-lg-4">
         <Label :labels="['phase '+milestone.getParent().position, milestone.getParent().name]" class=" p-mb-3"/>
         <Heading :name="milestone.name" class="p-my-1" level="2"/>
-        <TextPair :data="milestone.status" label="state" icon="state" class="p-my-2"></TextPair>
+        <div>
+          <TextPair :data="prepareDate(milestone.getChildrenList()[0]?.dueDate || null)"
+                    class="p-my-4"
+                    icon="date"
+                    label="due date"/>
+        </div>
+        <div>
+          <TextPair :data="getMilestonePredictorNumber(milestone)" icon="users" label="predictors"/>
+        </div>
         <div class="p-mt-lg-3 text-body">{{ milestone.description }}</div>
       </div>
       <div class="prediction-list-container p-col-12 p-lg-8">
@@ -24,6 +32,7 @@ import PredictionList from '@/views/pages/Milestone/components/PredictionList'
 import { mapActions, mapState } from 'vuex'
 import { MODULE_NAMES } from '@/store'
 import { WALLET_ACTION_TYPES } from '@/store/modules/wallet/wallet.module'
+import { getFormattedData } from '@/helpers/date.helper'
 
 export default {
   name: 'Milestone',
@@ -59,7 +68,17 @@ export default {
   methods: {
     ...mapActions(MODULE_NAMES.WALLET, {
       getWalletBalances: WALLET_ACTION_TYPES.GET_WALLET_BALANCES
-    })
+    }),
+    prepareDate (timeS) {
+      return getFormattedData(timeS)
+    },
+    getMilestonePredictorNumber (milestone) {
+      let pNumbers = 0
+      milestone.getChildrenList('asc').forEach(p => {
+        pNumbers += +p.predictorsNumber
+      })
+      return pNumbers
+    }
   },
   computed: {
     ...mapState(MODULE_NAMES.PHASES, {

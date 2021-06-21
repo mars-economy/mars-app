@@ -2,13 +2,20 @@
   <div class="p-grid">
     <div class="p-col-12">
       <div class="prediction-title p-d-flex p-flex-column" :class="{'mobile' : isMobile}">
-        <div class="p-d-flex p-ai-start p-ai-md-center">
-          <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
+        <div class="prediction-panel-p p-d-flex p-ai-start p-ai-md-center">
+          <NumberCircle :number="prediction.position" class="p-mr-2" v-if="!isMobile"></NumberCircle>
           <span class="text-body p-text-bold p-ml-1">{{ prediction.name }}</span>
         </div>
-        <div class="prediction-info p-d-flex p-ai-start p-ai-md-center p-mt-3" v-if="!isMobile">
-          <TextPair :data="predictionPrice" class="p-mr-3" icon="price" label="today share price" unit="BUSD"/>
-          <TextPair :data="prediction.state" icon="state" label="state"/>
+        <div v-if="!isMobile" class="prediction-info p-d-flex p-ai-start p-ai-md-center">
+          <TextPair :data="prediction.state" class="p-mr-4" icon="state" label="state"/>
+          <TextPair v-if="prediction?.meta?.predictionTimeEnd" :data="prepareDate(prediction?.meta?.predictionTimeEnd)"
+                    class="p-mr-4"
+                    icon="date"
+                    label="prediction end date "/>
+          <TextPair :data="predictionPrice" icon="price" label="today share price" unit="BUSD"/>
+        </div>
+        <div v-if="prediction?.meta" class="prediction-panel-p p-d-flex p-ai-start p-ai-md-center p-ac-between">
+          <PricePanel :is-mobile="isMobile" :meta="prediction.meta"></PricePanel>
         </div>
       </div>
     </div>
@@ -27,10 +34,13 @@ import PredictionOutcome from '@/views/pages/Milestone/components/PredictionOutc
 import { mapActions } from 'vuex'
 import { MODULE_NAMES } from '@/store'
 import { CONTRACTS_ACTION_TYPES } from '@/store/modules/contracts/contracts.module'
+import PricePanel from '@/views/pages/Milestone/components/price/PricePanel'
+import { getFormattedData } from '@/helpers/date.helper'
 
 export default {
   name: 'Prediction',
   components: {
+    PricePanel,
     PredictionOutcome
   },
   props: {
@@ -45,7 +55,10 @@ export default {
   methods: {
     ...mapActions(MODULE_NAMES.CONTRACTS, {
       getSharePrice: CONTRACTS_ACTION_TYPES.GET_SHARE_PRICE
-    })
+    }),
+    prepareDate (timeS) {
+      return getFormattedData(timeS)
+    }
   },
   async mounted () {
     this.predictionPrice = await this.getSharePrice({ prediction: this.prediction })
@@ -53,15 +66,27 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+  .prediction-info {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 13px 25px;
+  }
 
   .prediction-title {
     @extend %card-bg;
     border: $border-light;
-    padding: 20px 24px;
+
+    .prediction-panel-p {
+      padding: 16px 24px;
+    }
 
     &.mobile {
-      padding: $card-padding-mobile-h
+      .prediction-panel-p {
+        padding: $card-padding-mobile-h
+      }
     }
   }
+
 </style>

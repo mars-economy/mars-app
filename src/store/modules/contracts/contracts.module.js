@@ -1,5 +1,5 @@
 import erc20 from '@/data/abi/erc20.json'
-import MarsPredictionMarket from '@/data/PredictionMarket.json'
+import MarsPredictionMarket from '@/data/MarsPredictionMarket.json'
 import { _toBN, checkAllowance } from '@/utils/contract'
 import BigNumber from 'bignumber.js'
 import { mathRound } from '@/utils/math.ts'
@@ -11,7 +11,8 @@ export const CONTRACTS_ACTION_TYPES = {
   BUY_OUTCOME: 'buyOutcome',
   GET_USER_STAKES: 'getUserStakes',
   GET_REWARDS: 'getRewards',
-  GET_SHARE_PRICE: 'getSharePrice'
+  GET_SHARE_PRICE: 'getSharePrice',
+  GET_PREDICTION_META: 'getPredictionMeta'
 }
 
 export const CONTRACTS_MUTATION_TYPES = {
@@ -58,6 +59,32 @@ const actions = {
       const timestampS = Math.floor(Date.now() / 1000)
       const states = await predictionMarketContract.methods.getUserPredictionState(WALLET, timestampS).call()
       return states
+    } catch (e) {
+      console.debug(e)
+      return Promise.reject(e)
+    }
+  },
+  async [CONTRACTS_ACTION_TYPES.GET_PREDICTION_META] ({ rootState }, data) {
+    try {
+      const [WALLET, PREDICTION_MARKET_ADDR] = [
+        rootState.wallet.account,
+        data.prediction.id
+      ]
+      const predictionMarketContract = await new rootState.wallet.web3engine.eth.Contract(MarsPredictionMarket.abi, PREDICTION_MARKET_ADDR)
+
+      const [startSharePrice, endSharePrice, predictionTimeStart, predictionTimeEnd] = await Promise.all([
+        await predictionMarketContract.methods.startSharePrice().call(),
+        await predictionMarketContract.methods.endSharePrice().call(),
+        await predictionMarketContract.methods.predictionTimeStart().call(),
+        await predictionMarketContract.methods.predictionTimeEnd().call()
+      ])
+
+      return {
+        startSharePrice: new BigNumber(startSharePrice).dividedBy(1000000).valueOf(),
+        endSharePrice: new BigNumber(endSharePrice).dividedBy(1000000).valueOf(),
+        predictionTimeStart: +predictionTimeStart,
+        predictionTimeEnd: +predictionTimeEnd
+      }
     } catch (e) {
       console.debug(e)
       return Promise.reject(e)
