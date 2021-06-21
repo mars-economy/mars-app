@@ -3,7 +3,7 @@
     <div class="p-col-12">
       <div class="prediction-title p-d-flex p-flex-column" :class="{'mobile' : isMobile}">
         <div class="prediction-panel-p p-d-flex p-ai-start p-ai-md-center">
-          <NumberCircle :number="prediction.position" class="p-mr-2"></NumberCircle>
+          <NumberCircle :number="prediction.position" class="p-mr-2" v-if="!isMobile"></NumberCircle>
           <span class="text-body p-text-bold p-ml-1">{{ prediction.name }}</span>
         </div>
         <div v-if="!isMobile" class="prediction-info p-d-flex p-ai-start p-ai-md-center">
