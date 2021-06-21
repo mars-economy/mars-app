@@ -1,5 +1,5 @@
 <template>
-  <Panel class="bordered p-flex-column price-panel-info p-as-center">
+  <Panel class="bordered p-flex-column price-panel-info p-as-center" :class="{'w-100' : isMobile}">
     <template #header>
       <span>{{ title }}</span>
       <span class="p-ml-auto">{{ printMonth(month) }}</span>
@@ -16,7 +16,8 @@ export default {
   props: {
     price: Number,
     title: String,
-    month: Number
+    month: Number,
+    isMobile: Boolean
   },
   methods: {
     printMonth (timeS) {
@@ -33,6 +34,10 @@ export default {
     &.price-panel-info {
       min-width: 200px;
       font-size: 14px;
+
+      .p-toggleable-content {
+        border-top: 1px solid rgba($white, 0.1);
+      }
     }
 
     &.bordered {
@@ -43,8 +48,14 @@ export default {
     }
 
     .p-panel-header, .p-panel-content {
-      padding: 8px 12px;
       display: flex;
+      flex: 1 0 50%;
+    }
+    .p-panel-header {
+      padding: 8px 12px;
+    }
+    .p-panel-content {
+      padding: 6px 12px;
     }
 
     .p-panel-header {

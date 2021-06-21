@@ -1,16 +1,19 @@
 <template>
-  <div class="p-grid price-panel nested-grid">
-    <div v-if="isMobile" class="p-col-fixed fixed-arrow">555</div>
-    <div class="p-col">
-      <div class="p-grid">
-        <div :class="{'p-flex-column' : isMobile, 'p-flex-row': !isMobile}" class="p-d-flex p-jc-between">
-          <PriceInfo :month="meta.predictionTimeStart" :price="meta.startSharePrice"
-                     :title="'initial price'"></PriceInfo>
-          <PriceDynamic :is-mobile="isMobile" :meta="meta"></PriceDynamic>
-          <PriceInfo :month="meta.predictionTimeEnd" :price="meta.endSharePrice" :title="'final price'"></PriceInfo>
-        </div>
-      </div>
+  <div class="p-d-flex price-panel p-jc-between w-100">
+    <div v-if="isMobile" class="fixed-arrow p-d-flex p-flex-column p-jc-between p-ai-center p-mr-3">
+      <svg class="dot" width="2" height="2" viewBox="0 0 2 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="1" cy="1" r="1" fill="white"/>
+      </svg>
+      <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 0L5 5L0 -4.37114e-07L10 0Z" fill="white"/>
+      </svg>
     </div>
+        <div :class="{'p-flex-column' : isMobile, 'p-flex-row': !isMobile}" class="p-d-flex p-jc-between w-100 p-ai-stretch">
+          <PriceInfo :month="meta.predictionTimeStart" :price="meta.startSharePrice"
+                     :title="'initial price'" :is-mobile="isMobile"></PriceInfo>
+          <PriceDynamic :is-mobile="isMobile" :meta="meta" class="p-my-3 p-my-md-0"></PriceDynamic>
+          <PriceInfo :month="meta.predictionTimeEnd" :price="meta.endSharePrice" :title="'final price'" :is-mobile="isMobile"></PriceInfo>
+        </div>
   </div>
 </template>
 
@@ -33,20 +36,14 @@ export default {
 
 <style lang="scss">
   .fixed-arrow {
-    width: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg width='2' height='197' viewBox='0 0 2 197' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.00158691L0.999991 197' stroke='white' stroke-opacity='0.6' stroke-dasharray='1 8'/%3E%3C/svg%3E ");
+    background-position: top center;
+    background-repeat: repeat-y;
+    flex: 0 0 auto;
   }
 
-  .price-panel.p-grid {
+  .price-panel {
     margin: 0;
   }
 
-  .nested-grid {
-    .p-grid {
-      margin: 0;
-    }
-  }
-
-  .p-grid {
-    width: 100%;
-  }
 </style>
