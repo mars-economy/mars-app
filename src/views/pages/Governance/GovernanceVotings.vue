@@ -30,6 +30,8 @@
 
     <StakePanel />
 
+    <VotingList class="p-mt-3" />
+
   </div>
 </template>
 
@@ -37,10 +39,12 @@
 import SelectButton from 'primevue/selectbutton'
 import InputSwitch from 'primevue/inputswitch'
 import StakePanel from '@/views/pages/Governance/components/StakePanel'
+import VotingList from '@/views/pages/Governance/components/VotingList'
 
 export default {
   name: 'GovernanceVotings',
   components: {
+    VotingList,
     StakePanel,
     SelectButton,
     InputSwitch

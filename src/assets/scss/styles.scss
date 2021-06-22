@@ -61,6 +61,16 @@ div {
 *:focus, *:active {
   outline: none !important;
 }
+
+.text-link {
+  font-size: $font-size-smallest;
+  opacity: 50%;
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    opacity: 1;
+  }
+}
 h1, .h1 {
   font-weight: $headingFontWeight;
   font-size: 2.25rem;
@@ -77,6 +87,13 @@ h2, .h2 {
   text-align: left;
   letter-spacing: -0.02em;
   text-shadow: $textShadowBase;
+}
+
+h3, .h3 {
+  font-weight: $headingFontWeight;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
 }
 
 h5, .h5 {

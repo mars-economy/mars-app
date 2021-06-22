@@ -61,3 +61,56 @@ input.input-simple {
     color: $white
   }
 }
+
+.p-field-radiobutton {
+  font-family: $fontFamily;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 8px 20px;
+  min-height: 40px;
+  box-sizing: border-box;
+  backdrop-filter: blur(20px);
+  border-radius: $radius-base;
+  font-weight: bold;
+  background-color: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.05);
+  color: $white;
+  + .p-field-radiobutton {
+    margin-left: 16px;
+  }
+}
+.p-radiobutton {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: bottom;
+}
+
+.p-radiobutton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $white;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.p-radiobutton-icon {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(.1);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: $white;
+  visibility: hidden;
+}
+
+.p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  transform: translateZ(0) scale(1.0, 1.0);
+  visibility: visible;
+}

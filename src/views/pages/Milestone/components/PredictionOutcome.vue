@@ -4,7 +4,7 @@
       <div>{{ outcome.name }}</div>
       <Probability :value="probability"/>
     </div>
-    <div class="card-profit p-py-2 p-d-flex p-ai-center">
+    <div class="card-accent-line p-py-2 p-d-flex p-ai-center">
       <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
     </div>
 
