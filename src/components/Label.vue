@@ -28,6 +28,7 @@ export default {
     height: 26px;
     padding: 0 12px;
     font-weight: bold;
+    position: relative;
     .label-divider:after {
       content: '';
       position: absolute;
