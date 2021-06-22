@@ -2,7 +2,7 @@
   <div class="stake-panel card">
     <PanelCollapse collapsed
                    :toggleable="true"
-                   textToggle="Show more" textToggleAlt="Show less">
+                   textToggle="Show" textToggleAlt="Hide">
       <template #header>
         <div class="p-d-flex p-jc-between p-ai-center">
           <div>
@@ -15,21 +15,36 @@
       </template>
       <template #accent>
         <div class="stake-panel-accent p-d-flex p-jc-between p-ai-center p-py-3">
-          <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
-          <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
-          <TextPair :data="estimatedProfit" unit="%" icon="profit" label="estimated profit"/>
+          <TextPair data="56.26" unit="%" icon="profit" label="APR" class="p-mr-4"/>
+          <TextPair data="12456678" unit="$DMT" icon="coins" label="liquidity" class="p-mr-4"/>
+          <TextPair data="0" unit="$DMT" icon="coins" label="your current stake" class="p-mr-4"/>
+          <TextPair data="0" unit="$DMT" icon="win" label="your current earnings" class="p-mr-4"/>
           <span class="p-ml-auto text-smallest muted clickable">View contract</span>
         </div>
       </template>
-      Content
+      <div class="p-grid">
+        <div class="p-col-4">
+          <EarningInputForm :amount=0 />
+        </div>
+        <div class="p-col-8">
+          <StakeInputForm />
+        </div>
+
+      </div>
 
     </PanelCollapse>
   </div>
 </template>
 
 <script>
+import StakeInputForm from '@/views/pages/Governance/components/StakeInputForm'
+import EarningInputForm from '@/views/pages/Governance/components/EarningInputForm'
 export default {
-  name: 'StakePanel'
+  name: 'StakePanel',
+  components: {
+    EarningInputForm,
+    StakeInputForm
+  }
 }
 </script>
 

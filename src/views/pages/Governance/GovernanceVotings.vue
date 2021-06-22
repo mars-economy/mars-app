@@ -50,8 +50,8 @@ export default {
   },
   data: function () {
     return {
-      option: 'pending',
-      options: ['current', 'pending', 'historical'],
+      option: 'current',
+      options: ['current', 'historical'],
       showNotVoted: false
     }
   }
