@@ -30,7 +30,7 @@
 
     <StakePanel />
 
-    <VotingList class="p-mt-3" />
+    <VotingList :type="option" :is-mobile="isMobile"/>
 
   </div>
 </template>

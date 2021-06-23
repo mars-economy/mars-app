@@ -1,42 +1,42 @@
 <template>
-  <div class="voting-card card">
-    <CardLabel label-pos="left" color="light" :label="outcome.consensusReached ? 'consensus' : 'no consensus'" />
+  <div class="voting-card card" :class="{'mobile' : isMobile}">
+    <CardLabel label-pos="left" color="light" :label="getLabelText()" />
     <CardLabel label-pos="right" color="primary" label="pending" v-if="pending" />
 
-    <div class="card-header h3 p-mb-3">
-      Will NASA announce the crew members destined for the first Mars Mission by June 2023?
-    </div>
+    <div class="card-header p-mb-sm-3 p-d-flex p-ai-center p-jc-between">
+      <div class="h3">
+        Will NASA announce the crew members destined for the first Mars Mission by June 2023?
+      </div>
+      <div v-if="isMobile">
+        <Button  label=' ' class="btn-text" icon="pi pi-angle-right" iconPos="right" />
+      </div>
 
-    <div class="card-accent-line p-d-flex p-jc-between p-ai-center p-py-3">
-      <TextPair :data="prepareDate(outcome.endDate)" icon="date" label="due date" class="p-mr-4"/>
-      <div class="links p-ml-auto">
+      </div>
+
+    <template v-if="!isMobile">
+      <div class="card-accent-line p-d-flex p-jc-between p-ai-center p-py-3">
+        <TextPair :data="prepareDate(outcome.endDate)" icon="date" label="due date" class="p-mr-4"/>
+        <div class="links p-ml-auto">
         <span class="text-link p-mr-3">
           Go to the voting page
         </span>
-        <span class="text-link">
+          <span class="text-link">
           Go to the prediction page
         </span>
+        </div>
       </div>
-    </div>
+      <div class="card-body p-mt-3">
 
-    <div class="card-body p-mt-3">
+        <template v-if="pending">
+          <Button :label="getButtonLabel()" class="btn-primary" v-if="getButtonLabel()"/>
+        </template>
 
-      <template v-if="pending">
-        <Button :label="getButtonLabel()" class="btn-primary" />
-      </template>
-
-      <div class="p-d-flex">
-        <div v-for="voted of outcome.voted" :key="voted" class="p-field-radiobutton p-mt-3">
-          <RadioButton :id="voted" name="category" :value="voted" v-model="selectedVoted" disabled />
-          <label :for="voted">{{voted}}</label>
-        </div>
-        <div class="p-mt-3 p-ml-3">
-          <Button label="vote" class="btn-primary" :disabled="!selectedVoted"/>
-        </div>
+        <template  v-if="!pending && !historical">
+          <VotingChoicePanel :outcomes="getVotingChoiceVariant()" />
+        </template>
 
       </div>
-
-    </div>
+    </template>
 
   </div>
 
@@ -44,29 +44,51 @@
 
 <script>
 import { getFormattedData } from '@/helpers/date.helper'
-import RadioButton from 'primevue/radiobutton'
+import VotingChoicePanel from '@/views/pages/Governance/components/voting/VotingChoicePanel'
 
 export default {
   name: 'VotingCard',
   components: {
-    RadioButton
+    VotingChoicePanel
   },
   props: {
     outcome: Object,
     historical: { type: Boolean, default: false },
-    pending: { type: Boolean, default: false }
+    pending: { type: Boolean, default: false },
+    isMobile: Boolean
   },
   data: function () {
     return {
-      selectedVoted: null
+      user: { role: 'Qualified DMT Holder' }
     }
   },
   methods: {
     prepareDate (timeS) {
       return getFormattedData(timeS)
     },
+    getLabelText () {
+      if (this.pending && this.outcome.state === 'SettlementWithConsensus') {
+        return 'consensus'
+      }
+      if ((this.pending && this.outcome.state === 'SettlementWithoutConsensus') || (!this.pending && !this.outcome.consensusReached)) {
+        return 'no consensus'
+      }
+      if (!this.pending && this.outcome.consensusReached) {
+        return 'dispute'
+      }
+    },
     getButtonLabel () {
-      return this.outcome.consensusReached ? 'start disput' : 'start voting'
+      if (this.outcome.state === 'SettlementWithoutConsensus') {
+        return 'start voting'
+      }
+      if (this.outcome.state === 'SettlementWithConsensus' && this.user.role === 'Qualified DMT Holder') {
+        return 'start dispute'
+      } else {
+        return null
+      }
+    },
+    getVotingChoiceVariant () {
+      return this.outcome.voted
     }
   }
 }

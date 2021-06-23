@@ -24,7 +24,7 @@
 
   &.btn-light {
     background-color: rgba($white, 0.05);
-    border: 1px solid rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
     color: $white;
     fill: $white;
     &:hover {
@@ -34,7 +34,7 @@
 
   &.btn-light-stroke {
     background-color: transparent;
-    border: 1px solid rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
     color: $white;
     fill: $white;
   }

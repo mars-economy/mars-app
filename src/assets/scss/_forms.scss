@@ -71,14 +71,15 @@ input.input-simple {
   padding: 8px 20px;
   min-height: 40px;
   box-sizing: border-box;
+  margin-bottom: unset !important;
   backdrop-filter: blur(20px);
   border-radius: $radius-base;
   font-weight: bold;
   background-color: rgba($white, 0.05);
-  border: 1px solid rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.1);
   color: $white;
-  + .p-field-radiobutton {
-    margin-left: 16px;
+  &:not(:last-of-type) {
+    margin-right: 16px;
   }
 }
 .p-radiobutton {
@@ -86,6 +87,15 @@ input.input-simple {
   cursor: pointer;
   user-select: none;
   vertical-align: bottom;
+
+  &.p-radiobutton-checked.disabled {
+    opacity: 0.3
+  }
+
+  &.disabled:not(.p-radiobutton-checked) {
+    display: none;
+    + label { margin-left: 0 }
+  }
 }
 
 .p-radiobutton-box {
