@@ -2,9 +2,9 @@
   <div>
     <div class="p-d-flex">
       <div class="p-d-flex p-flex-wrap">
-        <div v-for="(item, index) of outcomes" :key="index" class="p-field-radiobutton p-mt-3">
-          <RadioButton :id="index" name="item.outcome" :value="index" v-model="outcomeSelected" :class="getRadioButtonState(item, index)"/>
-          <label :for="index">{{item.outcome}}</label>
+        <div v-for="item of outcomes" :key="item.outcome" class="p-field-radiobutton p-mt-3">
+          <RadioButton :id="item.outcome" :name="item.name" :value="item.outcome" v-model="outcomeSelected" :class="getRadioButtonState(item.voted, item.outcome)"/>
+          <label :for="item.outcome">{{item.name}}</label>
         </div>
       </div>
 
@@ -37,10 +37,10 @@ export default {
     onClick (event) {
       this.$emit('vote', event)
     },
-    getRadioButtonState (item, index) {
-      if (item.voted) {
+    getRadioButtonState (voted, id) {
+      if (voted) {
         this.voted = true
-        this.outcomeSelected = index
+        this.outcomeSelected = id
       }
       if (this.voted) {
         return 'disabled'

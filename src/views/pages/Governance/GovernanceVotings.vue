@@ -38,7 +38,7 @@
 <script>
 import SelectButton from 'primevue/selectbutton'
 import InputSwitch from 'primevue/inputswitch'
-import StakePanel from '@/views/pages/Governance/components/StakePanel'
+import StakePanel from '@/views/pages/Governance/components/stake/StakePanel'
 import VotingList from '@/views/pages/Governance/components/VotingList'
 
 export default {

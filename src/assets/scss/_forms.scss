@@ -63,12 +63,13 @@ input.input-simple {
 }
 
 .p-field-radiobutton {
+  position: relative;
   font-family: $fontFamily;
   font-size: 12px;
   line-height: 16px;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 8px 20px;
+  padding: 0 20px;
   min-height: 40px;
   box-sizing: border-box;
   margin-bottom: unset !important;

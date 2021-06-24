@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import StakeInputForm from '@/views/pages/Governance/components/StakeInputForm'
-import EarningInputForm from '@/views/pages/Governance/components/EarningInputForm'
+import StakeInputForm from '@/views/pages/Governance/components/stake/StakeInputForm'
+import EarningInputForm from '@/views/pages/Governance/components/stake/EarningInputForm'
 export default {
   name: 'StakePanel',
   components: {

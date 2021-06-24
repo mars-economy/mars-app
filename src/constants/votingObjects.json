@@ -1,0 +1,232 @@
+[
+  {
+    "votingUuid": "0x2c92f6487b3d73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "state": "pending",
+    "step": "no consensus",
+    "date": "1988150399"
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "state": "current",
+    "step": "no consensus",
+    "date": "1988150399",
+    "OutcomeVoting": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "50",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d5",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4",
+          "percentage": "20",
+          "voted": true,
+          "isWinningOutcome": "false"
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d5",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        }
+
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "state": "current",
+    "step": "dispute",
+    "date": "1988150399",
+    "OutcomeVoting": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "50",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d1",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d2",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d1",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d2",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        }
+
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "state": "historical",
+    "step": "no consensus",
+    "date": "1988150399",
+    "OutcomeVoting": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "77",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a464d",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4649",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a464d",
+          "percentage": "20",
+          "voted": true,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4649",
+          "percentage": "80",
+          "voted": false,
+          "isWinningOutcome": true
+        }
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "state": "historical",
+    "step": "consensus",
+    "date": "1988150399",
+    "OutcomeVoting": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "77",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4640",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4647",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4648",
+          "name": "Other variant",
+          "position": 3,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4640",
+          "percentage": "10",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4647",
+          "percentage": "30",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4648",
+          "percentage": "60",
+          "voted": true,
+          "isWinningOutcome": true
+        }
+      ]
+    }
+  }
+]
