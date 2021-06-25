@@ -2,7 +2,7 @@
   <div class="p-mt-3">
 
     <template v-for="item in votingList" :key="item.id">
-      <VotingCard :is-mobile="isMobile" :pending="item.state" :prediction="item" class="p-mb-3"/>
+      <VotingCard :is-mobile="isMobile" :prediction="item" class="p-mb-3"/>
     </template>
 
   </div>

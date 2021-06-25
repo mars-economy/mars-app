@@ -71,8 +71,6 @@ export default {
   },
   props: {
     prediction: Object,
-    historical: { type: Boolean, default: false },
-    pending: { type: Boolean, default: false },
     isMobile: Boolean
   },
   data: function () {

@@ -28,7 +28,7 @@
 
     </div>
 
-    <StakePanel />
+    <StakePanel :is-mobile="isMobile"/>
 
     <VotingList :type="option" :is-mobile="isMobile"/>
 

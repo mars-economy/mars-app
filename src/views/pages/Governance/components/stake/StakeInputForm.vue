@@ -1,6 +1,6 @@
 <template>
   <div class="stake-input">
-    <div class="p-d-flex p-jc-between p-ai-end">
+    <div class="p-d-sm-flex p-jc-between p-ai-end">
 
       <div class="p-d-flex p-flex-column w-100 p-mr-1">
         <div class="p-d-flex p-jc-between p-ai-center p-mb-2">
@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-      <div class="p-ml-2 p-mb-2">
-        <Button label="stake $DMT" class="btn-primary "/>
+      <div class="p-ml-sm-2 p-mb-2">
+        <Button label="stake $DMT" class="btn-primary btn-block"/>
       </div>
 
     </div>
