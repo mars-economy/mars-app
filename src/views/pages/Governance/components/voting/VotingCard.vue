@@ -19,7 +19,7 @@
                   :label="prediction.state === 'pending' ? 'due date' : 'voting end date'"
                   class="p-mr-4"/>
         <template v-if="prediction.state === 'historical'">
-          <TextPair :data="prediction.OutcomeVoting.totalSupply"
+          <TextPair :data="prediction.OutcomeVoting?.totalSupply"
                     icon="coins"
                     label="$DMT voted"
                     class="p-mr-4"/>
@@ -95,14 +95,14 @@ export default {
       }
     },
     getVotingChoiceVariant () {
-      return this.prediction.OutcomeVoting.voted.map((outcome, i) => {
-        outcome['name'] = this.prediction.OutcomeVoting.outcomes[i].name
+      return this.prediction.OutcomeStatus?.voted.map((outcome, i) => {
+        outcome['name'] = this.prediction.OutcomeStatus.outcomes[i].name
         return outcome
       })
     },
     getQuorumData () {
-      let data = this.prediction.OutcomeVoting.quorumReached ? 'Yes' : 'No'
-      data += ' (' + this.prediction.OutcomeVoting.quorumPercentage + '%)'
+      let data = this.prediction.OutcomeStatus?.quorumReached ? 'Yes' : 'No'
+      data += ' (' + this.prediction.OutcomeStatus?.quorumPercentage + '%)'
       return data
     }
   }

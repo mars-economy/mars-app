@@ -40,10 +40,10 @@ const actions = {
   async [PHASES_ACTION_TYPES.UPDATE_DATA] ({ dispatch }) {
     console.debug('update data')
     if (process.env.VUE_APP_DATA_SOURCE === 'graphql') {
-      dispatch(PHASES_ACTION_TYPES.GET_DATA)
+      return await dispatch(PHASES_ACTION_TYPES.GET_DATA)
     }
     if (process.env.VUE_APP_DATA_SOURCE === 'register') {
-      dispatch(PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE)
+      return await dispatch(PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE)
     }
   },
   async [PHASES_ACTION_TYPES.GET_DATA_FROM_ENGINE] ({
@@ -57,8 +57,9 @@ const actions = {
 
       const registerContract = await new rootState.wallet.web3engine.eth.Contract(MarsRegister.abi, registerAddr)
       const timestampS = Math.floor(Date.now() / 1000)
-      await registerContract.methods.getPredictionData(timestampS).call()
+      return await registerContract.methods.getPredictionData(timestampS).call()
         .then(res => {
+          let sortedData = {}
           if (res) {
             const categories = createCategoriesArray(res[0])
             const milestones = createMilestonesArray(res[1], categories)
@@ -66,13 +67,12 @@ const actions = {
             let outcomes = createOutcomesArray(res[3], predictions)
             outcomes = _.uniqBy(outcomes, 'id')
 
-            const sortedData = {
+            sortedData = {
               categories: categories,
               milestones: milestones,
               predictions: predictions,
               outcomes: outcomes
             }
-            console.log(sortedData)
             const phases = new PhasesTree(sortedData)
             phases.nodes.forEach(async item => {
               if (item.nodeType === 'predictions') {
@@ -88,7 +88,7 @@ const actions = {
               phases: phases
             })
           }
-          return res
+          return sortedData
         })
     } catch (e) {
       console.debug(e)

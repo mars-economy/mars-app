@@ -14,7 +14,7 @@
     "state": "current",
     "step": "no consensus",
     "date": "1988150399",
-    "OutcomeVoting": {
+    "OutcomeStatus": {
       "consensusReached": true,
       "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
       "endDate": "1988150399",
@@ -55,7 +55,6 @@
           "voted": false,
           "isWinningOutcome": false
         }
-
       ]
     }
   },
@@ -66,7 +65,7 @@
     "state": "current",
     "step": "dispute",
     "date": "1988150399",
-    "OutcomeVoting": {
+    "OutcomeStatus": {
       "consensusReached": true,
       "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
       "endDate": "1988150399",
@@ -118,7 +117,7 @@
     "state": "historical",
     "step": "no consensus",
     "date": "1988150399",
-    "OutcomeVoting": {
+    "OutcomeStatus": {
       "consensusReached": true,
       "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
       "endDate": "1988150399",
@@ -169,7 +168,7 @@
     "state": "historical",
     "step": "consensus",
     "date": "1988150399",
-    "OutcomeVoting": {
+    "OutcomeStatus": {
       "consensusReached": true,
       "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
       "endDate": "1988150399",

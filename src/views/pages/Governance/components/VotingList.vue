@@ -1,8 +1,8 @@
 <template>
   <div class="p-mt-3">
 
-    <template v-for="item in getVotingList()" :key="item.id">
-      <VotingCard :prediction="item" class="p-mb-3" pending :is-mobile="isMobile"/>
+    <template v-for="item in votingList" :key="item.id">
+      <VotingCard :is-mobile="isMobile" :pending="item.state" :prediction="item" class="p-mb-3"/>
     </template>
 
   </div>
@@ -10,7 +10,10 @@
 
 <script>
 import VotingCard from '@/views/pages/Governance/components/voting/VotingCard'
-import votingObjects from '@/constants/votingObjects.json'
+import { mapActions, mapGetters } from 'vuex'
+import { MODULE_NAMES } from '@/store'
+import { GOVERNANCE_ACTION_TYPES } from '@/store/modules/governance/governance.module'
+
 export default {
   name: 'VotingList',
   components: {
@@ -20,10 +23,39 @@ export default {
     type: String,
     isMobile: Boolean
   },
-  methods: {
-    getVotingList () {
-      return votingObjects
+  data: function () {
+    return {
+      votingList: []
     }
+  },
+  watch: {
+    type: {
+      async handler (val) {
+        this.getVotes(val)
+      }
+    }
+  },
+  async mounted () {
+    await this.getVoteList()
+    this.getVotes(this.type)
+  },
+  methods: {
+    getVotes (state) {
+      this.votingList = []
+      if (state.toLowerCase() === 'current') {
+        this.getFilteredVotingList('state', 'pending').forEach(item => this.votingList.push(item))
+        this.getFilteredVotingList('state', 'current').forEach(item => this.votingList.push(item))
+      }
+      if (state.toLowerCase() === 'historical') {
+        this.getFilteredVotingList('state', 'historical').forEach(item => this.votingList.push(item))
+      }
+    },
+    ...mapActions(MODULE_NAMES.GOVERNANCE, {
+      getVoteList: GOVERNANCE_ACTION_TYPES.GET_VOTING_LIST
+    })
+  },
+  computed: {
+    ...mapGetters(MODULE_NAMES.GOVERNANCE, ['getFilteredVotingList'])
   }
 }
 </script>

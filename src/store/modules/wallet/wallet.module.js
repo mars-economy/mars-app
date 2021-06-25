@@ -14,6 +14,7 @@ export const WALLET_ACTION_TYPES = {
   INIT_WALLET: 'initWallet',
   LOAD_PROVIDER: 'loadProvider',
   GET_WALLET_BALANCES: 'getWalletBalances',
+  GET_WALLET_BALANCES_DMT: 'getWalletBalanceDMT',
   INIT_WEB_3_ENGINE: 'initWeb3Engine'
 }
 
@@ -29,6 +30,7 @@ export const state = {
   connector: null,
   balance: null,
   balanceBUSD: null,
+  balanceDMT: null,
   web3engine: null,
   isNetworkSupported: true
 }
@@ -128,6 +130,7 @@ export const actions = {
           balance: balance,
           isNetworkSupported: isSupported
         })
+        await dispatch(WALLET_ACTION_TYPES.GET_WALLET_BALANCES_DMT)
         // } catch (e) {
         //   console.debug(e)
         // }
@@ -159,6 +162,24 @@ export const actions = {
       await tokenContract.methods.balanceOf(state.account).call()
         .then(async function (bal) {
           commit(WALLET_MUTATION_TYPES.SET_STATE, { balanceBUSD: bal })
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(e => {
+          console.debug(e)
+        })
+    } catch (e) {
+      console.debug(e)
+    }
+  },
+  async [WALLET_ACTION_TYPES.GET_WALLET_BALANCES_DMT] ({
+    commit,
+    state
+  }) {
+    try {
+      const tokenContract = await new state.web3.eth.Contract(erc20, process.env.VUE_APP_DMT_ADDRESS)
+      await tokenContract.methods.balanceOf(state.account).call()
+        .then(async function (bal) {
+          commit(WALLET_MUTATION_TYPES.SET_STATE, { balanceDMT: bal })
         })
         // eslint-disable-next-line no-unused-vars
         .catch(e => {
