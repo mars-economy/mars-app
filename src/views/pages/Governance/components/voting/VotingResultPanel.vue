@@ -1,7 +1,7 @@
 <template>
-  <div class="p-d-flex p-ai-start">
-    <div v-for="item of outcomes" :key="item.outcome" class="p-mt-3">
-      <div class="p-field-radiobutton" :class="{ 'winning' : item.isWinningOutcome, 'voted' : item.voted }">
+  <div class="p-d-flex p-flex-column p-flex-sm-row">
+    <div v-for="item of outcomes" :key="item.outcome" class="p-mt-3 p-mr-sm-3">
+      <div class="p-field-radiobutton field-button" :class="{ 'winning' : item.isWinningOutcome, 'voted' : item.voted }">
         <div class="p-radiobutton p-component">
           <div class="p-radiobutton-box" :class="{'p-highlight' : item.voted }">
             <div class="p-radiobutton-icon"></div>
@@ -12,7 +12,7 @@
           {{item.percentage}}%
         </div>
       </div>
-      <div class="text-smallest muted p-mt-2">{{ getNote(item) }}</div>
+      <div class="text-smallest muted p-mt-2" v-if="getNote(item)">{{ getNote(item) }}</div>
     </div>
   </div>
 </template>
@@ -49,6 +49,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .p-field-radiobutton label {
+    flex-grow: 1;
+  }
   .field-append {
     padding-left: 12px;
     margin-left: 12px;

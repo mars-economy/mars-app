@@ -26,7 +26,14 @@ const routes: Array<RouteRecordRaw> = [
         name: 'GovernanceVotings',
         component: () => import('@/views/pages/Governance/GovernanceVotings.vue'),
         props: true
+      },
+      {
+        path: '/governance/voting/:id',
+        name: 'Voting',
+        component: () => import('@/views/pages/Governance/Voting.vue'),
+        props: true
       }
+
     ]
   }
 ]

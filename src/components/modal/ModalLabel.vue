@@ -24,9 +24,11 @@ export default {
 <style lang="scss" scoped>
   .modal-label {
     @extend %card-label;
+    @extend %h5;
     top: -1px;
     left: -1px;
     border-bottom-right-radius: $radius-base;
+    border-top-left-radius: $radius-base;
     box-sizing: content-box;
     backdrop-filter: blur(20px);
 

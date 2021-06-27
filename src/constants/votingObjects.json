@@ -1,6 +1,6 @@
 [
   {
-    "votingUuid": "0x2c92f6487b3d73931469de511ddf6d2415",
+    "votingUuid": "0x2c92f6487b3d73931469de511ddf6d2410",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
     "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
     "state": "pending",
@@ -8,7 +8,7 @@
     "date": "1988150399"
   },
   {
-    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2410",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
     "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
     "state": "current",
@@ -16,7 +16,7 @@
     "date": "1988150399",
     "OutcomeStatus": {
       "consensusReached": true,
-      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2412",
       "endDate": "1988150399",
       "decision": "1",
       "totalSupply": "3",
@@ -59,7 +59,7 @@
     }
   },
   {
-    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2422",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
     "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
     "state": "current",
@@ -67,7 +67,7 @@
     "date": "1988150399",
     "OutcomeStatus": {
       "consensusReached": true,
-      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2422",
       "endDate": "1988150399",
       "decision": "1",
       "totalSupply": "3",
@@ -162,7 +162,7 @@
     }
   },
   {
-    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2477",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
     "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
     "state": "historical",
@@ -170,7 +170,7 @@
     "date": "1988150399",
     "OutcomeStatus": {
       "consensusReached": true,
-      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2477",
       "endDate": "1988150399",
       "decision": "1",
       "totalSupply": "3",

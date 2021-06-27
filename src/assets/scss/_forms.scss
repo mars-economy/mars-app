@@ -67,20 +67,19 @@ input.input-simple {
   font-family: $fontFamily;
   font-size: 12px;
   line-height: 16px;
+  font-weight: bold;
   text-transform: uppercase;
+  color: $white;
   white-space: nowrap;
-  padding: 0 20px;
-  min-height: 40px;
   box-sizing: border-box;
   margin-bottom: unset !important;
-  backdrop-filter: blur(20px);
-  border-radius: $radius-base;
-  font-weight: bold;
-  background-color: rgba($white, 0.05);
-  border: 1px solid rgba($white, 0.1);
-  color: $white;
-  &:not(:last-of-type) {
-    margin-right: 16px;
+  &.field-button {
+    padding: 0 20px;
+    min-height: 40px;
+    backdrop-filter: blur(20px);
+    border-radius: $radius-base;
+    background-color: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
   }
 }
 .p-radiobutton {

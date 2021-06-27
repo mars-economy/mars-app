@@ -26,13 +26,14 @@
     }
 
     .modal-content {
-      padding: 48px 32px 24px 32px;
+      padding: 48px 24px 24px 24px;
       font-family: $font-family-base;
       color: $white;
-      font-size: 1.2rem;
-      line-height: 1.5em;
       letter-spacing: -0.02em;
       transition: all 0.5ms 0s;
+    }
+    .modal-footer {
+      padding-top: 16px;
     }
   }
 }
