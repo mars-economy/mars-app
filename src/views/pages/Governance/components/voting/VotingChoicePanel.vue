@@ -15,26 +15,22 @@
       <div class="p-mt-3" v-if="!voted">
         <Button label="vote" class="btn-primary btn-block" :disabled="outcomeSelected === null" @click="onShowConfirmation()"/>
       </div>
-      <Dialog v-model:visible="isShowConfirmation"
-              :breakpoints="{'375px': '90vw'}"
-              :showHeader="false" :style="{width: '320px', height: 'auto'}" class="card custom-modal">
         <ConfirmationPopup :outcome="getOutcomeSelected()"
-                           @cancel="onHideConfirmation"
-                           @vote="onVote"/>
-      </Dialog>
+                           submit-action="vote"
+                           v-if="isShowConfirmation"
+                           @close="onHideConfirmation"
+                           @submit="onVote"/>
     </div>
 </template>
 
 <script>
 import RadioButton from 'primevue/radiobutton'
-import Dialog from 'primevue/dialog'
 import ConfirmationPopup from './ConfirmationPopup'
 
 export default {
   name: 'VotingChoicePanel',
   components: {
     ConfirmationPopup,
-    Dialog,
     RadioButton
   },
   props: {
@@ -56,8 +52,8 @@ export default {
       this.isShowConfirmation = false
     },
     onVote () {
-      this.voted = true
       this.onHideConfirmation()
+      this.voted = true
     },
     getRadioButtonState (voted, id) {
       if (voted) {
@@ -69,7 +65,7 @@ export default {
       }
     },
     getOutcomeSelected () {
-      return this.outcomes.find(object => object.outcome === this.outcomeSelected).name
+      return this.outcomes.find(object => object.outcome === this.outcomeSelected)
     }
   }
 }

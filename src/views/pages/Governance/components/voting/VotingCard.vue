@@ -44,7 +44,12 @@
       <div class="card-body">
 
         <template v-if="prediction.state === 'pending' ">
-          <Button :label="getButtonLabel()" class="btn-primary p-mt-3" v-if="getButtonLabel()"/>
+          <Button :label="getButtonLabel()" class="btn-primary p-mt-3" v-if="getButtonLabel()" @click="onShowConfirmation()" />
+          <ConfirmationPopup :submit-action="getButtonLabel()"
+                             v-if="isShowConfirmation"
+                             @close="onHideConfirmation"
+                             @submit="onHideConfirmation"
+          />
         </template>
 
         <template  v-if="prediction.state === 'current'">
@@ -66,10 +71,12 @@
 import { getFormattedData } from '@/helpers/date.helper'
 import VotingChoicePanel from '@/views/pages/Governance/components/voting/VotingChoicePanel'
 import VotingResultPanel from '@/views/pages/Governance/components/voting/VotingResultPanel'
+import ConfirmationPopup from './ConfirmationPopup'
 
 export default {
   name: 'VotingCard',
   components: {
+    ConfirmationPopup,
     VotingResultPanel,
     VotingChoicePanel
   },
@@ -80,7 +87,8 @@ export default {
   data: function () {
     return {
       user: { role: 'Qualified DMT Holder' },
-      isVotingPage: Boolean
+      isVotingPage: Boolean,
+      isShowConfirmation: false
     }
   },
   methods: {
@@ -110,6 +118,12 @@ export default {
     },
     onLoadVoting (id) {
       this.$router.push('/governance/voting/' + id)
+    },
+    onShowConfirmation () {
+      this.isShowConfirmation = true
+    },
+    onHideConfirmation () {
+      this.isShowConfirmation = false
     }
   },
   watch: {
