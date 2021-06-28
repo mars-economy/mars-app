@@ -46,6 +46,7 @@
         <template v-if="prediction.state === 'pending' ">
           <Button :label="getButtonLabel()" class="btn-primary p-mt-3" v-if="getButtonLabel()" @click="onShowConfirmation()" />
           <ConfirmationPopup :submit-action="getButtonLabel()"
+                             :prediction-name="prediction.name"
                              v-if="isShowConfirmation"
                              @close="onHideConfirmation"
                              @submit="onHideConfirmation"
@@ -53,7 +54,7 @@
         </template>
 
         <template  v-if="prediction.state === 'current'">
-          <VotingChoicePanel :outcomes="getVotingChoiceVariant()" />
+          <VotingChoicePanel :outcomes="getVotingChoiceVariant()" :prediction-name="prediction.name" />
         </template>
 
         <template  v-if="prediction.state === 'historical'">

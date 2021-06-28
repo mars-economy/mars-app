@@ -7,23 +7,25 @@
   <div class="modal-content">
     <div class="modal-body">
       <div>
-        Are you sure you want to vote this way?
+        {{ getNotice() }}
       </div>
       <div class="p-text-bold p-mt-3">
-        Will NASA announce the crew members destined for the first Mars Mission by June 2023?
+        {{ predictionName }}
       </div>
     </div>
-    <Divider type="solid" class="p-mt-3" />
 
-    <div class="p-field-radiobutton p-mt-3" v-if="outcome">
-      <div class="p-radiobutton p-component">
-        <div class="p-radiobutton-box p-highlight">
-          <div class="p-radiobutton-icon"></div>
+    <template v-if="outcome">
+      <Divider type="solid" class="p-mt-3" />
+      <div class="p-field-radiobutton p-mt-3">
+        <div class="p-radiobutton p-component">
+          <div class="p-radiobutton-box p-highlight">
+            <div class="p-radiobutton-icon"></div>
+          </div>
         </div>
+        <label class="p-ml-2">{{outcome.name}}</label>
       </div>
-      <label class="p-ml-2">{{outcome.name}}</label>
-    </div>
-    <Divider type="solid" class="p-mt-3" />
+      <Divider type="solid" class="p-mt-3" />
+    </template>
 
     <div class="modal-footer p-grid">
       <div class="p-col-6">
@@ -50,12 +52,23 @@ export default {
     ModalCloseIcon
   },
   props: {
+    predictionName: String,
     outcome: Object,
     submitAction: String
   },
   data: function () {
     return {
-      isShow: true
+      isShow: true,
+      confirmationData: [
+        { action: 'vote', notice: 'Are you sure you want to vote this way?' },
+        { action: 'start voting', notice: 'Are you sure you want to start voting for this prediction? It will cost some gas (you will see the amount in your wallet).' },
+        { action: 'start dispute', notice: 'Are you sure you want to start a dispute for this prediction? It will cost some gas (you will see the amount in your wallet).' }
+      ]
+    }
+  },
+  methods: {
+    getNotice () {
+      return this.confirmationData.find(object => object.action === this.submitAction).notice
     }
   }
 }

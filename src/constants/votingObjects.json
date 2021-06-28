@@ -10,7 +10,7 @@
   {
     "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2410",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
-    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "name": "NASA will announce the planned crew members for first Human Exploration of Mars by the year of 2027?",
     "state": "current",
     "step": "no consensus",
     "date": "1988150399",
@@ -61,7 +61,7 @@
   {
     "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2422",
     "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
-    "name": "Will NASA announce the crew members destined for the first Mars Mission by June 2023?",
+    "name": "Next non-orbital test flight of Starship takes place by July 2021",
     "state": "current",
     "step": "dispute",
     "date": "1988150399",

@@ -1,14 +1,16 @@
 <template>
     <div class="p-d-flex p-flex-column p-flex-sm-row ">
       <div class="p-d-flex p-flex-column p-flex-sm-row p-flex-wrap">
-        <div v-for="item of outcomes" :key="item.outcome"
-             class="p-field-radiobutton field-button p-mt-3 p-mr-sm-3">
-          <RadioButton :id="item.outcome"
-                       :name="item.name"
-                       :value="item.outcome"
-                       v-model="outcomeSelected"
-                       :class="getRadioButtonState(item.voted, item.outcome)"/>
-          <label :for="item.outcome">{{item.name}}</label>
+        <div v-for="item of outcomes" :key="item.outcome" class="p-mt-3 p-mr-sm-3">
+          <div class="p-field-radiobutton field-button">
+            <RadioButton :id="item.outcome"
+                         :name="item.name"
+                         :value="item.outcome"
+                         v-model="outcomeSelected"
+                         :class="getRadioButtonState(item.voted, item.outcome)"/>
+            <label :for="item.outcome">{{item.name}}</label>
+          </div>
+          <div class="text-smallest muted p-mt-2" v-if="getNote(item)">{{ getNote(item) }}</div>
         </div>
       </div>
 
@@ -16,6 +18,7 @@
         <Button label="vote" class="btn-primary btn-block" :disabled="outcomeSelected === null" @click="onShowConfirmation()"/>
       </div>
         <ConfirmationPopup :outcome="getOutcomeSelected()"
+                           :prediction-name="predictionName"
                            submit-action="vote"
                            v-if="isShowConfirmation"
                            @close="onHideConfirmation"
@@ -34,6 +37,7 @@ export default {
     RadioButton
   },
   props: {
+    predictionName: String,
     outcomes: Object,
     isMobile: Boolean
   },
@@ -66,6 +70,9 @@ export default {
     },
     getOutcomeSelected () {
       return this.outcomes.find(object => object.outcome === this.outcomeSelected)
+    },
+    getNote (outcome) {
+      return outcome.voted ? 'Your variant' : null
     }
   }
 }
