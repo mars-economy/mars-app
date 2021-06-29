@@ -7,14 +7,17 @@
       <div v-if="isMobile">
         <Logo class="headline"></Logo>
       </div>
-      <div class="header-item p-mr-4">
-        <HeaderMenu :isMobile="isMobile" @click="isMenuOpen=false"></HeaderMenu>
+      <div class="header-item p-mr-4 p-p-4 p-p-sm-0">
+        <HeaderMenu :is-mobile="isMobile" @click="isMenuOpen=false"></HeaderMenu>
       </div>
-      <div class="header-item">
-        <Wallet :isMobile="isMobile"></Wallet>
+      <div class="header-item p-px-4 p-pt-4 p-p-sm-0 p-mr-3">
+        <DmtBalance :is-mobile="isMobile"></DmtBalance>
+      </div>
+      <div class="header-item p-px-4 p-pt-4 p-p-sm-0">
+        <Wallet :is-mobile="isMobile"></Wallet>
       </div>
       <template v-if="isMobile">
-        <div class="header-item p-mt-auto w-100">
+        <div class="header-item p-mt-auto w-100 p-px-4 p-py-6">
           <SocialIcons></SocialIcons>
         </div>
         <Footer :is-mobile="isMobile"></Footer>
@@ -33,10 +36,12 @@ import HeaderMenu from '@/views/layout/header/HeaderMenu'
 import Wallet from '@/views/layout/header/Wallet/WalletButton'
 import SocialIcons from '../footer/SocialIcons'
 import Footer from '@/views/layout/footer/Footer'
+import DmtBalance from '@/views/layout/header/DmtBalance/DmtBalanceButton'
 
 export default {
   name: 'Header',
   components: {
+    DmtBalance,
     Footer,
     SocialIcons,
     Wallet,
@@ -106,10 +111,6 @@ export default {
 
       .headline {
         margin: 20px 24px 0;
-      }
-
-      .header-item {
-        padding: 24px;
       }
     }
 

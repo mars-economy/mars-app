@@ -1,5 +1,5 @@
 <template>
-    <div class="wallet-panel-container">
+    <div class="panel-content-container">
         <WalletConnectorList v-if="!isWallet" @click="$emit('onSelectWallet')"></WalletConnectorList>
         <WalletDataList v-else :walletData="walletData" @changeWallet="onChangeWallet()"></WalletDataList>
     </div>
