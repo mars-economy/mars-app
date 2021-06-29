@@ -35,10 +35,10 @@
           <span class="text-link p-mr-3" @click="onLoadVoting(prediction.votingUuid)" v-if="!isVotingPage">
             Go to the voting page
           </span>
-          <span class="text-link" v-if="!isMobile">
+          <span class="text-link" v-if="!isMobile" @click="onLoadPrediction(prediction.milestoneUuid)">
             Go to the prediction page
           </span>
-          <Button label="Go to the prediction page" class="btn-light btn-small" v-else />
+          <Button label="Go to the prediction page" class="btn-light btn-small" @click="onLoadPrediction(prediction.milestoneUuid)" v-else />
         </div>
       </div>
       <div class="card-body">
@@ -125,6 +125,9 @@ export default {
     },
     onHideConfirmation () {
       this.isShowConfirmation = false
+    },
+    onLoadPrediction (id) {
+      this.$router.push('/milestone/' + id)
     }
   },
   watch: {

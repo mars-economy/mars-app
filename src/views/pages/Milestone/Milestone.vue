@@ -3,7 +3,7 @@
     <div v-if="isMobile" class="headline">
       Predictions
     </div>
-    <PreviousPageLink class="p-mb-sm-4 p-mt-4 p-mt-sm-0" text="Back to the list of Milestones"/>
+    <PreviousPageLink class="p-mb-sm-4 p-mt-4 p-mt-sm-0" text="Back to the list of Milestones" url="/" />
 
     <div v-if="Object.keys(milestone).length > 0" class="p-grid p-mt-3 p-mt-lg-0">
       <div class="milestone-description p-pr-md-6 p-col-12 p-lg-4">

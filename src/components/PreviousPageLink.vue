@@ -9,11 +9,16 @@
 export default {
   name: 'PreviousPageLink',
   props: {
-    text: String
+    text: String,
+    url: String
   },
   methods: {
     goToBack () {
-      this.$router.go(-1)
+      if (this.url) {
+        this.$router.push(this.url)
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }

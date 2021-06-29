@@ -22,6 +22,7 @@ interface IOutcomeStatus {
 interface IVotingObject {
   votingUuid: string
   predictionUuid: string
+  milestoneUuid: string
   name: string
   state: 'pending' | 'current' | 'historical'
   step: 'has consensus' | 'consensus' | 'dispute'
@@ -33,6 +34,7 @@ interface IVotingObject {
 export class VotingObject implements IVotingObject {
   votingUuid: string
   predictionUuid: string
+  milestoneUuid: string
   name: string
   state: 'pending' | 'current' | 'historical'
   step: 'has consensus' | 'consensus' | 'dispute'
@@ -42,6 +44,7 @@ export class VotingObject implements IVotingObject {
   constructor (data, state) {
     this.votingUuid = data.votingUuid
     this.predictionUuid = data.predictionUuid
+    this.milestoneUuid = data.milestoneUuid
     this.name = data.name
     this.state = state
     this.step = data.step
