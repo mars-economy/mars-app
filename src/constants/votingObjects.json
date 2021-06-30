@@ -1,0 +1,236 @@
+[
+  {
+    "votingUuid": "0x2c92f6487b3d73931469de511ddf6d2410",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "milestoneUuid": "0x0f7f86d810024f96ad265b067ec6c348",
+    "name": "NASA will announce the planned crew members for first Human Exploration of Mars by the year of 2027",
+    "state": "pending",
+    "step": "no consensus",
+    "date": "1988150399"
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2410",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "milestoneUuid": "0x9823b01faeed4b139ea387920c16551e",
+    "name": "Next non-orbital test flight of Starship takes place by July 2021",
+    "state": "current",
+    "step": "no consensus",
+    "date": "1988150399",
+    "OutcomeStatus": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2412",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "50",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d5",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4",
+          "percentage": "20",
+          "voted": true,
+          "isWinningOutcome": "false"
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d5",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        }
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2422",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "milestoneUuid": "0x13a12ea1f1cb4b6e96a3fbdfcf8c9814",
+    "name": "First orbital test flight of Starship takes place by December 2021",
+    "state": "current",
+    "step": "dispute",
+    "date": "1988150399",
+    "OutcomeStatus": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2422",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "50",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d1",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d2",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d1",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d2",
+          "percentage": "20",
+          "voted": false,
+          "isWinningOutcome": false
+        }
+
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "milestoneUuid": "0xa69b77f3bda54f38bac865785d81ea4e",
+    "name": "A spacecraft will deliver the first elements of a habitat for crewed exploration by 2028",
+    "state": "historical",
+    "step": "no consensus",
+    "date": "1988150399",
+    "OutcomeStatus": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "77",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a464d",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4649",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a464d",
+          "percentage": "20",
+          "voted": true,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4649",
+          "percentage": "80",
+          "voted": false,
+          "isWinningOutcome": true
+        }
+      ]
+    }
+  },
+  {
+    "votingUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2477",
+    "predictionUuid": "0x2c92f6487b3d3a172a73931469de511ddf6d2415",
+    "milestoneUuid": "0x521a30e96c1b40b08b3e98294e70a2f3",
+    "name": "The first human will set foot on Mars by the year of 2035",
+    "state": "historical",
+    "step": "consensus",
+    "date": "1988150399",
+    "OutcomeStatus": {
+      "consensusReached": true,
+      "market": "0x2c92f6487b3d3a172a73931469de511ddf6d2477",
+      "endDate": "1988150399",
+      "decision": "1",
+      "totalSupply": "3",
+      "quorumPercentage": "77",
+      "quorumReached": true,
+      "outcomes": [
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4640",
+          "name": "Yes",
+          "position": 1,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4647",
+          "name": "No",
+          "position": 2,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        },
+        {
+          "id": "0x134aab2f54f44e22865ff2574d4a4648",
+          "name": "Other variant",
+          "position": 3,
+          "prediction": {
+            "id": "0xebb94f5dbb58a804074ac583f3adea8b5eb2dec6"
+          },
+          "stakedAmount": "0"
+        }
+
+      ],
+      "voted": [
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4640",
+          "percentage": "10",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4647",
+          "percentage": "30",
+          "voted": false,
+          "isWinningOutcome": false
+        },
+        {
+          "outcome": "0x134aab2f54f44e22865ff2574d4a4648",
+          "percentage": "60",
+          "voted": true,
+          "isWinningOutcome": true
+        }
+      ]
+    }
+  }
+]

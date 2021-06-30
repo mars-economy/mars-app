@@ -39,45 +39,4 @@ export default {
 
 <style scoped lang="scss">
 
-  .p-inputgroup {
-    background: rgba($white, 0.05);
-    border: 1px solid rgba($white, 0.1);
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    font-family: $font-family-base;
-    font-size: $font-size-small;
-    color: $white;
-    padding-left: 12px;
-    padding-right: 12px;
-    border-radius: $radius-base;
-
-    input {
-      background: none !important;
-      border: none !important;
-      font-family: $font-family-base;
-      font-size: $font-size-small;
-      color: $white;
-      display: inline-flex;
-      min-width: 110px;
-      flex-grow: 1;
-
-      &::placeholder {
-        color: $white
-      }
-    }
-
-    .btn-inputgroup-addon {
-      padding: 2px 4px;
-      background-color: rgba($white, 0.1);
-      border-radius: 4px;
-      text-transform: uppercase;
-
-      &:hover {
-        background-color: rgba($white, 0.3)
-      }
-    }
-  }
-
 </style>

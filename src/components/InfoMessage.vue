@@ -1,7 +1,7 @@
 <template>
   <div class="p-d-inline-flex p-ai-center">
     <Icon :name="type" :class="getIconClass()" class="p-mr-2" :size="getIconSize()" />
-    <span :class="getTextClass()" class="p-text-nowrap">
+    <span :class="getTextClass()" class="p-text-sm-nowrap">
       {{text}}
     </span>
 

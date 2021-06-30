@@ -6,13 +6,8 @@
           :breakpoints="{'960px': '75vw', '640px': '80vw'}"
           :showHeader="false" :style="{width: '50vw', height: 'auto'}" class="card custom-modal">
     <ModalCloseIcon v-on:click="closeModal()"></ModalCloseIcon>
+    <ModalLabel labels="Disclaimer"></ModalLabel>
     <div :class="{'mobile' : isMobile}" class="modal-content">
-      <template v-if="isMobile">
-        <ModalHeader header="Disclaimer" level="3"></ModalHeader>
-      </template>
-      <template v-else>
-        <ModalLabel labels="Disclaimer"></ModalLabel>
-      </template>
       <div class="modal-body">
         The information provided on this website does not constitute investment advice,
         financial advice, trading advice, or any other sort of advice and you should not treat
@@ -30,14 +25,12 @@
 
 <script>
 
-import ModalHeader from '@/components/modal/ModalHeader'
 import ModalLabel from '@/components/modal/ModalLabel'
 import ModalCloseIcon from '@/components/modal/ModalCloseIcon'
 
 export default {
   name: 'Disclaimer',
   components: {
-    ModalHeader,
     ModalLabel,
     ModalCloseIcon
   },

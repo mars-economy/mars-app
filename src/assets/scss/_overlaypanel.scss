@@ -6,26 +6,26 @@
   margin-top: 0;
   display: block !important;
   &:not(.mobile) {
-    top: 79px !important;
+    top: 60px !important;
     left: unset !important;
     right: 2rem;
     position: fixed;
   }
 }
 
-.wallet-panel-container {
+.panel-content-container {
   font-size: 12px;
   line-height: 1.3em;
-  background: rgba($white, 0.03);
   border: 1px solid rgba($white, 0.05);
   box-sizing: border-box;
   backdrop-filter: blur(20px);
+  background: rgba($black, 0.05);
   border-radius: 0 0 $radius-base $radius-base;
   padding: 16px 20px;
   min-width: 140px;
 }
 
-.mobile .wallet-panel-container {
+.mobile .panel-content-container {
   border-radius: $radius-base;
   margin-top: 4px;
 }

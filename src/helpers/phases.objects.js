@@ -75,13 +75,25 @@ export function getPredictionState (code) {
   let state = ''
   switch (code) {
     case '1':
-      state = 'Settlement'
+      state = 'Waiting'
       break
     case '2':
-      state = 'Closed'
+      state = 'SettlementOracles'
       break
     case '3':
-      state = 'Waiting'
+      state = 'SettlementWithConsensus'
+      break
+    case '4':
+      state = 'SettlementWithoutConsensus'
+      break
+    case '5':
+      state = 'Dispute'
+      break
+    case '6':
+      state = 'Voting'
+      break
+    case '7':
+      state = 'Closed'
       break
     default:
       state = 'Open'

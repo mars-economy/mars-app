@@ -1,6 +1,6 @@
 @import url('/fonts/fonts.css');
 
-$white:         #ffffff;
+$white: #ffffff;
 $black:         #04001C;
 $colorPrimary: #FFC22E;
 //$bgColor: #212852;
@@ -75,8 +75,6 @@ $card-padding-mobile-h: 16px;
 
 %card-label {
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 1.16em;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: -0.02em;

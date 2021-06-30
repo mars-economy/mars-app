@@ -48,7 +48,7 @@ export default {
       background-color: rgba($white, 0.1);
     }
     &.label-primary {
-      background-color: rgba($colorPrimary, 0.3);
+      background-color: rgba($colorPrimary, 0.1);
       color: $colorPrimary
     }
   }

@@ -12,11 +12,24 @@
   border-radius: $radius-base;
   font-weight: bold;
 
+  &.btn-text {
+    border-color: transparent !important;
+    background-color: transparent !important;
+    color: $white;
+    backdrop-filter: none;
+    padding: 0;
+    min-height: unset;
+    &:hover, &:active, &:focus {
+      background-color: transparent !important;
+    }
+  }
+
   &.btn-primary {
     background-color: rgba($colorPrimary, 0.1);
     border: 1px solid rgba($colorPrimary, 0.05);
     color: $colorPrimary;
     fill: $colorPrimary;
+    stroke:  $colorPrimary;
     &:hover {
       background-color: rgba($colorPrimary, 0.2);
     }
@@ -24,7 +37,7 @@
 
   &.btn-light {
     background-color: rgba($white, 0.05);
-    border: 1px solid rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
     color: $white;
     fill: $white;
     &:hover {
@@ -34,7 +47,7 @@
 
   &.btn-light-stroke {
     background-color: transparent;
-    border: 1px solid rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
     color: $white;
     fill: $white;
   }
@@ -46,14 +59,6 @@
 
   &.btn-block {
     width: 100%;
-  }
-
-  &.btn-text {
-    border-color: transparent;
-    background-color: transparent;
-    color: $white;
-    backdrop-filter: none;
-    padding: 0;
   }
 }
 .p-button-icon-right:before {
@@ -68,13 +73,13 @@
   margin-left: 0.6em;
   box-sizing: border-box;
 }
-.btn-primary .p-button-icon-right:before {
-  background-color: rgba($colorPrimary, 0.05);
-  border: 1px solid rgba($colorPrimary, 0.1);
-}
 .btn-text .p-button-icon-right:before {
   background-color: rgba($white, 0.05);
   border: 1px solid rgba($white, 0.1);
+}
+.btn-primary .p-button-icon-right:before {
+  background-color: rgba($colorPrimary, 0.05);
+  border: 1px solid rgba($colorPrimary, 0.1);
 }
 
 .p-button[disabled] {

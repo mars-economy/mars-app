@@ -1,0 +1,126 @@
+.stake-input {
+  .p-inputgroup {
+    background: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    font-family: $font-family-base;
+    font-size: $font-size-small;
+    color: $white;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: $radius-base;
+
+    input {
+      background: none !important;
+      border: none !important;
+      font-family: $font-family-base;
+      font-size: $font-size-small;
+      color: $white;
+      display: inline-flex;
+      min-width: 110px;
+      flex-grow: 1;
+
+      &::placeholder {
+        color: $white
+      }
+    }
+
+    .btn-inputgroup-addon {
+      padding: 2px 4px;
+      background-color: rgba($white, 0.1);
+      border-radius: 4px;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: rgba($white, 0.3)
+      }
+    }
+  }
+}
+
+input.input-simple {
+  background: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: $border-light;
+  font-family: $font-family-base;
+  font-size: $font-size-small;
+  color: $white;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: 40px;
+  display: inline-flex;
+  min-width: 110px;
+  flex-grow: 1;
+
+  &::placeholder {
+    color: $white
+  }
+}
+
+.p-field-radiobutton {
+  position: relative;
+  font-family: $fontFamily;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $white;
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin-bottom: unset !important;
+  &.field-button {
+    padding: 0 20px;
+    min-height: 40px;
+    backdrop-filter: blur(20px);
+    border-radius: $radius-base;
+    background-color: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
+  }
+}
+.p-radiobutton {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: bottom;
+
+  &.p-radiobutton-checked.disabled {
+    opacity: 0.3
+  }
+
+  &.disabled:not(.p-radiobutton-checked) {
+    display: none;
+    + label { margin-left: 0 }
+  }
+}
+
+.p-radiobutton-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $white;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.p-radiobutton-icon {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0) scale(.1);
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: $white;
+  visibility: hidden;
+}
+
+.p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  transform: translateZ(0) scale(1.0, 1.0);
+  visibility: visible;
+}

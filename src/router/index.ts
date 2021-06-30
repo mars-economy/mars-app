@@ -7,6 +7,10 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/',
+        redirect: '/prediction-markets'
+      },
+      {
+        path: '/prediction-markets',
         name: 'PredictionMarkets',
         component: () => import('@/views/pages/PredictionMarkets/PredictionMarkets.vue'),
         props: true
@@ -16,7 +20,20 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Milestone',
         component: () => import('@/views/pages/Milestone/Milestone.vue'),
         props: true
+      },
+      {
+        path: '/governance',
+        name: 'GovernanceVotings',
+        component: () => import('@/views/pages/Governance/GovernanceVotings.vue'),
+        props: true
+      },
+      {
+        path: '/governance/voting/:id',
+        name: 'Voting',
+        component: () => import('@/views/pages/Governance/Voting.vue'),
+        props: true
       }
+
     ]
   }
 ]

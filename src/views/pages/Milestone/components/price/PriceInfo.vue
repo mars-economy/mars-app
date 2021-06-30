@@ -14,7 +14,7 @@ import moment from 'moment'
 export default {
   name: 'PriceInfo',
   props: {
-    price: Number,
+    price: [String, Number],
     title: String,
     month: Number,
     isMobile: Boolean
