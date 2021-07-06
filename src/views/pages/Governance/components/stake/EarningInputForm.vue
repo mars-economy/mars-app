@@ -5,7 +5,7 @@
     </div>
     <div class="p-d-sm-flex p-jc-between p-ai-center p-mb-2">
       <input class="input-simple" :placeholder="amount" :class="{'muted' : amount === 0}">
-      <div v-if="amount != 0">
+      <div v-if="amount !== 0">
         <Button label="get earnings" class="btn-primary p-ml-sm-2 btn-block p-mt-3 p-mt-sm-0" />
       </div>
     </div>

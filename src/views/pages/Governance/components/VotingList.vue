@@ -1,9 +1,13 @@
 <template>
   <div class="p-mt-3">
-
-    <template v-for="item in votingList" :key="item.id">
-      <VotingCard :is-mobile="isMobile" :prediction="item" class="p-mb-3"/>
+    <template v-if="votingList.length !== 0">
+      <template v-for="item in votingList" :key="item.id">
+        <VotingCard :is-mobile="isMobile" :prediction="item" class="p-mb-3"/>
+      </template>
     </template>
+    <div class="p-mt-4 p-text-center" v-else>
+      <Loader large />
+    </div>
 
   </div>
 </template>

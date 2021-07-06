@@ -40,7 +40,7 @@
         </div>
         <Divider type="solid" v-if="isMobile" class="p-mb-3"/>
         <div class="p-col-12 p-sm-7 p-lg-8">
-          <StakeInputForm />
+          <StakeInputForm :is-mobile="isMobile"/>
         </div>
 
       </div>

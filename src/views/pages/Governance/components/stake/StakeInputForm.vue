@@ -16,23 +16,38 @@
         </div>
       </div>
       <div class="p-ml-sm-2 p-mb-2">
-        <Button label="stake $DMT" class="btn-primary btn-block"/>
+        <Loader message="Please wait while your stake is load" v-if="isStakeLoading" />
+        <Button label="stake $DMT" class="btn-primary btn-block" v-else @click="onLoadStake"/>
       </div>
 
     </div>
     <div>
       <InfoMessage type="warning" text="You don’t have enough tokens in your wallet" color="primary" small/>
     </div>
+
+    <Toast :position="isMobile ? 'center' : 'top-right'" class="toast-success" :class="{'mobile' : isMobile}"/>
+
   </div>
+
 </template>
 
 <script>
 import { convertFromWei } from '@/utils/contract'
+import Toast from 'primevue/toast'
 
 export default {
   name: 'StakeInputForm',
+  components: {
+    Toast
+  },
   props: {
-    data: Object
+    data: Object,
+    isMobile: Boolean
+  },
+  data: function () {
+    return {
+      isStakeLoading: false
+    }
   },
   methods: {
     fromWei (amount) {
@@ -42,6 +57,13 @@ export default {
       const val = this.fromWei(this.$store.state.wallet.balanceBUSD)
       this.$refs['input-balance-' + this.data.id].value = val
       this.$emit('update:stake', val.toString())
+    },
+    onLoadStake () {
+      this.isStakeLoading = true
+      setTimeout(() => {
+        this.$toast.add({ summary: 'Your stake is successfully submitted', closable: false, life: 2000 })
+        this.isStakeLoading = false
+      }, 1000)
     }
   }
 

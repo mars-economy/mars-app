@@ -13,12 +13,14 @@ import OverlayPanel from 'primevue/overlaypanel'
 import 'primeicons/primeicons.css'
 import 'primevue/resources/primevue.min.css'
 import Panel from 'primevue/panel'
+import ToastService from 'primevue/toastservice'
 
 const app = createApp(App)
   .use(store)
   .use(router)
   .use(LockPlugin, options)
   .use(PrimeVue)
+  .use(ToastService)
 
 const requireComponent = require.context('@/components', true, /[\w-]+\.vue$/)
 requireComponent.keys().forEach(fileName => {

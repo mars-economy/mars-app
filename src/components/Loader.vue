@@ -1,14 +1,14 @@
 <template>
-  <div class="p-d-flex p-ai-center">
+  <div class="p-d-inline-flex p-ai-center">
     <div class="p-mr-2">
-      <div class="spinner">
+      <div class="spinner" :class="{'spinner-large' : large}">
         <svg class="spinner-svg" viewBox="25 25 50 50">
           <circle class="spinner-circle" cx="50" cy="50" r="20" fill="none" stroke-width="3px" strokeMiterlimit="10" />
           <circle cx="50" cy="50" r="20" stroke="#FFC22E" stroke-width="3px" opacity="0.1" fill="none"/>
         </svg>
       </div>
   </div>
-    <div class="text-primary text-small">
+    <div class="text-primary text-small" v-if="message">
       {{message}}
     </div>
   </div>
@@ -18,7 +18,8 @@
 export default {
   name: 'Loader',
   props: {
-    message: String
+    message: String,
+    large: { type: Boolean, default: false }
   }
 }
 </script>
@@ -27,9 +28,16 @@ export default {
 .spinner {
   position: relative;
   margin: 0 auto;
-  width: 35px;
-  height: 35px;
   display: inline-block;
+
+  &:not(.spinner-large) {
+    width: 35px;
+    height: 35px;
+  }
+  &.spinner-large {
+    width: 80px;
+    height: 80px;
+  }
 }
 .spinner::before {
   content: '';
