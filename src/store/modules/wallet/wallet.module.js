@@ -113,7 +113,7 @@ export const actions = {
         // let network, accounts
         // try {
         const [network, accounts] = await Promise.all([
-          auth.web3.eth.net.getId(),
+          auth.web3.eth.getChainId(),
           auth.web3.eth.getAccounts()
         ])
         const balance = await auth.web3.eth.getBalance(accounts[0], 'latest')
